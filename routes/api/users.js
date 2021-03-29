@@ -13,7 +13,7 @@ router.post('/register', (req,res)=>{
   User.findOne({email: req.body.email})
     .then(user=>{
       if (user){
-        return res.status(400).json(email: 'A user si already registered with that email.');
+        return res.status(400).json({email: 'A user si already registered with that email.'});
       }else{
         const newUser  = new User({
           handle: req.body.handle,
@@ -29,25 +29,25 @@ router.post('/register', (req,res)=>{
               .then((user)=>res.json(user))
               .catch(err=> console.log(err));
           })
-        }))
+        });
 
-        /// newUser.save()
-          .then(user => res.send(user))
-          .catch(err=> res.send(err));
+        // /// newUser.save()
+        //   .then(user => res.send(user))
+        //   .catch(err=> res.send(err));
       }
     })
 })
 
 
 router.post('/login', (req, res)=>{
-  email: req.body.email,
-  password: req.body.password;
+  const email =  req.body.email;
+  const password =  req.body.password;
   User.findOne({email})
     .then(user=>{
       if (!user){
         return res.status(404).json({email: 'This user does not exist.'})
       }
-      bcrypt.compare(password, user.password);
+      bcrypt.compare(password, user.password)
         .then(isMatch=>{
           if (isMatch){
 
