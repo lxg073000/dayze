@@ -27,26 +27,26 @@ module.exports = User;
 
 
 /* 
-User Auth User Model   add user to app.js
-const User = require('./models/User');
+// User Auth User Model   add user to app.js
+// const User = require('./models/User');
 
-made at line 15
+// made at line 15
 
 
 
-REgistration 
-app.jsx
-const bodyParser = require('body-parser');
-const passport = require ('passport');
+// REgistration 
+// app.jsx
+// const bodyParser = require('body-parser');
+// const passport = require ('passport');
 
-line 15
-app.use(bodyParser.urlencoded({
-  extended:false
-}));
+// line 15
+// app.use(bodyParser.urlencoded({
+//   extended:false
+// }));
 
-app.use(bodyParser.json());
-app.use(passport.initialize());
-require('./config/passport')(passport);
+// app.use(bodyParser.json());
+// app.use(passport.initialize());
+// require('./config/passport')(passport);
 
 
 
