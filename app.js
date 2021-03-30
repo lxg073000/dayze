@@ -6,6 +6,9 @@ const users = require("./routes/api/users");
 const bodyParser = require('body-parser');
 const passport = require ('passport');
 
+const Event = require("./models/Event");
+const events = require("./routes/api/events");
+
 
 
 const app = express();
@@ -28,7 +31,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
+app.use("/api/events", events);
+
 app.use("/api/users", users);
+
 
 
 const port = process.env.PORT || 5000;
