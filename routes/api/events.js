@@ -3,16 +3,15 @@ const router = express.Router();
 const passport = require("passport");
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
-const Tweet = require("../../models/Event");
 
 router.get("/test", (req, res) =>  {
-    res.json({ msg: 'This is the events route'});
+    res.json({ msg: 'This is the events route' });
 });
 
 router.post("/",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        const { isWalid, errors } = validateEventInput(req.body);
+        const { isValid, errors } = validateEventInput(req.body);
 
         if(!isValid) {
             return res.status(400),json(errors);
@@ -24,6 +23,8 @@ router.post("/",
             description: req.body.description,
             date: req.body.date,
         });
+
+        newEvent.save().then(event => res.json(tweet))
 });
 
 router.get("/", (req, res) => {

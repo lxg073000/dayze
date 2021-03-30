@@ -11,7 +11,7 @@ const EventSchema = new Schema ({
         required: true,
     },
     description: {
-        type: Text,
+        type: String,
     },
     date: {
         type: Date,
