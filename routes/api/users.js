@@ -4,6 +4,7 @@ const User = require('../../models/User');
 const bcrypt = require("bcryptjs");
 const keys = require('../../config/keys');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');///
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
@@ -11,25 +12,35 @@ router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 router.post('/register', (req,res)=>{
   User.findOne({email: req.body.email})
-    .then(user=>{
-      if (user){
-        return res.status(400).json({email: 'A user si already registered with that email.'});
-      }else{
-        const newUser  = new User({
-          handle: req.body.handle,
-          email: req.body.email,
-          password: req.body.password
-        });
+  .then(user=>{
+    if (user){
+      return res.status(400).json({email: 'A user is already registered with that email.'});
+    }else{
 
-        bcrypt.genSalt(10, (err,salt)=>{
-          bcrypt.hash(newUser.password,salt, (err, hash)=>{
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-              .then((user)=>res.json(user))
-              .catch(err=> console.log(err));
-          })
-        });
+      //Check if someone already  registered with given username.
+      User.findOne({username: req.body.username})
+        .then(userSameName=>{
+          if (userSameName){
+            return res.status(400).json({email: 'A user is already registered with that name.'});
+          }
+        })
+
+        
+      const newUser  = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      });
+
+      bcrypt.genSalt(10, (err,salt)=>{
+        bcrypt.hash(newUser.password,salt, (err, hash)=>{
+          if (err) throw err
+          newUser.password = hash;
+          newUser.save()
+            .then((user)=>res.json(user))
+            .catch(err=> console.log(err));
+        })
+      });
 
         // /// newUser.save()
         //   .then(user => res.send(user))
@@ -54,7 +65,7 @@ router.post('/login', (req, res)=>{
             //////////res.json({msg: 'Success'});
             const payload = {
               id: user.id,
-              handle: user.handle,
+              username: user.username,
               email:user.email
             }
             jwt.sign(

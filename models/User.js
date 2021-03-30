@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const UserSchema = new Schema({
-  handle: {
+  username: {
     type: String,
     required: true
   },
@@ -71,7 +71,7 @@ router.post('/register', (req,res)=>{
         return res.status(400).json(email: 'A user si already registered with that email.');
       }else{
         const newUser  = new User({
-          handle: req.body.handle,
+          username: req.body.username,
           email: req.body.email,
           password: req.body.password
         });
@@ -109,7 +109,7 @@ router.post('/login', (req, res)=>{
             //////////res.json({msg: 'Success'});
             const payload = {
               id: user.id,
-              handle: user.handle,
+              username: user.username,
               email:user.email
             }
             jwt.sign(
