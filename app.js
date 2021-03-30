@@ -17,28 +17,21 @@ mongoose
 
 
 
-app.use("/api/users", users);
+app.get("/", (req, res) => res.send("Hello World"));
+
+
+app.use(passport.initialize());
+require('./config/passport')(passport);
 app.use(bodyParser.urlencoded({
   extended:false
 }));
 app.use(bodyParser.json());
-app.use(passport.initialize());
-require('./config/passport')(passport);
 
 
+app.use("/api/users", users);
 
-app.get("/", (req, res) => {
-  // const u = new User({
-  //   handle: 'abe',
-  //   email: 'abe@abe.com',
-  //   password:"1234567890"
-  // });
-  // u.save();
 
-  res.send("Hello World!!");
-});
 const port = process.env.PORT || 5000;
-
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 
