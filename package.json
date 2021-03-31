@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "dayze app",
   "main": "app.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -25,18 +26,25 @@
   },
   "homepage": "https://github.com/lxg073000/dayze#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.0",
     "express": "^4.17.1",
     "googleapis": "^39.2.0",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
     "mongoose": "^5.12.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "validator": "^13.5.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sass": "^1.32.8"
   }
 }

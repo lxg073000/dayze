@@ -1,14 +1,14 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      username: '',
-      password: '',
-      errors: {}
+      email: "",
+      username: "",
+      password: "",
+      errors: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,16 +17,17 @@ class SignupForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
+      this.props.history.push("/login");
     }
 
-    this.setState({errors: nextProps.errors})
+    this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
   }
 
   handleSubmit(e) {
@@ -34,19 +35,17 @@ class SignupForm extends React.Component {
     let user = {
       email: this.state.email,
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
     };
 
-    this.props.signup(user, this.props.history); 
+    this.props.signup(user, this.props.history);
   }
 
   renderErrors() {
-    return(
+    return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
+          <li key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
     );
@@ -57,25 +56,28 @@ class SignupForm extends React.Component {
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
-            <br/>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-            <br/>
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                placeholder="Username"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
+            <br />
+            <input
+              type="text"
+              value={this.state.email}
+              onChange={this.update("email")}
+              placeholder="Email"
+            />
+            <br />
+            <input
+              type="text"
+              value={this.state.username}
+              onChange={this.update("username")}
+              placeholder="Username"
+            />
+            <br />
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update("password")}
+              placeholder="Password"
+            />
+            <br />
             <input type="submit" value="Submit" />
             {this.renderErrors()}
           </div>
