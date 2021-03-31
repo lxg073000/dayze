@@ -9,10 +9,9 @@ const passport = require ('passport');
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
 
-
-
 const app = express();
 const db = require('./config/keys').mongoURI;
+
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
