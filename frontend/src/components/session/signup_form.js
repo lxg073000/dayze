@@ -105,7 +105,6 @@ class SignupForm extends React.Component {
             <footer className="nav footer">
               <ul className="nav-items">
                 <li>Continue as Guest</li>
-                <li>|</li>
                 <li>LOGIN</li>
               </ul>
             </footer>

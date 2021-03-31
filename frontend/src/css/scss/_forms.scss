@@ -188,6 +188,25 @@
   color: rgba(255, 255, 255, 0.81);
   width: 150px;
   font-size: 33px;
+  cursor: pointer;
+}
+.submit:hover {
+  border-radius: 90px;
+  height: 31px;
+  padding: 0px;
+  background: #ff8d7e;
+  color: rgba(255, 255, 255, 0.81);
+  width: 150px;
+  font-size: 33px;
+}
+.submit:active {
+  border-radius: 90px;
+  height: 31px;
+  padding: 0px;
+  background: #c75e50;
+  color: rgba(255, 255, 255, 0.81);
+  width: 150px;
+  font-size: 33px;
 }
 
 // .email-err {
