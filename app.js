@@ -5,6 +5,7 @@ const User = require('./models/User');
 const users = require("./routes/api/users");
 const bodyParser = require('body-parser');
 const passport = require ('passport');
+const path = require('path');
 
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
@@ -34,6 +35,12 @@ app.use("/api/events", events);
 
 app.use("/api/users", users);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 
 
 const port = process.env.PORT || 5000;
