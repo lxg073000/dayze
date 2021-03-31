@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -41,6 +41,22 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history);
   }
 
+  currentPath() {
+    console.log(this.props.location.pathname);
+    if (this.props.location.pathname.toLowerCase() === "/signup")
+      return "Sign Up";
+    if (this.props.location.pathname.toLowerCase() === "/login")
+      return "Log in";
+  }
+  swapPath() {
+    debugger;
+    console.log(this.props.location.pathname);
+    if (this.props.location.pathname.toLowerCase() === "/signup")
+      return "Log In";
+    if (this.props.location.pathname.toLowerCase() === "/login")
+      return "Sign Up";
+  }
+
   renderErrors() {
     return (
       <ul>
@@ -61,7 +77,7 @@ class SignupForm extends React.Component {
           <nav className="nav"></nav>
           <div className="form-page-container">
             <div className="splash-banner">
-              <p className="signup-title">Sign Up</p>
+              <p className="signup-title">{`${this.currentPath()}`}</p>
               <p className="tagline">You plan, we remember.</p>
             </div>
             <form className="session-form" onSubmit={this.handleSubmit}>
@@ -105,7 +121,11 @@ class SignupForm extends React.Component {
             <footer className="nav footer">
               <ul className="nav-items">
                 <li>Continue as Guest</li>
-                <li>LOGIN</li>
+                <li>
+                  <Link to={`/${this.swapPath().split(" ").join("")}`}>
+                    {`${this.swapPath()}`}
+                  </Link>
+                </li>
               </ul>
             </footer>
           </div>
