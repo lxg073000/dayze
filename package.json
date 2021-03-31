@@ -2,7 +2,7 @@
   "name": "dayze",
   "version": "1.0.0",
   "description": "dayze app",
-  "main": "app.js",
+  "main": "./frontend/index.js",
   "proxy": "http://localhost:5000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
