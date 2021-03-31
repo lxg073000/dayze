@@ -53,35 +53,64 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
-            <br />
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={this.update("email")}
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="text"
-              value={this.state.username}
-              onChange={this.update("username")}
-              placeholder="Username"
-            />
-            <br />
-            <input
-              type="password"
-              value={this.state.password}
-              onChange={this.update("password")}
-              placeholder="Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+      <div>
+        <div className="blurry">
+          <div className="splashfill"></div>
+        </div>
+        <div className="page-container">
+          <nav className="nav"></nav>
+          <div className="form-page-container">
+            <div className="splash-banner">
+              <p className="signup-title">Sign Up</p>
+              <p className="tagline">You plan, we remember.</p>
+            </div>
+            <form className="session-form" onSubmit={this.handleSubmit}>
+              <div className="form-div">
+                <div className="signup-form">
+                  <div className="form-section">
+                    <p>Email</p>
+                    <input
+                      className="form-field"
+                      type="text"
+                      value={this.state.email}
+                      onChange={this.update("email")}
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div className="form-section">
+                    <p>Username</p>
+                    <input
+                      className="form-field"
+                      type="text"
+                      value={this.state.username}
+                      onChange={this.update("username")}
+                      placeholder="Username"
+                    />
+                  </div>
+                  <div className="form-section">
+                    <p>Password</p>
+                    <input
+                      className="form-field"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.update("password")}
+                      placeholder="Password"
+                    />
+                  </div>
+                  <input className="submit" type="submit" value="Submit" />
+                  {this.renderErrors()}
+                </div>
+              </div>
+            </form>
+            <footer className="nav footer">
+              <ul className="nav-items">
+                <li>Continue as Guest</li>
+                <li>|</li>
+                <li>LOGIN</li>
+              </ul>
+            </footer>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

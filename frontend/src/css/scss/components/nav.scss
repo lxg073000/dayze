@@ -1,0 +1,25 @@
+.nav {
+  background: #f1e3e1;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -57px;
+}
+.nav-items {
+  background: #9bb1b8;
+  width: 100vw;
+  text-align: center;
+  color: white;
+  display: flex;
+  font-size: 31px;
+  justify-content: center;
+}
+
+.nav-items > li {
+  margin: 2px 10px;
+}
+
+.nav-items > li:hover {
+  text-shadow: 3px 3px 3px #b9a690;
+}
