@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 
+
 const {
   getCalendarInfo,
   getEventsFromRange, 
@@ -16,6 +17,7 @@ const {
   removeEvent, 
   getAuth
 } = require('./util/calendar_util/calendar_api_util')
+
 
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
@@ -30,6 +32,7 @@ mongoose
 
 
 
+const port = process.env.PORT || 5000;
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
@@ -44,22 +47,14 @@ app.use("/api/events", events);
 
 app.use("/api/users", users);
 
+app.get("/", (req, res) => {
+  app.use(express.static("frontend/build"));
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-  })
-}
-
-
-const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-
-
 let accessToken;
-
 
 // google calendar api
 const fs = require("fs");
@@ -68,8 +63,7 @@ const { google } = require("googleapis");
 
 // If modifying these scopes, delete token.json.
 
-const SCOPES = ['https://www.googleapis.com/auth/calendar'];
-
+const SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
@@ -79,16 +73,15 @@ const AUTH_DATABASE_ID_PATH = 'auth_database_id.txt';
 
 // Load client secrets from a local file.
 
-const credentialsFile = 'credentials.json';
+const credentialsFile = "credentials.json";
 fs.readFile(credentialsFile, (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
+  if (err) return console.log("Error loading client secret file:", err);
 
   // Authorize a client with credentials, then call the Google Calendar API.
   // authorize(JSON.parse(content), listEvents);
-  authorize(JSON.parse(content), (auth)=>{
-    return removeEvent(auth, 'nnhdosqn74u95tmliln4p4ogmc');
-  }
-  );
+  authorize(JSON.parse(content), (auth) => {
+    return removeEvent(auth, "nnhdosqn74u95tmliln4p4ogmc");
+  });
 });
 
 /**

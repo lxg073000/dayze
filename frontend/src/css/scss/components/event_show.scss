@@ -17,10 +17,9 @@
 
 .top-events {
   display: flex;
-  height: 53vh;
+  height: 650px;
   flex: 1 1;
   min-width: 200px;
-  padding: 62px 17px;
   flex-direction: column;
   overflow: scroll;
   z-index: 1;
@@ -33,13 +32,9 @@
 
 .show-event {
   display: flex;
-  flex: 3 1;
   padding: 5px;
   flex-direction: column;
-  overflow: scroll;
-  border-radius: 220px;
-  border-bottom-left-radius: 0px;
-  border-top-right-radius: 0px;
+  height: 651px;
 }
 
 .show-event::-webkit-scrollbar {
@@ -51,6 +46,9 @@
   justify-content: flex-end;
   z-index: 1;
   border-top-left-radius: 0px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dateline {
@@ -72,6 +70,7 @@
   border-bottom-right-radius: 33px;
   text-shadow: -4px 0 4px rgb(255 255 255 / 0%);
   text-align: end;
+  align-self: flex-end;
 }
 
 .shadow {
