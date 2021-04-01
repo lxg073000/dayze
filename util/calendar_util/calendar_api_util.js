@@ -4,7 +4,6 @@ const credentials = require('../../credentials.json');
 
 
 
-
 const getCalendarInfo = ()=>{
   let auth = getAuth();
   const calendar = google.calendar({version: 'v3', auth});

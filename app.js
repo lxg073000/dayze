@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-// const User = require("./models/User");
 const users = require("./routes/api/users");
 
 const bodyParser = require("body-parser");
@@ -39,10 +38,6 @@ app.use(
     extended: false,
   })
 );
-
-
-
-
 app.use(bodyParser.json());
 
 app.use("/api/events", events);
@@ -109,24 +104,6 @@ function authorize(credentials, callback) {
     client_secret,
     redirect_uris[0]
   );
-  console.log(oAuth2Client);
-  let authDatabaseId;
-
-  
-  // Auth.findOne({}, (err,res)=>{
-  //   if (err) return `Error: cannot search for an Auth in db. : ${err}`
-    
-  // }
-  // Auth.remove({});
-  // let auth = new Auth(oAuth2Client);
-  // auth.save();
-
-    // listEvents(getAuth())
-    // insertEvent({
-    //    title:'Another Test!',
-    //    description: 'Yet another',
-    //    date:new Date(2021,3,20,16)
-    // })
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
@@ -197,6 +174,3 @@ function listEvents(auth) {
     }
   );
 }
-
-
-
