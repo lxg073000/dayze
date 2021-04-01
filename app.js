@@ -1,14 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const User = require("./models/User");
+// const User = require("./models/User");
 const users = require("./routes/api/users");
 
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 
-const {getCalendarInfo, getEventsFromRange, calendarTest, updateEvent, insertEvent, removeEvent} = require('./util/calendar_util/calendar_api_util')
+const {
+  getCalendarInfo,
+  getEventsFromRange, 
+  calendarTest, 
+  updateEvent, 
+  insertEvent, 
+  removeEvent, 
+  getAuth
+} = require('./util/calendar_util/calendar_api_util')
 
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
@@ -19,7 +27,6 @@ const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
-
   .catch(err => console.log(err));
 
 
@@ -32,6 +39,10 @@ app.use(
     extended: false,
   })
 );
+
+
+
+
 app.use(bodyParser.json());
 
 app.use("/api/events", events);
@@ -69,6 +80,7 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = "token.json";
+const AUTH_DATABASE_ID_PATH = 'auth_database_id.txt';
 
 // Load client secrets from a local file.
 
@@ -97,13 +109,31 @@ function authorize(credentials, callback) {
     client_secret,
     redirect_uris[0]
   );
+  console.log(oAuth2Client);
+  let authDatabaseId;
+
+  
+  // Auth.findOne({}, (err,res)=>{
+  //   if (err) return `Error: cannot search for an Auth in db. : ${err}`
+    
+  // }
+  // Auth.remove({});
+  // let auth = new Auth(oAuth2Client);
+  // auth.save();
+
+    // listEvents(getAuth())
+    // insertEvent({
+    //    title:'Another Test!',
+    //    description: 'Yet another',
+    //    date:new Date(2021,3,20,16)
+    // })
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
     if (err) return getAccessToken(oAuth2Client, callback);
     accessToken = JSON.parse(token);
     oAuth2Client.setCredentials(accessToken);
-    callback(oAuth2Client);
+    // callback(oAuth2Client);
   });
 }
 
@@ -133,7 +163,7 @@ function getAccessToken(oAuth2Client, callback) {
         if (err) return console.error(err);
         console.log("Token stored to", TOKEN_PATH);
       });
-      callback(oAuth2Client);
+      // callback(oAuth2Client);
     });
   });
 }
@@ -167,3 +197,6 @@ function listEvents(auth) {
     }
   );
 }
+
+
+
