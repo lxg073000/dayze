@@ -25,14 +25,14 @@ router.post('/register', (req,res)=>{
       return res.status(400).json({email: 'A user is already registered with that email.'});
     }else{
 
-      //Check if someone already  registered with given username.
+      // Check if someone already  registered with given username.
       User.findOne({username: req.body.username})
         .then(userSameName=>{
           if (userSameName){
             return res.status(400).json({email: 'A user is already registered with that name.'});
           }
         })
-
+        /////////////Note, David Suh said that we should put the following code below into the .then() cllback above.
         
       const newUser  = new User({
         username: req.body.username,

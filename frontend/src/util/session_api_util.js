@@ -11,7 +11,6 @@ export const setAuthToken = token => {
 
 export const signup = (userData) => {
   debugger
-  axios.defaults.baseURL = 'http://localhost:5000/';
   return axios.post('/api/users/register', userData);
 };
 
