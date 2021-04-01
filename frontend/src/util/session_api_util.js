@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const setAuthToken = token => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = token;
@@ -9,6 +10,8 @@ export const setAuthToken = token => {
 };
 
 export const signup = (userData) => {
+  debugger
+  axios.defaults.baseURL = 'http://localhost:5000/';
   return axios.post('/api/users/register', userData);
 };
 

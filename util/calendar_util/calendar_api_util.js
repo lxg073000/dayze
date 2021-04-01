@@ -171,5 +171,4 @@ const mapDbEventsToGoogleEvents = (dbEvent)=>{
 // }
 
 module.exports = {insertEvent, removeEvent,getEventsFromRange, getCalendarInfo, updateEvent, getAuth,mapDbEventsToGoogleEvents}
-=======
 
