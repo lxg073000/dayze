@@ -35,10 +35,7 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 
-
 let accessToken;
-
-
 // google calendar api
 const fs = require('fs');
 const readline = require('readline');
@@ -144,18 +141,3 @@ function listEvents(auth) {
     }
   });
 }
-
-
-
-
-// const getToken = ()=>{
-//   let token  = JSON.parse(fs.readFileSync(TOKEN_PATH)).access_token;
-//   // fs.readFileSync('token.json', (err, tok) => {
-//   //   if (err) return err;//return getAccessToken(oAuth2Client, callback);
-//   //   token = JSON.parse(tok);
-//   //   // return token;
-//   // });
-//   console.log('Token of getToken(): ', token)
-//   return token;
-// }
-// getToken()
