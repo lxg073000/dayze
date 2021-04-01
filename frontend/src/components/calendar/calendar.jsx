@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import HourlyCard from "../../components/events/hourly_card";
 import DailyCard from "../../components/events/daily_card";
 export default class calendar extends Component {
   constructor(props) {
@@ -90,7 +89,6 @@ export default class calendar extends Component {
           {date.getDate()}
         </div>
       );
-      console.log(date);
       date.setDate(date.getDate() + 1);
     }
     return fullCalDays.map((date) => date);

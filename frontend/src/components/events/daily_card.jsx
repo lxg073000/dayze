@@ -8,7 +8,7 @@ export default class dailyCard extends Component {
   render() {
     return (
       <div className="widget-box-full" onClick={this.handleClick}>
-        <div className="modal_content">
+        <div>
           <p className="sample-select">{`${this.props.activeDate}`}</p>
         </div>
       </div>

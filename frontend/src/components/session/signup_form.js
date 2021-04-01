@@ -118,7 +118,9 @@ class SignupForm extends React.Component {
             </form>
             <footer className="nav footer">
               <ul className="nav-items">
-                <li>Continue as Guest</li>
+                <li>
+                  <Link to="/user">Continue as Guest</Link>
+                </li>
                 <li>
                   <Link to={`/${this.swapPath().split(" ").join("")}`}>
                     {`${this.swapPath()}`}

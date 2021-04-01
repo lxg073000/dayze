@@ -21,10 +21,10 @@ export default function splash() {
                 <Link to="./login">Log In</Link>
               </li>
               <li>
-                <Link to="./login">Sign Up</Link>
+                <Link to="./signup">Sign Up</Link>
               </li>
               <li>
-                <Link to="./login">Continue As Guest</Link>
+                <Link to="./user">Continue As Guest</Link>
               </li>
             </ul>
           </footer>
