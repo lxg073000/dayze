@@ -1,0 +1,27 @@
+.event-list-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-row-gap: 1%;
+}
+
+.linebreak {
+  border-bottom: 1px solid rgba(177, 163, 163, 0.589);
+}
+
+.event-card {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+.event-card > li {
+  font-family: "Lato";
+  font-size: 20px;
+  color: #9bb1b894;
+  background: linear-gradient(87deg, #f0f8ff85, transparent);
+  padding: 2px 0 2px 40px;
+}
+.event-card > li:first-child {
+  font-size: 25px;
+  background: rgb(255 255 255 / 81%);
+  color: #ff8d7e;
+  padding: 10px;
+}
