@@ -54,3 +54,18 @@
 .splash-nav > .nav-items > li:hover {
   text-shadow: 3px 3px 3px #ddcebc;
 }
+
+.splash-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+.splash-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  height: 300px;
+  justify-content: space-around;
+}
