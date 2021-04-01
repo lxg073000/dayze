@@ -49,7 +49,6 @@ class SignupForm extends React.Component {
       return "Log in";
   }
   swapPath() {
-    debugger;
     console.log(this.props.location.pathname);
     if (this.props.location.pathname.toLowerCase() === "/signup")
       return "Log In";

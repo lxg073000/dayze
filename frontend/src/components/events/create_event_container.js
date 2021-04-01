@@ -5,7 +5,7 @@ import CreateEvent from './create_event';
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        newEvent: state.events.new
+        //newEvent: state.events.new
     };
 };
 

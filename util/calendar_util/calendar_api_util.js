@@ -146,4 +146,4 @@ const removeEvent = (auth, eventId)=>{ //not tested yet
 }
 
 
-module.exports = {insertEvent, removeEvent, getEvent,getEventsFromRange, getCalendarInfo, calendarTest, updateEvent}
+module.exports = {insertEvent, removeEvent, getEventsFromRange, getCalendarInfo, updateEvent}
