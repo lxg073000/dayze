@@ -75,9 +75,7 @@ function authorize(credentials, callback) {
   fs.readFile(TOKEN_PATH, (err, token) => {
     if (err) return getAccessToken(oAuth2Client, callback);
     accessToken = JSON.parse(token);
-    // console.log('access token!!!' ,accessToken)
     oAuth2Client.setCredentials(accessToken);
-    // getToken();
     callback(oAuth2Client);
   });
 }
@@ -108,9 +106,7 @@ function getAccessToken(oAuth2Client, callback) {
         if (err) return console.error(err);
         console.log('Token stored to', TOKEN_PATH);
       });
-      // callback(oAuth2Client, getToken());
       callback(oAuth2Client);
-      // getToken();
     });
   });
 }
