@@ -90,6 +90,7 @@ export default class calendar extends Component {
           {date.getDate()}
         </div>
       );
+      console.log(date);
       date.setDate(date.getDate() + 1);
     }
     return fullCalDays.map((date) => date);
