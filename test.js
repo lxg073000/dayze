@@ -1,10 +1,16 @@
 const {google} = require('googleapis');
 const {OAuth2} = google.auth;
+// const {getCalendarInfo} = require('./util/calendar_util');
+const {getCalendarInfo}  = require('./util/calendar_util/calendar_api_util');
+
+// import {getCalendarInfo} from 
 
 const oAuth2Client = new OAuth2('630484719931-256gihgl594gkcusn90uu1h3j3dsl8am.apps.googleusercontent.com','Z68nBaV2JacZ6nCrylw1iM1b');
 oAuth2Client.setCredentials({refresh_token:'1//04UyCDAL8g1qCCgYIARAAGAQSNwF-L9IrzEBMEhZ7HU_A9XEw19LDv4SdGsG3OVJ2V6hTm0eHIuMck7NzHWqbQk5jtBjHBG9RjZI'});
 
 const calendar = google.calendar({version: 'v3', auth: oAuth2Client});
+// console.log(calendar);
+// console.log(oAuth2Client);
 
 const eventStartTime=  new Date(2021,4,10,12,0,0,0);
 console.log(eventStartTime);
@@ -51,3 +57,6 @@ calendar.freebusy.query(
     return console.log('I am busy');
   }
 );
+
+
+// getCalendarInfo(oAuth2Client);
