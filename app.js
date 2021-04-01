@@ -3,9 +3,12 @@ const mongoose = require("mongoose");
 
 const User = require("./models/User");
 const users = require("./routes/api/users");
+
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
+
+const {getCalendarInfo, getEventsFromRange, calendarTest, updateEvent, insertEvent, removeEvent} = require('./util/calendar_util/calendar_api_util')
 
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
@@ -16,7 +19,10 @@ const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
-  .catch((err) => console.log(err));
+
+  .catch(err => console.log(err));
+
+
 
 const port = process.env.PORT || 5000;
 
@@ -40,23 +46,38 @@ app.use(express.static('frontend/build'));
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
+
+
+let accessToken;
+
+
 // google calendar api
 const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+
+const SCOPES = ['https://www.googleapis.com/auth/calendar'];
+
+
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-fs.readFile("credentials.json", (err, content) => {
-  if (err) return console.log("Error loading client secret file:", err);
+
+const credentialsFile = 'credentials.json';
+fs.readFile(credentialsFile, (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err);
+
   // Authorize a client with credentials, then call the Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
+  // authorize(JSON.parse(content), listEvents);
+  authorize(JSON.parse(content), (auth)=>{
+    return removeEvent(auth, 'nnhdosqn74u95tmliln4p4ogmc');
+  }
+  );
 });
 
 /**
@@ -76,7 +97,8 @@ function authorize(credentials, callback) {
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
     if (err) return getAccessToken(oAuth2Client, callback);
-    oAuth2Client.setCredentials(JSON.parse(token));
+    accessToken = JSON.parse(token);
+    oAuth2Client.setCredentials(accessToken);
     callback(oAuth2Client);
   });
 }
