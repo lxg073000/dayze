@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const User = require("./models/User");
 const users = require("./routes/api/users");
 
 const bodyParser = require("body-parser");
@@ -11,12 +10,13 @@ const path = require("path");
 
 const {
   getCalendarInfo,
-  getEventsFromRange,
-  calendarTest,
-  updateEvent,
-  insertEvent,
-  removeEvent,
-} = require("./util/calendar_util/calendar_api_util");
+  getEventsFromRange, 
+  calendarTest, 
+  updateEvent, 
+  insertEvent, 
+  removeEvent, 
+  getAuth
+} = require('./util/calendar_util/calendar_api_util')
 
 
 const Event = require("./models/Event");
@@ -28,8 +28,9 @@ const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
 
-  .catch((err) => console.log(err));
+
 
 const port = process.env.PORT || 5000;
 
@@ -68,6 +69,7 @@ const SCOPES = ["https://www.googleapis.com/auth/calendar"];
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = "token.json";
+const AUTH_DATABASE_ID_PATH = 'auth_database_id.txt';
 
 // Load client secrets from a local file.
 
@@ -101,7 +103,7 @@ function authorize(credentials, callback) {
     if (err) return getAccessToken(oAuth2Client, callback);
     accessToken = JSON.parse(token);
     oAuth2Client.setCredentials(accessToken);
-    callback(oAuth2Client);
+    // callback(oAuth2Client);
   });
 }
 
@@ -131,7 +133,7 @@ function getAccessToken(oAuth2Client, callback) {
         if (err) return console.error(err);
         console.log("Token stored to", TOKEN_PATH);
       });
-      callback(oAuth2Client);
+      // callback(oAuth2Client);
     });
   });
 }
