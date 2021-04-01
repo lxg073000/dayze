@@ -40,12 +40,9 @@ class CreateEvent extends React.Component {
         })
     }
 
-    update() {
+    update(field) {
         return e => this.setState({
-            title: e.currentTarget.value,
-            description: e.currentTarget.value,
-            date: e.currentTarget.value,
-            time: e.currentTarget.value,
+            [field]: e.currentTarget.value,
         })
     }
 
@@ -56,22 +53,22 @@ class CreateEvent extends React.Component {
                     <label>Title</label>
                     <input type="text"
                         value={this.state.title}
-                        onChange={this.update()}
+                        onChange={this.update('title')}
                         placeholder="Event title"/>
                     <label>Description</label>
                     <input type="textarea"
                         value={this.state.description}
-                        onChange={this.update()}
+                        onChange={this.update('description')}
                         placeholder="Event description"/>
                     <label>Date</label>
                     <input type="date"
                         value={this.state.date}
-                        onChange={this.update()}
+                        onChange={this.update('date')}
                         placeholder="Event date"/>
                     <label>Time</label>
                     <input type="time"
                         value={this.state.time}
-                        onChange={this.update()}
+                        onChange={this.update('time')}
                         placeholder="Event time"/>
                     <input type="submit" value="Create Event" />
                 </form>
@@ -79,3 +76,5 @@ class CreateEvent extends React.Component {
         )
     }
 }
+
+export default CreateEvent;
