@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 
-const {getCalendarInfo, getEventsFromRange, calendarTest, updateEvent, insertEvent, removeEvent} = require('./util/calendar_util/calendar_api_util')
+const {getCalendarInfo, getEventsFromRange, updateEvent, insertEvent, removeEvent} = require('./util/calendar_util/calendar_api_util')
 
 const Event = require("./models/Event");
 const events = require("./routes/api/events");
