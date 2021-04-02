@@ -62,11 +62,9 @@ export default class calendar extends Component {
   }
 
   showCalendar(dateObject) {
-    debugger;
     const month = dateObject.getMonth();
     const year = dateObject.getFullYear();
     const date = new Date(year, month, 1);
-    debugger;
     const fullCalDays = [];
 
     this.baseCal.forEach((day, id) =>
@@ -112,7 +110,6 @@ export default class calendar extends Component {
   }
 
   setActiveDate(e) {
-    debugger;
     this.active["date"] = e.currentTarget.innerHTML;
     this.toggleDayCard();
   }

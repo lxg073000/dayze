@@ -72,6 +72,21 @@
   text-align: end;
   align-self: flex-end;
 }
+.event-list-headline {
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-size: 30px;
+  background: #b9a69030;
+  width: 540px;
+  padding: 3px 27px 3px 40px;
+  border-top-left-radius: 33px;
+  box-shadow: -5px -2px 14px 0px rgb(255 255 255 / 58%);
+  border-bottom-right-radius: 33px;
+  text-shadow: -4px 0 4px rgb(255 255 255 / 0%);
+  text-align: end;
+  align-self: flex-start;
+  text-align: start;
+}
 
 .shadow {
   z-index: 1;

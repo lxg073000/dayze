@@ -23,6 +23,7 @@ class CreateEvent extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger;
     e.preventDefault();
     let event = {
       title: this.state.title,
@@ -59,8 +60,6 @@ class CreateEvent extends React.Component {
           />
           <label>Description</label>
           <input
-            rows="2"
-            cols="200"
             type="textarea"
             value={this.state.description}
             onChange={this.update("description")}
@@ -80,7 +79,7 @@ class CreateEvent extends React.Component {
             onChange={this.update("time")}
             placeholder="Event time"
           />
-          <input className="sample-btn" type="submit " value="Create Event" />
+          <input className="sample-btn" type="submit" value="Save Event" />
         </form>
       </div>
     );

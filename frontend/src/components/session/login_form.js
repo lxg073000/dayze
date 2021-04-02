@@ -41,20 +41,6 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  currentPath() {
-    if (this.props.location.pathname.toLowerCase() === "/signup")
-      return "Sign Up";
-    if (this.props.location.pathname.toLowerCase() === "/login")
-      return "Log in";
-  }
-  swapPath() {
-    console.log(this.props.location.pathname);
-    if (this.props.location.pathname.toLowerCase() === "/signup")
-      return "Log In";
-    if (this.props.location.pathname.toLowerCase() === "/login")
-      return "Sign Up";
-  }
-
   renderErrors() {
     return (
       <ul>
@@ -75,7 +61,7 @@ class LoginForm extends React.Component {
             <div className="grid-bg"></div>
           </div>
           <div className="logo">
-            <p className="session-title">{`${this.currentPath()}`}</p>
+            <p className="session-title">Log In</p>
             <p className="tagline">we'll remember when.</p>
             <form>
               <div className="form-background">
@@ -104,7 +90,7 @@ class LoginForm extends React.Component {
                     className="session-form-btn"
                     onSubmit={this.handleSubmit}
                   >
-                    Submit
+                    Log In
                   </button>
                 </div>
               </div>
@@ -118,9 +104,7 @@ class LoginForm extends React.Component {
               <Link to="/user">Continue as Guest</Link>
             </li>
             <li>
-              <Link to={`/${this.swapPath().split(" ").join("")}`}>
-                {`${this.swapPath()}`}
-              </Link>
+              <Link to="/signup">Sign Up</Link>
             </li>
             <span className="contacts">
               <a

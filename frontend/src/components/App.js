@@ -6,7 +6,7 @@ import LogIn from "../components/session/login_form_container";
 // import Calendar from "../components/calendar/calendar_container";
 // import hub from "../components/profile/dayze_hub";
 import EventList from "../components/events/event_showcard";
-import UserCalendarHub from "../components/profile/user_calendar_hub";
+import UserCalendarHub from "../components/profile/current_user_container";
 import React from "react";
 
 const App = () => {

@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Calendar from "../calendar/calendar";
-import EventList from "../events/event_showcard";
+import Calendar from "../calendar/calendar_container";
 import CreateEvent from "../events/create_event_container";
+import Events from "../events/events_container";
+import { logout } from "../../actions/session_actions";
 
 export default class user_calender_hub extends Component {
+  componentDidMount() {
+    debugger;
+  }
   render() {
     return (
       <div className="shell">
@@ -16,7 +20,9 @@ export default class user_calender_hub extends Component {
               <div className="background"></div>
             </div>
             <div className="head">
-              <p className="main-headline">Upcoming Events</p>
+              <p className="main-headline">
+                Dazed {/*  {`${this.props.username}`} */}
+              </p>
             </div>
             <div className="container">
               <Calendar />
@@ -24,12 +30,12 @@ export default class user_calender_hub extends Component {
                 <ul></ul>
 
                 <div>
-                  <EventList />
+                  <Events />
                 </div>
               </div>
               <div className="half-card show-event">
                 <div className="title">
-                  <p className="event-headline">Navigation Bar</p>
+                  <p className="event-headline">Schedule a reminder</p>
                   <CreateEvent />
                 </div>
               </div>
@@ -37,7 +43,9 @@ export default class user_calender_hub extends Component {
             <div className="hub-footer">
               <ul className="splash-navs flex-end">
                 <li>
-                  <Link to="/">Log Out</Link>
+                  <Link onClick={logout()} to="/">
+                    Log Out
+                  </Link>
                 </li>
                 <span className="contacts">
                   <a

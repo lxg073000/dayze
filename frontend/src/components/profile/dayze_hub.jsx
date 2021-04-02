@@ -24,7 +24,7 @@ export default class dayze_hub extends Component {
           </div>
           <div className="half-card show-event">
             <div className="title">
-              <p className="event-headline">Navigation Bar</p>
+              <p className="event-headline"></p>
               <CreateEvent />
             </div>
           </div>
