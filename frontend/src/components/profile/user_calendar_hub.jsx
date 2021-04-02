@@ -6,8 +6,12 @@ import Events from "../events/events_container";
 import { logout } from "../../actions/session_actions";
 
 export default class user_calender_hub extends Component {
-  componentDidMount() {
-    debugger;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signedIn === false) {
+      this.props.history.push("/");
+    }
+
+    this.setState({ errors: nextProps.errors });
   }
   render() {
     return (
@@ -43,9 +47,7 @@ export default class user_calender_hub extends Component {
             <div className="hub-footer">
               <ul className="splash-navs flex-end">
                 <li>
-                  <Link onClick={logout()} to="/">
-                    Log Out
-                  </Link>
+                  <Link onClick={() => this.props.logout()}>Log Out</Link>
                 </li>
                 <span className="contacts">
                   <a

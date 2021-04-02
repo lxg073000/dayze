@@ -5,6 +5,8 @@ import Hub from "./user_calendar_hub";
 const mapStateToProps = (state) => {
   return {
     events: Object.values(state.events.all),
+    signedIn: state.session.isSignedIn,
+    errors: state.errors.session,
   };
 };
 

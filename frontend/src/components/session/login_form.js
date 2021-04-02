@@ -6,7 +6,7 @@ class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      email: "",
+      username: "",
       password: "",
       errors: {},
     };
@@ -16,8 +16,8 @@ class LoginForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push("/tweets");
+    if (nextProps.signedIn === true) {
+      this.props.history.push("/user");
     }
 
     this.setState({ errors: nextProps.errors });
@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
     debugger;
 
     let user = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
     };
 
@@ -90,6 +90,7 @@ class LoginForm extends React.Component {
                   <button type="submit" className="session-form-btn">
                     Log In
                   </button>
+                  {this.renderErrors}
                 </div>
               </div>
             </form>

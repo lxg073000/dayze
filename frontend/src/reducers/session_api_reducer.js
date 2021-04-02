@@ -13,11 +13,12 @@ export default function (state = initialState, action) {
   debugger;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      debugger
+      debugger;
       return {
         ...state,
         isAuthenticated: !!action.currentUser,
-        user: action.currentUser.data,
+        user: action.currentUser,
+        isSignedIn: true,
       };
 
     case RECEIVE_USER_LOGOUT:
