@@ -28,8 +28,9 @@ class CreateEvent extends React.Component {
       title: this.state.title,
       description: this.state.description,
       date: this.composeDate(this.state.date, this.state.time),
-    };
-
+      user: this.props.currentUser,
+    }
+    
     this.props.createEvent(event);
     this.setState({
       title: "",
@@ -80,7 +81,7 @@ class CreateEvent extends React.Component {
             onChange={this.update("time")}
             placeholder="Event time"
           />
-          <input className="sample-btn" type="submit " value="Create Event" />
+          <input className="sample-btn" type="submit" value="Create Event" />
         </form>
       </div>
     );

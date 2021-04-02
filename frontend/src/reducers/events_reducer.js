@@ -18,7 +18,7 @@ const EventsReducer = (state = { all: {}, user: {}, new: undefined }, action) =>
             newState.user = action.events.data;
             return newState;
         case RECEIVE_NEW_EVENT:
-            newState.new = action.events.data;
+            newState.new = action.event.data;
             return newState;
         default:
             return state;
