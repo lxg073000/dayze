@@ -31,7 +31,7 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger;
+    //debugger;
     e.preventDefault();
     let user = {
       email: this.state.email,

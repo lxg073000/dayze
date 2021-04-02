@@ -5,13 +5,24 @@ import CreateEvent from "../events/create_event_container";
 import Events from "../events/events_container";
 import { logout } from "../../actions/session_actions";
 
-export default class user_calender_hub extends Component {
+export default class user_calender_hub extends React.Component {
+  
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === false) {
       this.props.history.push("/");
     }
 
     this.setState({ errors: nextProps.errors });
+  }
+
+  handleClick() {
+    this.props.logout();
+    this.props.history.push("/");
   }
   render() {
     return (
@@ -47,7 +58,7 @@ export default class user_calender_hub extends Component {
             <div className="hub-footer">
               <ul className="splash-navs flex-end">
                 <li>
-                  <Link onClick={() => this.props.logout()}>Log Out</Link>
+                  <span onClick={this.handleClick}>Log Out</span>
                 </li>
                 <span className="contacts">
                   <a

@@ -11,7 +11,7 @@ const EventsReducer = (
   state = { all: {}, user: {}, new: undefined },
   action
 ) => {
-  debugger;
+  //debugger;
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {

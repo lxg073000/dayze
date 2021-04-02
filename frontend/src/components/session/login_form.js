@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger;
+    //debugger;
 
     let user = {
       username: this.state.username,

@@ -11,7 +11,7 @@ class Event extends React.Component {
   }
 
   componentWillMount() {
-    debugger;
+    //debugger;
     this.props.fetchUserEvents(this.props.currentUser.id);
   }
 

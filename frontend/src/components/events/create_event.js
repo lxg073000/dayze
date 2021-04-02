@@ -23,7 +23,7 @@ class CreateEvent extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger;
+    //debugger;
     e.preventDefault();
     let event = {
       title: this.state.title,
