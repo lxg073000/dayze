@@ -3,15 +3,11 @@ const validText = require("./valid-text");
 
 module.exports = function(data) {
     let errors = {};
-    data.email = validText(data.email) ? data.email : ''
+    data.username = validText(data.username) ? data.username : ''
     data.password = validText(data.password) ? data.password : ''
 
-    if (!Validator.isEmail(data.email)) {
-        errors.email = 'email is invalid';
-    }
-
-    if (Validator.isEmpty(data.email)) {
-        errors.email = 'email is required';
+    if (Validator.isEmpty(data.username)) {
+        errors.username = 'username is required';
     }
 
     if (Validator.isEmpty(data.password)) {
