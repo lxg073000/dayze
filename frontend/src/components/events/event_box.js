@@ -6,7 +6,7 @@ class EventBox extends React.Component {
             <div>
                 <span>{this.props.title}</span>
                 <span>{this.props.description}</span>
-                <span>{this.props.date,toString()}</span>
+                <span>{this.props.date.toString()}</span>
             </div>
         )
     }

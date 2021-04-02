@@ -10,7 +10,7 @@ router.get("/test", (req, res) =>  {
 });
 
 router.post("/",
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { isValid, errors } = validateEventInput(req.body);
 
@@ -18,13 +18,13 @@ router.post("/",
             return res.status(400).json(errors);
         }
 
-        const newEvent = new Event({
-            user: req.user.id,
+        const newEvent = new Event({     
+            user: req.body.user.id,
             title: req.body.title,
             description: req.body.description,
             date: req.body.date,
         });
-
+        
         newEvent.save().then(event => res.json(event))
 });
 
