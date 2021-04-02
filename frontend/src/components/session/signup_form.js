@@ -38,7 +38,7 @@ class SignupForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.signup(user, this.props.history);
+    this.props.signup(user);
   }
 
   renderErrors() {
@@ -64,7 +64,7 @@ class SignupForm extends React.Component {
           <div className="logo">
             <p className="session-title">Sign Up</p>
             <p className="tagline">we'll remember when.</p>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="signup-form-background">
                 <div className="email-c">
                   <p className="email-t">Email</p>
@@ -97,10 +97,7 @@ class SignupForm extends React.Component {
                   />
                 </div>
                 <div className="submit-c">
-                  <button
-                    className="session-form-btn"
-                    onSubmit={this.handleSubmit}
-                  >
+                  <button type="submit" className="session-form-btn">
                     Sign Up
                   </button>
                 </div>

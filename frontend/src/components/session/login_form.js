@@ -32,6 +32,7 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger;
 
     let user = {
       email: this.state.email,
@@ -63,7 +64,7 @@ class LoginForm extends React.Component {
           <div className="logo">
             <p className="session-title">Log In</p>
             <p className="tagline">we'll remember when.</p>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-background">
                 <div className="username-c">
                   <p className="user-t">Username</p>
@@ -86,10 +87,7 @@ class LoginForm extends React.Component {
                   />
                 </div>
                 <div className="submit-c">
-                  <button
-                    className="session-form-btn"
-                    onSubmit={this.handleSubmit}
-                  >
+                  <button type="submit" className="session-form-btn">
                     Log In
                   </button>
                 </div>
