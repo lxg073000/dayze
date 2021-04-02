@@ -6,8 +6,7 @@ import Events from "../events/events_container";
 import { logout } from "../../actions/session_actions";
 
 export default class user_calender_hub extends React.Component {
-  
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
