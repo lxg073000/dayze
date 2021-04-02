@@ -23,36 +23,31 @@ router.post('/register', (req,res)=>{
   .then(user=>{
     if (user){
       return res.status(400).json({email: 'A user is already registered with that email.'});
+    
     }else{
-
-      //Check if someone already  registered with given username.
+      // Check if someone already  registered with given username.
       User.findOne({username: req.body.username})
         .then(userSameName=>{
           if (userSameName){
             return res.status(400).json({email: 'A user is already registered with that name.'});
           }
+            
+          const newUser  = new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+          });
+    
+          bcrypt.genSalt(10, (err,salt)=>{
+            bcrypt.hash(newUser.password,salt, (err, hash)=>{
+              if (err) throw err
+              newUser.password = hash;
+              newUser.save()
+                .then((user)=>res.json(user))
+                .catch(err=> console.log(err));
+            })
+          });
         })
-
-        
-      const newUser  = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      });
-
-      bcrypt.genSalt(10, (err,salt)=>{
-        bcrypt.hash(newUser.password,salt, (err, hash)=>{
-          if (err) throw err
-          newUser.password = hash;
-          newUser.save()
-            .then((user)=>res.json(user))
-            .catch(err=> console.log(err));
-        })
-      });
-
-        // /// newUser.save()
-        //   .then(user => res.send(user))
-        //   .catch(err=> res.send(err));
       }
     })
 })
