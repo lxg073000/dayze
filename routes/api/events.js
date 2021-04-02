@@ -4,6 +4,12 @@ const passport = require("passport");
 const mongoose = require('mongoose');
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
+const {
+    insertEvent,
+    updateEvent,
+    removeEvent,
+} = require('../../util/calendar_util/calendar_api_util')
+
 
 router.get("/test", (req, res) =>  {
     res.json({ msg: 'This is the events route' });
@@ -25,8 +31,15 @@ router.post("/",
             date: req.body.date,
         });
 
-        newEvent.save().then(event => res.json(event))
+        const insertThenSave = async ()=>{
+            let googleId = await insertEvent(newEvent);
+            newEvent.googleId = googleId;
+            newEvent.save().then(event => res.json(event))
+        }
+        insertThenSave();
 });
+
+
 
 router.get("/", (req, res) => {
     Event
