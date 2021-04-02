@@ -12,7 +12,7 @@ class Event extends React.Component {
 
   componentWillMount() {
     debugger;
-    this.props.fetchEvents();
+    this.props.fetchUserEvents(this.props.currentUser.id);
   }
 
   componentWillReceiveProps(newState) {

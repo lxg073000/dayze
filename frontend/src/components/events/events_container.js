@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
-import { fetchEvents } from '../../actions/event_actions';
+import { fetchUserEvents } from '../../actions/event_actions';
 import Events from './events';
 
 const mapStateToProps = (state) => {
     return {
-        events: Object.values(state.events.all)
+        events: Object.values(state.events.all),
+        currentUser: state.session.user,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchEvents: () => dispatch(fetchEvents())
+        fetchUserEvents: (user) => dispatch(fetchUserEvents(user))
     };
 };
 
