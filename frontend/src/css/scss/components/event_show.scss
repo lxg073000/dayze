@@ -82,3 +82,57 @@
   position: relative;
   box-shadow: inset 0px 0px 20px 20px white;
 }
+
+.form-section-grid {
+  display: flex;
+  flex-direction: column;
+  width: 306px;
+  height: fit-content;
+  padding: 0px 12px;
+  font-size: 24px;
+}
+
+// .form-section-grid > p {
+//     position: relative;
+//     right: 27px;
+//     font-size: 38px;
+//     top: 0px;
+//     font-family: "Sarina", cursive;
+//     color: #5c5a58;
+//     text-shadow: -10px 2px 0px #fff;
+// }
+
+.form-field {
+  border-radius: 20px;
+  /* height: 46px; */
+  padding: 12px;
+  background: #f3f3f3;
+  color: #5c5a58;
+  width: 410px;
+}
+
+// .submit {
+//     border-radius: 90px;
+//     /* height: 61px; */
+//     padding: 0px;
+//     background: #e69e94;
+//     color: rgba(255, 255, 255, 0.81);
+//     /* width: 160px; */
+//     font-size: 43px;
+//     cursor: pointer;
+//     /* position: relative; */
+//     /* right: -60px;
+// /* margin: 0 174px; */
+// /* width: 840px; */
+// align-self: center;
+// margin-top: 12px;
+
+.form-section-grid > p {
+  position: relative;
+  right: 27px;
+  font-size: 38px;
+  top: 0px;
+  font-family: "Sarina", cursive;
+  color: #5c5a58;
+  text-shadow: -10px 2px 0px #fff;
+}

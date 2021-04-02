@@ -1,0 +1,65 @@
+.hub-grid {
+  display: grid;
+  grid-template-rows: 15px 1fr 3fr 1fr 15px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 1em;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hub-grid > * {
+  width: auto;
+  height: auto;
+  display: block;
+  border: 1px solid black;
+}
+
+.hub-letterbox {
+  max-width: 100vw;
+  /* height: 100vh; */
+  /* background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg); */
+  background-size: cover;
+  background-position-x: center;
+  opacity: 0.5;
+  z-index: -1;
+  background: #00968821;
+}
+.grid-background {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg);
+  background-size: cover;
+  background-position-x: center;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  z-index: -2;
+}
+
+.hub-white-btm {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 5;
+}
+
+.hub-letterbox-btm {
+  background: #22ca4c;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+
+.hub-white {
+  grid-column: 1/4;
+  background: brown;
+}
+
+.grid-hub-main {
+  background: #ff9e9e;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}

@@ -67,72 +67,101 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="blurry">
-          <div className="splashfill"></div>
-        </div>
-        <div className="page-container">
-          <nav className="nav"></nav>
-          <div className="form-page-container">
-            <div className="splash-banner">
-              <p className="signup-title">{`${this.currentPath()}`}</p>
-              <p className="tagline">You plan, we remember.</p>
-            </div>
-            <form className="session-form" onSubmit={this.handleSubmit}>
-              <div className="form-div">
-                <div className="signup-form">
-                  <div className="form-section">
-                    <p>Email</p>
-                    <input
-                      className="form-field"
-                      type="text"
-                      value={this.state.email}
-                      onChange={this.update("email")}
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div className="form-section">
-                    <p>Username</p>
-                    <input
-                      className="form-field"
-                      type="text"
-                      value={this.state.username}
-                      onChange={this.update("username")}
-                      placeholder="Username"
-                    />
-                  </div>
-                  <div className="form-section">
-                    <p>Password</p>
-                    <input
-                      className="form-field"
-                      type="password"
-                      value={this.state.password}
-                      onChange={this.update("password")}
-                      placeholder="Password"
-                    />
-                  </div>
-                  <input className="submit" type="submit" value="Submit" />
-                  {this.renderErrors()}
+      <div className="session-grid">
+        <div className="white"></div>
+        <div className="session-letterbox"></div>
+        <div className="splash-row">
+          <div className="blur">
+            <div className="grid-bg"></div>
+          </div>
+
+          <div className="logo">
+            <p className="session-title">{`${this.currentPath()}`}</p>
+            <p className="tagline">we'll remember when.</p>
+            <form>
+              <div className="signup-form-background">
+                <div className="email-c">
+                  <p className="email-t">Email</p>
+                  <input
+                    className="signup-form-field"
+                    type="text"
+                    value={this.state.email}
+                    onChange={this.update("email")}
+                    placeholder="Email"
+                  />
+                </div>
+                <div className="username-c">
+                  <p className="user-t">Username</p>
+                  <input
+                    className="signup-form-field"
+                    type="text"
+                    value={this.state.username}
+                    onChange={this.update("username")}
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="password-c">
+                  <p className="password-t">Password</p>
+                  <input
+                    className="signup-form-field"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.update("password")}
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="submit-c">
+                  <button
+                    className="session-form-btn"
+                    onSubmit={this.handleSubmit}
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
             </form>
-            <footer className="nav footer">
-              <ul className="nav-items">
-                <li>
-                  <Link to="/user">Continue as Guest</Link>
-                </li>
-                <li>
-                  <Link to={`/${this.swapPath().split(" ").join("")}`}>
-                    {`${this.swapPath()}`}
-                  </Link>
-                </li>
-              </ul>
-            </footer>
           </div>
         </div>
+
+        <div className="session-nav-div">
+          <ul className="splash-navs">
+            <li>
+              <Link to="/user">Continue as Guest</Link>
+            </li>
+            <li>
+              <Link to={`/${this.swapPath().split(" ").join("")}`}>
+                {`${this.swapPath()}`}
+              </Link>
+            </li>
+            <span className="contacts">
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://github.com/lxg073000/dayze/wiki"
+              >
+                <i className="fab fa-github"></i>
+              </a>
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://www.facebook.com/appacademyio"
+              >
+                <i className="fab fa-facebook-square"></i>
+              </a>
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://www.linkedin.com/school/app-academy/"
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </span>
+          </ul>
+        </div>
+        <div className="session-letterbox"></div>
+        <div className="white"></div>
       </div>
     );
   }
 }
-
 export default withRouter(SignupForm);

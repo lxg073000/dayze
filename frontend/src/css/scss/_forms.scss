@@ -42,24 +42,37 @@
 
 .form-section > p {
   position: relative;
-  right: 20px;
-  font-size: 22px;
+  right: 27px;
+  font-size: 38px;
   top: 0px;
   font-family: "Sarina", cursive;
   color: #5c5a58;
-  text-shadow: 2px -2px 1px #eee;
+  text-shadow: -10px 2px 0px #fff;
 }
 
-.form-field {
+.login-form-field {
   border-radius: 20px;
-  height: 30px;
   padding: 12px;
-  background: #e2dedd;
+  background: #f3f3f3;
+  color: #5c5a58;
+  width: 320px;
+}
+.login-form-field:focus {
+  background: #7dc8e024;
+  box-shadow: inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
   color: #5c5a58;
 }
 
-.form-field:focus {
-  background: #9bb1b824;
+.signup-form-field {
+  border-radius: 20px;
+  padding: 12px;
+  background: #f3f3f3;
+  color: #5c5a58;
+  width: 281px;
+}
+
+.signup-form-field:focus {
+  background: #7dc8e024;
   box-shadow: inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
   color: #5c5a58;
 }
@@ -112,6 +125,7 @@
   box-shadow: -11px -6px 0px 0px #ece6e1;
   border-bottom-right-radius: 33px;
   text-shadow: -4px 0 4px rgb(255 255 255 / 0%);
+  z-index: -1;
 }
 
 .banner {
@@ -161,12 +175,17 @@
 
 .signup-form {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
-  height: 62px;
+  width: 510px;
+  /* justify-content: space-around; */
+  /* height: 62px; */
   align-items: flex-end;
-  position: relative;
-  top: -10px;
+  /* position: relative; */
+  padding: 0px;
+  /* background: #e69e94; */
+  /* color: rgba(255, 255, 255, 0.81); */
+  width: 160px;
+  /* font-size: 43px; */
+  cursor: pointer;
 }
 
 .accent {
@@ -183,31 +202,44 @@
 
 .submit {
   border-radius: 90px;
-  height: 31px;
+  height: 61px;
   padding: 0px;
   background: #e69e94;
-  color: rgba(255, 255, 255, 0.81);
-  width: 150px;
-  font-size: 33px;
+  color: rgb(255 255 255 / 81%);
+  width: 160px;
+  font-size: 43px;
   cursor: pointer;
+  position: relative;
+  right: -60px;
 }
 .submit:hover {
-  border-radius: 90px;
-  height: 31px;
-  padding: 0px;
   background: #ff8d7e;
+  border-radius: 90px;
+  height: 61px;
+  padding: 0px;
   color: rgba(255, 255, 255, 0.81);
-  width: 150px;
-  font-size: 33px;
+  width: 160px;
+  font-size: 43px;
+  cursor: pointer;
+  position: relative;
+  right: -60px;
 }
 .submit:active {
+  background: #ff7d6b;
   border-radius: 90px;
-  height: 31px;
+  height: 61px;
   padding: 0px;
-  background: #c75e50;
   color: rgba(255, 255, 255, 0.81);
-  width: 150px;
-  font-size: 33px;
+  width: 160px;
+  font-size: 43px;
+  cursor: pointer;
+  position: relative;
+  right: -60px;
+}
+
+.signup-form div {
+  padding: 0px 34px;
+  /* justify-content: space-between; */
 }
 
 // .email-err {
@@ -239,3 +271,126 @@
 // .hide {
 //   display: none;
 // }
+
+.form-background {
+  width: 1036px;
+  display: flex;
+  background: white;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  justify-content: space-evenly;
+  position: relative;
+  margin-top: 32px;
+  height: 61px;
+  align-items: flex-end;
+}
+
+.signup-form-background {
+  width: 1111px;
+  display: flex;
+  background: white;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  justify-content: space-evenly;
+  position: relative;
+  margin-top: 32px;
+  height: 61px;
+  align-items: flex-end;
+}
+
+.username-c,
+.password-c,
+.email-c {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 7px 0px;
+}
+
+.user-t,
+.password-t,
+.email-t {
+  position: relative;
+  right: 27px;
+  font-size: 38px;
+  top: 0px;
+  font-family: "Sarina", cursive;
+  color: #5c5a58;
+  text-shadow: -10px 2px 0px #fff;
+}
+
+.form-f {
+  border-radius: 20px;
+  padding: 12px;
+  background: #f3f3f3;
+  color: #5c5a58;
+  width: 281px;
+}
+
+.form-f:focus {
+  background: #7dc8e024;
+  box-shadow: inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
+  color: #5c5a58;
+}
+
+.submit-c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// .session-form-btn {
+//   position: relative;
+//   top: -8px;
+//   border-radius: 18px;
+//   height: 43px;
+//   width: 100px;
+//   background: #ff8d7e;
+//   cursor: pointer;
+// }
+
+.session-form-btn {
+  border-radius: 90px;
+  height: 43px;
+  padding: 0px;
+  background: #e69e94;
+  color: rgb(255 255 255 / 81%);
+  width: 100px;
+  font-size: 23px;
+  cursor: pointer;
+  position: relative;
+  top: -8px;
+}
+.session-form-btn:hover {
+  background: #ff8d7e;
+  border-radius: 90px;
+  height: 43px;
+  padding: 0px;
+  color: rgba(255, 255, 255, 0.81);
+  width: 100px;
+  font-size: 23px;
+  cursor: pointer;
+  position: relative;
+  top: -8px;
+}
+.session-form-btn:active {
+  background: #ff7d6b;
+  border-radius: 90px;
+  height: 43px;
+  padding: 0px;
+  color: rgba(255, 255, 255, 0.81);
+  width: 100px;
+  font-size: 23px;
+  cursor: pointer;
+  position: relative;
+  top: -8px;
+}
+
+p.user-t,
+p.password-t,
+p.email-t {
+  position: relative;
+  top: -4px;
+  right: 10px;
+}

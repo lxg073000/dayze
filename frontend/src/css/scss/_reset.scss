@@ -151,7 +151,8 @@ a:-webkit-any-link {
   text-decoration: inherit; /* no underline */
 }
 
-.fas {
-  padding: 0px 10px;
-  cursor: pointer;
+.fab,
+.far {
+  font-weight: 400;
+  padding: 0px 5px;
 }

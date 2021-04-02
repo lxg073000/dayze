@@ -138,7 +138,10 @@ export default class calendar extends Component {
             } ${this.state.date.getFullYear()}`}</p>
 
             <span>
-              <button className="sample-btn" onClick={this.toggleEventCard}>
+              <button
+                className="sample-btn hide"
+                onClick={this.toggleEventCard}
+              >
                 Create Event
               </button>
               <i

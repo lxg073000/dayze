@@ -3,29 +3,54 @@ import { Link } from "react-router-dom";
 
 export default function splash() {
   return (
-    <div className="splash-page-container">
-      <div className="blurry">
-        <div className="splashfill"></div>
-      </div>
-      <div className="splash-contents">
+    <div className="single-grid">
+      <div className="white"></div>
+      <div className="letterbox"></div>
+      <div className="splash-row">
+        <div className="blur">
+          <div className="grid-bg"></div>
+        </div>
         <div className="logo">
-          <p className="logo-text">Dayze</p>
+          <p className="splash-logo">Dayze</p>
           <p className="tagline">we'll remember when.</p>
         </div>
-        <div className="session-nav">
-          <ul className="nav-items">
-            <li>
-              <Link to="./login">Log In</Link>
-            </li>
-            <li>
-              <Link to="./signup">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="./user">Continue As Guest</Link>
-            </li>
-          </ul>
-        </div>
+        <ul className="splash-navs">
+          <li>
+            <Link to="./login">Log In</Link>
+          </li>
+          <li>
+            <Link to="./signup">Sign Up</Link>
+          </li>
+          <li>
+            <Link to="./user">Continue As Guest</Link>
+          </li>
+          <span className="contacts">
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://github.com/lxg073000/dayze/wiki"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://www.facebook.com/appacademyio"
+            >
+              <i className="fab fa-facebook-square"></i>
+            </a>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href="https://www.linkedin.com/school/app-academy/"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
+          </span>
+        </ul>
       </div>
+      <div className="letterbox"></div>
+      <div className="white"></div>
     </div>
   );
 }

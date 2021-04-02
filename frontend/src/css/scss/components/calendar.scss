@@ -107,6 +107,25 @@
   width: 230px;
   height: 29px;
   cursor: pointer;
+  align-self: flex-end;
+}
+
+.hub-footer {
+  position: relative;
+  bottom: -3px;
+}
+.shell {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+input[type="textarea"] {
+  height: 15%;
+  padding-left: 6px;
+  color: hsl(30deg 2% 35%);
+  background: linear-gradient(0deg, #6565650f, transparent);
+  border: 1px solid #ddcebc;
 }
 
 .cal-toggle > p {
