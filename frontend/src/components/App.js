@@ -11,7 +11,7 @@ import React from "react";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Route exact path="/" component={Splash} />
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={LogIn} />

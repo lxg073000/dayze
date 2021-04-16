@@ -6,10 +6,8 @@ export default class dailyCard extends Component {
   };
   render() {
     return (
-      <div className="widget-box-full" onClick={this.handleClick}>
-        <div>
-          <p className="sample-select">{`${this.props.activeDate}`}</p>
-        </div>
+      <div className="cal-popup" onClick={this.handleClick}>
+        <p className="sample-select">{`${this.props.activeDate}`}</p>
       </div>
     );
   }

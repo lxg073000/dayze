@@ -7,9 +7,6 @@ export default class dayze_hub extends Component {
   render() {
     return (
       <div className="main">
-        <div className="main-blur">
-          <div className="background"></div>
-        </div>
         <div className="head">
           <p className="main-headline">Upcoming Events</p>
         </div>

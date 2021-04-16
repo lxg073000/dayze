@@ -22,15 +22,7 @@ export default class calendar extends Component {
       "November",
       "December",
     ];
-    this.baseCal = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+    this.baseCal = ["SUN", "MON", "TUES", "WED", "THR", "FRI", "SAT"];
     this.active = {
       date: null,
     };
@@ -127,8 +119,8 @@ export default class calendar extends Component {
 
   render() {
     return (
-      <div>
-        <div className="widget-box-full">
+      <div className="cal-componet">
+        <div className="cal-widget">
           <div className="cal-toggle">
             <p>{`${
               this.months[this.state.date.getMonth()]

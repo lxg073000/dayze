@@ -145,10 +145,17 @@ table {
 }
 
 a,
-Link,
-a:-webkit-any-link {
+Link {
   color: inherit; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
+  text-decoration: none; /* no underline */
+  &:visited {
+    color: inherit; /* blue colors for links too */
+    text-decoration: none; /* no underline */
+  }
+  &:active {
+    color: inherit; /* blue colors for links too */
+    text-decoration: none; /* no underline */
+  }
 }
 
 .fab,

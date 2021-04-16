@@ -30,13 +30,16 @@ export default class user_calender_hub extends React.Component {
           <div className="white"></div>
           <div className="hub-letterbox"></div>
           <div className="main">
-            <div className="main-blur">
-              <div className="background"></div>
-            </div>
             <div className="head">
               <p className="main-headline">
                 Dazed {/*  {`${this.props.username}`} */}
               </p>
+            </div>
+            <div className="event-creator show-event">
+              <div className="title">
+                <p className="event-headline">Schedule a reminder</p>
+                <CreateEvent />
+              </div>
             </div>
             <div className="container">
               <Calendar />
@@ -47,15 +50,9 @@ export default class user_calender_hub extends React.Component {
                   <Events />
                 </div>
               </div>
-              <div className="half-card show-event">
-                <div className="title">
-                  <p className="event-headline">Schedule a reminder</p>
-                  <CreateEvent />
-                </div>
-              </div>
             </div>
             <div className="hub-footer">
-              <ul className="splash-navs flex-end">
+              <ul className="hub-navs flex-end">
                 <li>
                   <span onClick={this.handleClick}>Log Out</span>
                 </li>
@@ -88,7 +85,6 @@ export default class user_calender_hub extends React.Component {
           <div className="hub-letterbox"></div>
           <div className="white"></div>
         </div>
-        <div className="grid-background"></div>
       </div>
     );
   }

@@ -15,7 +15,7 @@ export default class grid extends Component {
             <p className="splash-logo">Dayze</p>
             <p className="tagline">we'll remember when.</p>
           </div>
-          <ul className="splash-navs">
+          <ul className="hub-navs">
             <li>
               <Link to="./login">Log In</Link>
             </li>

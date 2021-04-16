@@ -52,35 +52,44 @@ class CreateEvent extends React.Component {
     return (
       <div className="widget-box-wide">
         <form className="create-event" onSubmit={this.handleSubmit}>
-          <label>Title</label>
+          <label className="form-item">Title</label>
           <input
+            className="form-item"
             type="text"
             value={this.state.title}
             onChange={this.update("title")}
             placeholder="Event title"
           />
-          <label>Description</label>
+          <label className="form-item">Description</label>
           <input
+            id="styled"
+            className="form-item"
             type="textarea"
             value={this.state.description}
             onChange={this.update("description")}
             placeholder="Event description"
           />
-          <label>Date</label>
+          <label className="form-item">Date</label>
           <input
+            className="form-item"
             type="date"
             value={this.state.date}
             onChange={this.update("date")}
             placeholder="Event date"
           />
-          <label>Time</label>
+          <label className="form-item">Time</label>
           <input
+            className="form-item"
             type="time"
             value={this.state.time}
             onChange={this.update("time")}
             placeholder="Event time"
           />
-          <input className="sample-btn" type="submit" value="Create Event" />
+          <input
+            className="sample-btn form-item"
+            type="submit"
+            value="Create Event"
+          />
         </form>
       </div>
     );
