@@ -78,8 +78,13 @@
   color: #5c5a58;
 }
 
-::placeholder {
-  color: #ffffff42;
+.create-event::placeholder {
+  color: #00000091;
+}
+.signup-form-background {
+  &::placeholder {
+    color: #ffffff42;
+  }
 }
 
 .footer {
