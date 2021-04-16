@@ -8,7 +8,7 @@ export default class dayze_hub extends Component {
     return (
       <div className="main">
         <div className="head">
-          <p className="main-headline">Upcoming Events</p>
+          <p className="main-headline"></p>
         </div>
         <div className="container">
           <Calendar />

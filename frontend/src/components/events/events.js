@@ -22,7 +22,7 @@ class Event extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="event-list-headline">...upcoming events</h1>
+        <h1 className="event-list-headline"></h1>
         {this.state.events.map((evnt) => (
           <EventBox
             key={evnt.id}
