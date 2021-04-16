@@ -116,17 +116,16 @@
 }
 
 .main-headline {
-  font-family: "Sarina";
-  font-size: 4em;
+  font-family: "Poppins";
   color: #416275;
-  text-shadow: -8px -1px 0px rgba(202, 241, 238, 0.42);
+  text-shadow: -8px -1px 0px rgb(202 241 238 / 42%);
   border-radius: 90px;
   border-top-right-radius: 90px;
-  border-top-right-radius: 0px;
   width: 100%;
-  box-shadow: 0 12px 0px 1px rgba(255, 255, 255, 0.81);
-  font-weight: bolder;
+  box-shadow: 0 12px 0px 1px rgb(255 255 255 / 32%);
   padding: 0 0 0 20px;
+  font-size: 2em;
+  font-style: italic;
 }
 // .container {
 //   background: #ffffff4d;
@@ -227,7 +226,6 @@
 .grid-bg {
   max-width: 100vw;
   height: 100vh;
-  background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg);
   background-size: cover;
   background-position-x: center;
   opacity: 0.5;
@@ -239,10 +237,11 @@
 }
 
 .splash-logo {
-  font-family: "Sarina", cursive;
+  font-family: "Poppins";
   font-size: 170px;
-  color: #ddcebcde;
-  text-shadow: -9px -3px 8px rgb(255 255 255 / 58%);
+  color: #bbb4af;
+  text-shadow: -9px -3px 6px rgb(255 255 255 / 58%);
+  font-style: italic;
 }
 
 .splash-navs > li:first-child {
@@ -277,22 +276,30 @@
 //////////////
 .session-grid {
   display: grid;
-  grid-template-rows: 15px 0.5fr 2fr 1fr 0.5fr 15px;
-  height: 100vh;
-  width: 100vw;
+  // grid-template-rows: 15px 4em 1fr 4em 15px;
+  grid-template-rows: 15px 1fr 15px;
+  height: 100%;
+  width: 100%;
 }
 
 .session-letterbox {
-  background-color: #ffffff00;
+  background-image: linear-gradient(90deg, #51403b00, #51403ba8, #51403b00);
   z-index: 100;
-  box-shadow: 0px 0px 19px 0px rgb(212 197 184 / 72%);
+  box-shadow: 0px 0px 20px 0px rgb(255 255 255 / 14%);
 }
 .white {
   background: rgba(255, 255, 255, 0.856);
   z-index: 1000;
 }
 .splash-row {
-  // background-color: rgb(166, 255, 0);
+  background-image: linear-gradient(180deg, #a3a1a00f, #a3a1a000, #000000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.session-row {
+  background-image: linear-gradient(180deg, #a3a1a00f, #a3a1a000, #000000);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -315,7 +322,6 @@
 .grid-bg {
   max-width: 100vw;
   height: 100vh;
-  background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg);
   background-size: cover;
   background-position-x: center;
   opacity: 0.5;
@@ -327,14 +333,15 @@
 }
 
 .session-title {
-  font-family: "Sarina", cursive;
-  font-size: 170px;
-  color: #d0c5b9de;
-  text-shadow: -9px -3px 8px #dff0fb;
+  font-family: "Poppins", sans-serif;
+  font-size: 110px;
+  color: #ffffff54;
+  text-shadow: -4px 1px 0px #858785;
+  font-style: italic;
 }
 
 .hub-navs {
-  background: #9bb1b8;
+  background: #182428;
   width: 100%;
   text-align: center;
   color: #ffffff99;
@@ -354,6 +361,7 @@
 
 .splash-navs {
   width: 100%;
+  padding: 0.1em;
   text-align: center;
   color: #ffffff99;
   display: flex;
@@ -361,8 +369,8 @@
   justify-content: center;
   padding-right: 190px;
   z-index: 1;
-  margin: 14px 0;
-  background: linear-gradient(90deg, #9bb1b800, #83afdd, #9bb1b800);
+  margin: 0.5em 0;
+  background: linear-gradient(90deg, #9bb1b817, #9bb1b8, #9bb1b80f);
 }
 
 .splash-navs > li:first-child {
@@ -401,6 +409,7 @@
 
 .session-nav-div {
   z-index: 2;
+  width: 100%;
 }
 
 .flex-end {

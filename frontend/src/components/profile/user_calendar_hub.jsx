@@ -26,9 +26,13 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="shell">
-        <div className="single-grid">
+        <img
+          alt="bg-img"
+          className="background-img1 hub-dark"
+          src="https://images.unsplash.com/photo-1616361889157-7b095931aea5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        ></img>
+        <div className="hub-content-grid">
           <div className="white"></div>
-          <div className="hub-letterbox"></div>
           <div className="main">
             <div className="head">
               <p className="main-headline">
@@ -38,7 +42,6 @@ export default class user_calender_hub extends React.Component {
             <div className="event-creator show-event">
               <div className="title">
                 <p className="event-headline">Schedule a reminder</p>
-                <CreateEvent />
               </div>
             </div>
             <div className="container">
@@ -82,7 +85,7 @@ export default class user_calender_hub extends React.Component {
               </ul>
             </div>
           </div>
-          <div className="hub-letterbox"></div>
+
           <div className="white"></div>
         </div>
       </div>

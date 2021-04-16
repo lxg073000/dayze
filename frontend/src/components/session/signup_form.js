@@ -55,20 +55,20 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="session-grid">
+        <img
+          alt="bg-img"
+          className="background-img1 dark"
+          src="https://images.unsplash.com/photo-1531588972149-aa60049701fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+        ></img>
         <div className="white"></div>
-        <div className="session-letterbox"></div>
-        <div className="splash-row">
-          <div className="blur">
-            <div className="grid-bg"></div>
-          </div>
 
+        <div className="session-row">
           <div className="logo">
             <p className="session-title">Sign Up</p>
             <p className="tagline">we'll remember when.</p>
             <form onSubmit={this.handleSubmit}>
               <div className="signup-form-background">
                 <div className="email-c">
-                  <p className="email-t">Email</p>
                   <input
                     className="signup-form-field"
                     type="text"
@@ -78,7 +78,6 @@ class SignupForm extends React.Component {
                   />
                 </div>
                 <div className="username-c">
-                  <p className="user-t">Username</p>
                   <input
                     className="signup-form-field"
                     type="text"
@@ -88,7 +87,6 @@ class SignupForm extends React.Component {
                   />
                 </div>
                 <div className="password-c">
-                  <p className="password-t">Password</p>
                   <input
                     className="signup-form-field"
                     type="password"
@@ -105,42 +103,41 @@ class SignupForm extends React.Component {
               </div>
             </form>
           </div>
+          <div className="session-nav-div">
+            <ul className="splash-navs">
+              <li>
+                <Link to="/user">Continue as Guest</Link>
+              </li>
+              <li>
+                <Link to="/login">Log In</Link>
+              </li>
+              <span className="contacts">
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href="https://github.com/lxg073000/dayze/wiki"
+                >
+                  <i className="fab fa-github"></i>
+                </a>
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href="https://www.facebook.com/appacademyio"
+                >
+                  <i className="fab fa-facebook-square"></i>
+                </a>
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/school/app-academy/"
+                >
+                  <i className="fab fa-linkedin"></i>
+                </a>
+              </span>
+            </ul>
+          </div>
         </div>
 
-        <div className="session-nav-div">
-          <ul className="splash-navs">
-            <li>
-              <Link to="/user">Continue as Guest</Link>
-            </li>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
-            <span className="contacts">
-              <a
-                rel="noreferrer"
-                target="_blank"
-                href="https://github.com/lxg073000/dayze/wiki"
-              >
-                <i className="fab fa-github"></i>
-              </a>
-              <a
-                rel="noreferrer"
-                target="_blank"
-                href="https://www.facebook.com/appacademyio"
-              >
-                <i className="fab fa-facebook-square"></i>
-              </a>
-              <a
-                rel="noreferrer"
-                target="_blank"
-                href="https://www.linkedin.com/school/app-academy/"
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </span>
-          </ul>
-        </div>
-        <div className="session-letterbox"></div>
         <div className="white"></div>
       </div>
     );

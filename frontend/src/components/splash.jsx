@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 export default function splash() {
   return (
     <div className="single-grid">
+      <img
+        alt="bg-img"
+        className="background-img1"
+        src="https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg"
+      ></img>
       <div className="white"></div>
       <div className="letterbox"></div>
       <div className="splash-row">

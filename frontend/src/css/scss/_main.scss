@@ -1,13 +1,32 @@
 #root {
   height: 100vh;
   width: 100vw;
-  padding: 2rem;
+  // padding: 2rem;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg);
-  background-size: cover;
+  font-family: "Poppins";
+  font-weight: 100;
+  // background-image: url(https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg);
+  // background-size: cover;
+}
+
+.background-img1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  filter: blur(7px);
+}
+.dark {
+  box-shadow: 0px 0px 0px 69px #42565a;
+  filter: blur(3px);
+}
+.hub-dark {
+  box-shadow: 0px 0px 0px 69px #42565a;
+  filter: blur(24px);
 }
 
 .App {
@@ -26,9 +45,15 @@
   height: 100%;
   width: 100%;
 }
+.hub-content-grid {
+  display: grid;
+  grid-template-rows: 15px 1fr 15px;
+  height: 100%;
+  width: 100%;
+}
 
 .white {
-  background: rgba(255, 255, 255, 0.856);
+  background: rgb(155 177 184 / 28%);
   z-index: 1000;
 }
 
@@ -41,10 +66,9 @@
 }
 
 .container {
-  // background: #ffffff4d;
   display: flex;
   width: 100%;
-  height: 100%;
+  margin: auto;
 }
 
 .cal-componet {
@@ -64,26 +88,30 @@
   flex-direction: column;
   border-radius: 1em;
   padding: 0.3em;
+  background-image: linear-gradient(180deg, #a3a1a00f, #1d654f8c, #000000b5);
 }
 .cal-popup {
-  background-color: rgba(255, 255, 255, 0.32);
   width: 100%;
   display: flex;
   box-shadow: 0 0 9px 7px #cfc2b745;
   align-items: center;
   flex-direction: column;
-  height: 440px;
+  height: 99%;
   justify-content: center;
+  background-image: linear-gradient(0deg, #51403b26, #51403b, #51403b1c);
+  border-radius: 1em;
 }
 
 .half-card {
-  background: linear-gradient(0deg, rgb(255 255 255 / 81%), transparent);
+  background-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 0 9px 7px #cfc2b745;
   margin: 0px 10px;
   border-radius: 20px;
   // height: 59vh;
   color: #5c5a58;
   line-height: 31px;
-  height: -moz-available;
+  height: 440px;
+  scrollbar-width: none;
 }
 
 .event-creator {
@@ -98,65 +126,76 @@
   text-align: center;
   background: rgba(255, 255, 255, 0.32);
   box-shadow: 0 0 9px 7px #cfc2b745;
+  display: none;
 }
 
 .create-event {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: repeat(9, auto);
   grid-gap: 1em;
   .form-item {
     text-align: center;
     width: -moz-available;
   }
   .form-item:nth-child(1) {
-    background-color: cornflowerblue;
-    grid-column: 1/3;
+    background-image: url("https://images.unsplash.com/photo-1616361889157-7b095931aea5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+    background-size: cover;
+    background-clip: text;
+    grid-column: 1/12;
+    font-size: 2em;
+    color: transparent;
   }
   .form-item:nth-child(2) {
-    background-color: rgb(109, 173, 170);
-    grid-column: 3/5;
+    background-color: #172826;
+    grid-column: 1/12;
+    color: white;
   }
   .form-item:nth-child(3) {
-    background-color: cornflowerblue;
-    grid-column: 5/12;
+    background-color: #aaacad;
+    grid-column: 1/12;
+    font-size: 2em;
   }
   .form-item:nth-child(4) {
-    background-color: rgb(109, 173, 170);
-    grid-column: 5/12;
-    grid-row: 2/4;
-    display: flex;
+    background-color: #172826;
+    grid-column: 1/12;
+    color: white;
   }
   .form-item:nth-child(5) {
-    background-color: cornflowerblue;
-    grid-column: 1/3;
+    background-color: #aaacad;
+    grid-column: 1/12;
+    font-size: 2em;
+    display: none;
   }
   .form-item:nth-child(6) {
-    background-color: rgb(109, 173, 170);
-    grid-column: 3/5;
+    background-color: #172826;
+    grid-column: 1/12;
+    color: white;
+    display: none;
   }
   .form-item:nth-child(7) {
-    background-color: cornflowerblue;
-    grid-column: 1/3;
+    background-color: #aaacad;
+    grid-column: 1/12;
+    font-size: 2em;
   }
   .form-item:nth-child(8) {
-    background-color: rgb(109, 173, 170);
-    grid-column: 3/5;
+    background-color: #172826;
+    grid-column: 1/12;
+    color: white;
   }
   .form-item:nth-child(9) {
-    background-color: rgb(109, 173, 170);
+    background-color: #172726;
     grid-column: 1/12;
+    width: 100%;
   }
 }
 
-textarea#styled {
-  width: 600px;
-  height: 120px;
-  border: 3px solid #cccccc;
-  padding: 5px;
-  font-family: Tahoma, sans-serif;
-  background-position: bottom right;
-  background-repeat: no-repeat;
+#styled {
+  width: 390px;
+  height: auto;
+  &::placeholder {
+    color: white;
+  }
 }
 
 .calendar {

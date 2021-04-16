@@ -31,17 +31,17 @@
   padding: 1em;
   text-align: center;
   font-size: 1em;
-  color: #385f9175;
-  background: aliceblue;
+  color: #ffffff75;
+  background: #210e0e8a;
   cursor: pointer;
 }
 .date:hover {
-  color: #385f9175;
-  background: rgb(225, 232, 238);
+  color: #ffffff75;
+  background: #372813b8;
 }
 .date:active {
-  color: #385f9175;
-  background: rgb(216, 235, 252);
+  color: #ffffff75;
+  background: #372813d2;
 }
 
 .d0 {
@@ -76,16 +76,20 @@
 /////////////
 
 .sample-select {
-  width: 400px;
-  height: 440px;
+  width: 100%;
+  height: auto;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  font-size: 10em;
-  background: #f0f8ff87;
-  text-align: center;
-  border-radius: 0.2em;
+  font-size: 2em;
+  background: #f0f8ff1a;
+  text-align: right;
+  border-radius: 0.5em;
   color: black;
+  margin: 0.1em 0;
+  padding: 0 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .sample-click {
