@@ -95,6 +95,10 @@
   background-size: cover;
   background-clip: text;
   color: transparent;
+  &:hover {
+    color: #231107;
+    text-shadow: 1px 0px 5px #765845;
+  }
 }
 
 .sample-click {
