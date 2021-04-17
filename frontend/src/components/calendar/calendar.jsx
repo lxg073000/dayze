@@ -24,7 +24,8 @@ export default class calendar extends Component {
     ];
     this.baseCal = ["SUN", "MON", "TUES", "WED", "THR", "FRI", "SAT"];
     this.active = {
-      date: null,
+      date: this.state.date.getDate(),
+      date_val: this.state.date.toISOString().substr(0, 10),
     };
     this.toggleDayCard = this.toggleDayCard.bind(this);
   }
@@ -71,6 +72,7 @@ export default class calendar extends Component {
       fullCalDays.push(
         <div
           key={date.getDate()}
+          id={date.toISOString().substr(0, 10)}
           onClick={(e) => this.setActiveDate(e)}
           className={`d${date.getDay()} date ${
             this.active.date
@@ -102,7 +104,9 @@ export default class calendar extends Component {
   }
 
   setActiveDate(e) {
+    debugger;
     this.active["date"] = e.currentTarget.innerHTML;
+    this.active["date_val"] = e.currentTarget.id;
     this.toggleDayCard();
   }
 
@@ -147,6 +151,7 @@ export default class calendar extends Component {
           <div className={this.state.dayCard ? "show" : "hide"}>
             <DailyCard
               activeDate={this.active.date}
+              activeDateVal={this.active.date_val}
               toggle={this.toggleDayCard}
             />
           </div>

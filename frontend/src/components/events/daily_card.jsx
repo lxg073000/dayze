@@ -12,7 +12,7 @@ export default class dailyCard extends Component {
           onClick={this.handleClick}
           className="sample-select"
         >{`${this.props.activeDate}`}</p>
-        <CreateEvent />
+        <CreateEvent activeDateVal={this.props.activeDateVal} />
       </div>
     );
   }

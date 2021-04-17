@@ -11,6 +11,11 @@ export default class user_calender_hub extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    debugger;
+    this.events = this.props.events;
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === false) {
       this.props.history.push("/");

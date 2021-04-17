@@ -7,7 +7,7 @@ class CreateEvent extends React.Component {
     this.state = {
       title: "",
       description: "",
-      date: "",
+      date: this.props.activeDateVal,
       time: "",
       newEvent: "",
     };
@@ -19,6 +19,7 @@ class CreateEvent extends React.Component {
   }
 
   composeDate(date, time) {
+    debugger;
     return new Date(date + " " + time);
   }
 
@@ -32,6 +33,7 @@ class CreateEvent extends React.Component {
       user: this.props.currentUser,
     };
 
+    debugger;
     this.props.createEvent(event);
     this.setState({
       title: "",
@@ -73,7 +75,7 @@ class CreateEvent extends React.Component {
           <input
             className="form-item"
             type="date"
-            value={this.state.date}
+            value={this.props.activeDateVal}
             onChange={this.update("date")}
             placeholder="Event date"
           />

@@ -73,6 +73,7 @@ export default class event_showcard extends Component {
   }
 
   seedEvents() {
+    debugger;
     return Object.values(this.state.events).map((event, idx) => (
       <ul key={idx} className="event-card">
         <li key={event.id}>{`${event.title}`}</li>
@@ -83,9 +84,10 @@ export default class event_showcard extends Component {
     ));
   }
 
-  // componentDidMount(){
-  //   this.fetchEvents()
-  // }
+  componentDidMount() {
+    debugger;
+    this.fetchEvents();
+  }
 
   render() {
     return (

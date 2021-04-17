@@ -24,6 +24,7 @@ const EventsReducer = (
     case RECEIVE_NEW_EVENT:
       newState.new = action.event.data;
       return newState;
+      debugger;
     default:
       return state;
   }
