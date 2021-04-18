@@ -21,7 +21,7 @@ export default class user_calender_hub extends React.Component {
       this.props.history.push("/");
     }
 
-    this.setState({ errors: nextProps.errors });
+    this.setState({ errors: nextProps.errors, events: nextProps.events });
   }
 
   handleClick() {

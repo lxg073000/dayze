@@ -14,6 +14,12 @@ class CreateEvent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      date: this.props.activeDateVal,
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ newEvent: nextProps.newEvent });
   }
@@ -33,7 +39,6 @@ class CreateEvent extends React.Component {
       user: this.props.currentUser,
     };
 
-    debugger;
     this.props.createEvent(event);
     this.setState({
       title: "",
@@ -41,12 +46,15 @@ class CreateEvent extends React.Component {
       date: "",
       time: "",
     });
+    debugger;
+    this.props.close();
   }
 
   update(field) {
     return (e) =>
       this.setState({
         [field]: e.currentTarget.value,
+        date: this.props.activeDateVal,
       });
   }
 
@@ -75,8 +83,8 @@ class CreateEvent extends React.Component {
           <input
             className="form-item"
             type="date"
-            value={this.props.activeDateVal}
-            onChange={this.update("date")}
+            // value={this.props.activeDateVal}
+            // onChange={this.update("date")}
             placeholder="Event date"
           />
           <label className="form-item">Time</label>

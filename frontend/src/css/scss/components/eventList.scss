@@ -13,17 +13,18 @@
   font-size: 14px;
 }
 .event-card > li {
-  font-family: "Lato";
+  font-family: "Poppins";
   font-size: 20px;
-  color: #9bb1b894;
-  background: linear-gradient(87deg, #f0f8ff85, transparent);
+  color: #9bb1b8;
+  background: linear-gradient(87deg, #5b5d58, #5f281940);
   padding: 2px 0 2px 40px;
 }
 .event-card > li:first-child {
   font-size: 25px;
-  background: rgb(255 255 255 / 81%);
-  color: #ff8d7e;
+  background: rgb(124 87 67 / 22%);
+  color: #ffffffb0;
   padding: 10px;
+  font-weight: 400;
 }
 
 // .create-event {
