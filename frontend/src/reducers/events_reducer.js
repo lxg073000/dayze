@@ -25,7 +25,6 @@ const EventsReducer = (
       newState.new = action.event.data;
       newState.user.push(newState.new);
       return newState;
-      debugger;
     default:
       return state;
   }
