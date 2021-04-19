@@ -89,7 +89,7 @@ class LoginForm extends React.Component {
                   <button type="submit" className="session-form-btn">
                     Log In
                   </button>
-                  {this.renderErrors}
+                  {this.renderErrors()}
                 </div>
               </div>
             </form>
