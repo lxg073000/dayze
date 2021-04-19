@@ -53,7 +53,10 @@ export const fetchUserEvents = (id) => (dispatch) =>
 
 export const createEvent = (data) => (dispatch) =>
   APIUtil.createEvent(data)
-    .then((event) => dispatch(receiveNewEvent(event)))
+    .then((event) => {
+      debugger;
+      return dispatch(receiveNewEvent(event));
+    })
     .catch((err) => console.log(err));
 
 export const updateEvent = (id, data) => (dispatch) =>
