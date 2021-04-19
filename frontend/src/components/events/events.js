@@ -8,6 +8,7 @@ class Event extends React.Component {
     this.state = {
       events: [],
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +20,10 @@ class Event extends React.Component {
     debugger;
     this.setState({ events: newState.events });
     console.log(this.state);
+  }
+
+  handleDelete(id) {
+    this.props.deleteEvent(id);
   }
 
   render() {
@@ -33,6 +38,7 @@ class Event extends React.Component {
             title={evnt.title}
             description={evnt.description}
             date={evnt.date}
+            handleDelete={this.handleDelete}
           />
         ))}
       </div>

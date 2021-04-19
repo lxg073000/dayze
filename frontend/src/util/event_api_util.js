@@ -1,25 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getEvents = () => {
-    return axios.get('/api/events')
+  return axios.get("/api/events");
 };
 
 export const getEvent = (id) => {
-    return axios.get(`/api/events/${id}`)
-}
-
-export const getUserEvents = (id) => {
-    return axios.get(`/api/events/user/${id}`)
+  return axios.get(`/api/events/${id}`);
 };
 
-export const createEvent = data => {
-    return axios.post('/api/events/', data)
+export const getUserEvents = (id) => {
+  return axios.get(`/api/events/user/${id}`);
+};
+
+export const createEvent = (data) => {
+  return axios.post("/api/events/", data);
 };
 
 export const updateEvent = (id, data) => {
-    return axios.patch(`/api/events/${id}`, data)
+  return axios.patch(`/api/events/${id}`, data);
 };
 
 export const deleteEvent = (id) => {
-    return axios.delete(`/api/events/${id}`)
-}
+  debugger;
+  return axios.delete(`/api/events/${id}`);
+};

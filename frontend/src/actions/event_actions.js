@@ -66,5 +66,8 @@ export const updateEvent = (id, data) => (dispatch) =>
 
 export const deleteEvent = (id) => (dispatch) =>
   APIUtil.deleteEvent(id)
-    .then((event) => dispatch(receiveDeleteEvent(event)))
+    .then((event) => {
+      debugger;
+      return dispatch(receiveDeleteEvent(event));
+    })
     .catch((err) => console.log(err));
