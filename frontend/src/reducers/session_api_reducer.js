@@ -27,7 +27,8 @@ export default function (state = initialState, action) {
         user: undefined,
       };
     case RECEIVE_USER_SIGN_IN:
-      //debugger;
+      debugger;
+      action.currentUser.data.id = action.currentUser.data._id;
       return {
         ...state,
         isSignedIn: true,
