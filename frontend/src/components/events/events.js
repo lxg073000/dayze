@@ -16,10 +16,9 @@ class Event extends React.Component {
     this.props.fetchUserEvents(this.props.currentUser.id);
   }
 
-  componentWillReceiveProps(newState) {
+  UNSAFE_componentWillReceiveProps(newState) {
     debugger;
     this.setState({ events: newState.events });
-    console.log(this.state);
   }
 
   handleDelete(id) {
@@ -38,7 +37,9 @@ class Event extends React.Component {
             title={evnt.title}
             description={evnt.description}
             date={evnt.date}
+            currentUser={this.props.currentUser}
             handleDelete={this.handleDelete}
+            handleUpdate={this.props.updateEvent}
           />
         ))}
       </div>

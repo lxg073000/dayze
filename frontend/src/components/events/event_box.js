@@ -1,22 +1,40 @@
 import React from "react";
+import EventEditor from "./event_editor";
 
 class EventBox extends React.Component {
-  handleEdit() {}
-  handleClick(e) {
+  edit_btn(e) {
     debugger;
-    this.props.handleDelete(e.target.id);
+    let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
+    // console.log(e.target.parentElement.parentElement.parentElement.children);
+    let selected_event = document.getElementById(event_patch_id);
+
+    selected_event.classList.toggle("hide");
+  }
+  delete_btn(e) {
+    debugger;
+    this.props.handleDelete(
+      e.target.parentElement.parentElement.parentElement.id
+    );
   }
   render() {
     debugger;
     return (
-      <ul className="event-card">
+      <ul id={this.props.id} className="event-card">
+        <EventEditor
+          id={this.props.id}
+          evntTitle={this.props.title}
+          evntDate={this.props.date}
+          evntTime={this.props.time}
+          evntDesc={this.props.description}
+          currentUser={this.props.currentUser}
+          handleUpdate={this.props.handleUpdate}
+        />
         <li key={`${this.props.id}-title`}>
           {this.props.title}
           <span className="event-tools">
-            <i className="fas fa-edit"></i>
+            <i onClick={(e) => this.edit_btn(e)} className="fas fa-edit"></i>
             <i
-              onClick={(e) => this.handleClick(e)}
-              id={this.props.id}
+              onClick={(e) => this.delete_btn(e)}
               className="far fa-calendar-times"
             ></i>
           </span>

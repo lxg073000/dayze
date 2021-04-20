@@ -1,6 +1,6 @@
 import {
   RECEIVE_EVENTS,
-  RECEIVE_EVENT,
+  // RECEIVE_EVENT,
   RECEIVE_USER_EVENTS,
   RECEIVE_NEW_EVENT,
   RECEIVE_UPDATE_EVENT,
@@ -25,6 +25,16 @@ const EventsReducer = (
     case RECEIVE_NEW_EVENT:
       newState.new = action.event.data;
       newState.user.push(newState.new);
+      return newState;
+    case RECEIVE_UPDATE_EVENT:
+      debugger;
+      newState.user = state.user.map((ele) => {
+        if (ele._id === action.event.data._id) {
+          return action.event.data;
+        } else {
+          return ele;
+        }
+      });
       return newState;
     case RECEIVE_DELETE_EVENT:
       debugger;

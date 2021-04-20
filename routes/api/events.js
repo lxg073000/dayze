@@ -44,14 +44,16 @@ router.get("/user/:user_id", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  Event.find({ id: req.params.id })
+  Event.findById(req.params.id)
     .then((event) => res.json(event))
     .catch((err) => res.status(400).json(err));
 });
 
 router.patch("/:id", (req, res) => {
-  Event.findOne({ id: req.params.id })
+  debugger;
+  Event.findById(req.params.id)
     .then((event) => {
+      debugger;
       event.title = req.body.title;
       event.description = req.body.description;
       event.date = req.body.date;

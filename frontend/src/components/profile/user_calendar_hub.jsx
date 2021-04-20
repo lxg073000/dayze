@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Calendar from "../calendar/calendar_container";
-import CreateEvent from "../events/create_event_container";
 import Events from "../events/events_container";
-import { logout } from "../../actions/session_actions";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -16,7 +13,7 @@ export default class user_calender_hub extends React.Component {
     this.events = this.props.events;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === false) {
       this.props.history.push("/");
     }

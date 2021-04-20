@@ -1,27 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 
-class CreateEvent extends React.Component {
+export default class event_editor extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: "",
-      description: "",
-      date: this.props.activeDateVal,
-      time: "",
+      title: this.props.evntTitle,
+      description: this.props.evntDesc,
+      date: new Date(this.props.evntDate).toISOString().substr(0, 10),
+      time: new Date(this.props.evntDate).toTimeString().slice(0, 8),
       newEvent: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  componentDidMount() {
-    this.setState({
-      date: this.props.activeDateVal,
-    });
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({ newEvent: nextProps.newEvent });
+  update(field) {
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
   }
 
   composeDate(date, time) {
@@ -36,10 +32,13 @@ class CreateEvent extends React.Component {
       title: this.state.title,
       description: this.state.description,
       date: this.composeDate(this.state.date, this.state.time),
-      user: this.props.currentUser,
+      user: this.props.currentUser.id,
+      _id: this.props.id,
     };
 
-    this.props.createEvent(event);
+    let id = this.props.id;
+
+    this.props.handleUpdate(id, event);
     this.setState({
       title: "",
       description: "",
@@ -47,47 +46,34 @@ class CreateEvent extends React.Component {
       time: "",
     });
     debugger;
-    this.props.close();
-  }
-
-  update(field) {
-    return (e) =>
-      this.setState({
-        [field]: e.currentTarget.value,
-        date: this.props.activeDateVal,
-      });
+    // this.props.close();
   }
 
   render() {
     return (
-      <div className="widget-box-wide">
-        <form className="create-event" onSubmit={this.handleSubmit}>
-          <label className="form-item">Title</label>
+      <div id={`${this.props.id}-patch`} className="hide event-editor">
+        <form className="event-edit-form" onSubmit={this.handleSubmit}>
           <input
             className="form-item"
             type="text"
             value={this.state.title}
             onChange={this.update("title")}
-            placeholder="Event title"
+            placeholder={this.props.evntTitle}
           />
-          <label className="form-item">Description</label>
           <input
-            id="styled"
             className="form-item"
             type="textarea"
             value={this.state.description}
             onChange={this.update("description")}
-            placeholder="Event description"
+            placeholder={this.props.evntDesc}
           />
-          <label className="form-item">Date</label>
           <input
             className="form-item"
             type="date"
-            // value={this.props.activeDateVal}
-            // onChange={this.update("date")}
+            value={this.state.date}
+            onChange={this.update("date")}
             placeholder="Event date"
           />
-          <label className="form-item">Time</label>
           <input
             className="form-item"
             type="time"
@@ -98,12 +84,10 @@ class CreateEvent extends React.Component {
           <input
             className="sample-btn form-item"
             type="submit"
-            value="Create Event"
+            value="Update Event"
           />
         </form>
       </div>
     );
   }
 }
-
-export default CreateEvent;

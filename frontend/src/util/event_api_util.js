@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.baseURL = "http://localhost:5000";
 
 export const getEvents = () => {
   return axios.get("/api/events");
@@ -17,6 +18,7 @@ export const createEvent = (data) => {
 };
 
 export const updateEvent = (id, data) => {
+  debugger;
   return axios.patch(`/api/events/${id}`, data);
 };
 
