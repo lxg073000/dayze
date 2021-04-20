@@ -48,7 +48,7 @@ class LoginForm extends React.Component {
       debugger
       space[0].style.marginTop = 0;
       return (
-          <div className='errors'>
+          <div className='errors-login'>
             <ul>
               {Object.keys(this.state.errors).map((error, i) => (
                 <li key={`error-${i}`}>{this.state.errors[error]}</li>

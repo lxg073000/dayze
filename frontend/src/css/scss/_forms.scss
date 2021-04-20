@@ -397,11 +397,27 @@ p.email-t {
   right: 10px;
 }
 
-.errors {
-  width: 1030px;
+.errors-login {
+  width: 1005px;
   color: red;
   background: lightpink;
   border: 1px solid red;
   border-radius: 3px;
   opacity: .7;
+  ul {
+    padding: 5px;
+  }
+}
+
+.errors-signup {
+  width: 1080px;
+  color: red;
+  background: lightpink;
+  border: 1px solid red;
+  border-radius: 3px;
+  opacity: .7;
+
+  ul {
+    padding: 5px;
+  }
 }

@@ -43,12 +43,12 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-    if (this.state.errors.username || this.state.errors.password) { 
-      let space = document.getElementsByClassName('form-background');
+    if (this.state.errors.username || this.state.errors.password || this.state.errors.email) { 
+      let space = document.getElementsByClassName('signup-form-background');
       debugger
       space[0].style.marginTop = 0;
       return (
-        <div className='errors'>
+        <div className='errors-signup'>
         <ul>
           {Object.keys(this.state.errors).map((error, i) => (
             <li key={`error-${i}`}>{this.state.errors[error]}</li>
