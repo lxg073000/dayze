@@ -42,14 +42,21 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
-      </ul>
-    );
+  renderErrors() { 
+    if (this.state.errors.username || this.state.errors.password) {
+      let space = document.getElementsByClassName('form-background');
+      debugger
+      space[0].style.marginTop = 0;
+      return (
+          <div className='errors-login'>
+            <ul>
+              {Object.keys(this.state.errors).map((error, i) => (
+                <li key={`error-${i}`}>{this.state.errors[error]}</li>
+              ))}
+            </ul>
+          </div>
+        );
+    } else {return}
   }
 
   render() {
@@ -65,6 +72,7 @@ class LoginForm extends React.Component {
           <div className="logo">
             <p className="session-title">Log In</p>
             <p className="tagline">we'll remember when.</p>
+            {this.renderErrors()}
             <form onSubmit={this.handleSubmit}>
               <div className="form-background">
                 <div className="username-c">
@@ -89,7 +97,6 @@ class LoginForm extends React.Component {
                   <button type="submit" className="session-form-btn">
                     Log In
                   </button>
-                  {this.renderErrors()}
                 </div>
               </div>
             </form>
