@@ -10,7 +10,6 @@ const mapStateToProps = (state) => {
   debugger;
   return {
     events: Object.values(state.events.user),
-
     currentUser: state.session.user,
   };
 };
