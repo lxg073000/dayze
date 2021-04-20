@@ -51,12 +51,20 @@ router.get("/:id", (req, res) => {
 
 router.patch("/:id", (req, res) => {
   debugger;
-  Event.findById(req.params.id)
+  Event.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      description: req.body.description,
+      date: req.body.date,
+    },
+    { new: true }
+  )
     .then((event) => {
       debugger;
-      event.title = req.body.title;
-      event.description = req.body.description;
-      event.date = req.body.date;
+      // event.title = req.body.title;
+      // event.description = req.body.description;
+      // event.date = req.body.date;
       res.json(event);
     })
     .catch((err) => res.status(400).json(err));

@@ -39,13 +39,14 @@ export default class event_editor extends Component {
     let id = this.props.id;
 
     this.props.handleUpdate(id, event);
-    this.setState({
-      title: "",
-      description: "",
-      date: "",
-      time: "",
-    });
+    // this.setState({
+    //   title: "",
+    //   description: "",
+    //   date: "",
+    //   time: "",
+    // });
     debugger;
+    document.getElementById(`${this.props.id}-patch`).classList.toggle("hide");
     // this.props.close();
   }
 
