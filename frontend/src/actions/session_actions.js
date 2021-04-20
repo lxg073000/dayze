@@ -26,7 +26,7 @@ export const logoutUser = () => ({
 });
 
 export const signup = (user) => (dispatch) =>{
-  debugger
+  //debugger
 
   return   APIUtil.signup(user).then(
     (user) => {
@@ -37,10 +37,10 @@ export const signup = (user) => (dispatch) =>{
 }
 
 export const login = (user) => (dispatch) => {
-  //debugger;
+  ////debugger;
   return APIUtil.login(user)
     .then((res) => {
-      debugger
+      //debugger
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);

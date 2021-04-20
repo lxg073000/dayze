@@ -7,7 +7,7 @@ import {
 import Events from "./events";
 
 const mapStateToProps = (state) => {
-  debugger;
+  //debugger;
   return {
     events: Object.values(state.events.user),
 

@@ -9,7 +9,7 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    //debugger;
     this.events = this.props.events;
   }
 

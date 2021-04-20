@@ -25,12 +25,12 @@ class CreateEvent extends React.Component {
   }
 
   composeDate(date, time) {
-    debugger;
+    //debugger;
     return new Date(date + " " + time);
   }
 
   handleSubmit(e) {
-    debugger;
+    //debugger;
     e.preventDefault();
     let event = {
       title: this.state.title,
@@ -46,7 +46,7 @@ class CreateEvent extends React.Component {
       date: "",
       time: "",
     });
-    debugger;
+    //debugger;
     this.props.close();
   }
 
