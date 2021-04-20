@@ -4,13 +4,19 @@ const passport = require("passport");
 const mongoose = require('mongoose');
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
+const {
+    insertEvent,
+    updateEvent,
+    removeEvent
+} = require('../../util/calendar_util/calendar_api_util')
+
 
 router.get("/test", (req, res) =>  {
     res.json({ msg: 'This is the events route' });
 });
 
 router.post("/",
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { isValid, errors } = validateEventInput(req.body);
 
@@ -18,15 +24,22 @@ router.post("/",
             return res.status(400).json(errors);
         }
 
-        const newEvent = new Event({     
-            user: req.body.user.id,
+        const newEvent = new Event({
+            user: req.user.id,
             title: req.body.title,
             description: req.body.description,
             date: req.body.date,
         });
-        
-        newEvent.save().then(event => res.json(event))
+
+        const insertThenSave = async ()=>{
+            let googleId = await insertEvent(newEvent);
+            newEvent.googleId = googleId;
+            newEvent.save().then(event => res.json(event))
+        }
+        insertThenSave();
 });
+
+
 
 router.get("/", (req, res) => {
     Event
@@ -51,23 +64,48 @@ router.get("/:id", (req, res) => {
 })
 
 router.patch("/:id", (req, res) => {
-    Event
-        .findOne ({ id: req.params.id })
-        .then(event => {    
-                event.title = req.body.title;
-                event.description = req.body.description;
-                event.date = req.body.date;
-                res.json(event)
-            }
-        )
-        .catch(err => res.status(400).json(err))
+    let updatedDbParams = {
+        title: req.body.title,
+        description: req.body.description,
+        date: req.body.date,
+    }
+
+    const patchAndUpdate = async () =>{
+        await updateEvent(doc.googleId, updatedDbParams);
+        Event
+            .findbyIdAndUpdate( 
+                req.params.id, 
+                {
+                    title: req.body.title,
+                    description: req.body.description,
+                    date :req.body.date
+                }, 
+                {new:true} 
+            )
+            .then(event => { res.json(event) })
+            .catch(err => res.status(400).json(err))
+    }
+    patchAndUpdate();
+
 })
 
 router.delete("/:id", (req, res) => {
-    Event   
-        .findByIdAndRemove(req.params.id)
-        .then(event => res.redirect("/"))
-        .catch(err => res.status(400).json(err))
+    Event.findOne({id:req.params.id}, 
+        (err,doc)=>{
+            if (err) return err;
+            let googleId = doc.googleId;
+
+            const removeAndDelete = async ()=>{
+                await removeEvent(googleId);
+                Event   
+                    .findByIdAndRemove(req.params.id)
+                    .then(event => res.redirect("/"))
+                    .catch(err => res.status(400).json(err))
+            }
+            removeAndDelete();
+        }
+    )
+
 })
 
 

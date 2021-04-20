@@ -18,7 +18,7 @@ const getCalendarInfo = ()=>{
 }
  
 
-const insertEvent = (dbEvent)=>{
+const insertEvent = async (dbEvent)=>{
   let auth = getAuth();
   const calendar =  google.calendar({version:'v3',auth});
   const event=  mapDbEventsToGoogleEvents(dbEvent);
@@ -85,7 +85,7 @@ const getEventsFromRange = ( startDate, endDate)=>{//get a list of events from a
 
 
 
-const updateEvent = ( googleEventId, updateParams)=>{
+const updateEvent = async ( googleEventId, updatedDbParams)=>{
   let auth = getAuth();
   const calendar =  google.calendar({version:'v3',auth});
   let googleEvent;   
@@ -94,8 +94,8 @@ const updateEvent = ( googleEventId, updateParams)=>{
   (err, res)=>{
     if (err) return `Error: Could not get event:  ${err}`
     googleEvent = res.data;
-    
-    Object.assign(googleEvent, updateParams);
+    let updatedGoogleParams=  mapDbParamsToGoogleParams(updatedDbParams);
+    Object.assign(googleEvent, updatedGoogleParams);
     calendar.events.update({
       auth,
       calendarId: 'primary',
@@ -110,7 +110,7 @@ const updateEvent = ( googleEventId, updateParams)=>{
   });
 }
 
-const removeEvent = (googleEventId)=>{ 
+const removeEvent = async (googleEventId)=>{ 
   let auth = getAuth();
   const calendar =  google.calendar({version:'v3',auth});
   calendar.events.delete(
@@ -141,7 +141,7 @@ const mapDbEventsToGoogleEvents = (dbEvent)=>{
   let endDate = new Date(dbEvent.date);
   endDate.setMinutes(endDate.getMinutes()+30);
 
-  googleEvent = {
+  let googleEvent = {
     summary: dbEvent.title,
     location: '',
     description: dbEvent.description,
@@ -158,6 +158,25 @@ const mapDbEventsToGoogleEvents = (dbEvent)=>{
   return googleEvent;
 }
 
+const mapDbParamsToGoogleParams = (dbParams)=>{
+  let googleParams = {}
+  if (dbParams.summary) googleParams.summary = dbParams.summary;
+  if (dbParams.location) googleParams.location = dbParams.location;
+  if (dbParams.description) googleParams.description = dbParams.description;
+  if (dbParams.date){
+    googleParams.start = {
+      dateTime: dbParams.date,
+      timeZone : 'America/New_York'
+    }
+    let endDate = new Date(dbEvent.date);
+    endDate.setMinutes(endDate.getMinutes()+30);
+    googleParams.end = {
+      dateTime: endDate,
+      timeZone: 'America/New_York'
+    }
+  }
+  return googleParams;
+}
 
 
 
@@ -170,6 +189,14 @@ const mapDbEventsToGoogleEvents = (dbEvent)=>{
 //   });
 // }
 
-module.exports = {insertEvent, removeEvent,getEventsFromRange, getCalendarInfo, updateEvent, getAuth,mapDbEventsToGoogleEvents}
-
+module.exports = {
+  insertEvent, 
+  removeEvent,
+  getEventsFromRange, 
+  getCalendarInfo, 
+  updateEvent, 
+  getAuth,
+  mapDbEventsToGoogleEvents,
+  mapDbParamsToGoogleParams
+}
 
