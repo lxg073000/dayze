@@ -43,13 +43,20 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-    return (
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
-        ))}
-      </ul>
-    );
+    if (this.state.errors.username || this.state.errors.password) { 
+      let space = document.getElementsByClassName('form-background');
+      debugger
+      space[0].style.marginTop = 0;
+      return (
+        <div className='errors'>
+        <ul>
+          {Object.keys(this.state.errors).map((error, i) => (
+            <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          ))}
+        </ul>
+        </div>
+      );
+    } else {return}
   }
 
   render() {
@@ -66,6 +73,7 @@ class SignupForm extends React.Component {
           <div className="logo">
             <p className="session-title">Sign Up</p>
             <p className="tagline">we'll remember when.</p>
+            {this.renderErrors()}
             <form onSubmit={this.handleSubmit}>
               <div className="signup-form-background">
                 <div className="email-c">
