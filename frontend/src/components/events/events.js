@@ -7,9 +7,10 @@ class Event extends React.Component {
     super(props);
     this.state = {
       events: this.props.events,
+      filter: "All Events",
     };
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleFilter = this.handleFilter.bind(this);
+    this.filterWeek = this.filterWeek.bind(this);
     this.filterToday = this.filterToday.bind(this);
     this.filterAll = this.filterAll.bind(this);
   }
@@ -29,15 +30,17 @@ class Event extends React.Component {
     this.props.deleteEvent(id);
   }
 
-  handleFilter(e) {
-    console.log(e.target.id);
+  filterWeek(e) {
+    this.props.fetchWeek();
+    this.setState({ filter: "This Week's Events" });
   }
   filterToday() {
     this.props.fetchTodays();
+    this.setState({ filter: "Today's Events" });
   }
   filterAll() {
-    debugger;
     this.props.fetchUserEvents(this.props.currentUser.id);
+    this.setState({ filter: "All Events" });
   }
 
   render() {
@@ -52,7 +55,7 @@ class Event extends React.Component {
           <i
             className="fab fas fa-calendar-week"
             id="week"
-            onClick={this.handleFilter}
+            onClick={this.filterWeek}
           ></i>
           <i
             className="fab fas fa-calendar-alt"
@@ -60,7 +63,7 @@ class Event extends React.Component {
             onClick={this.filterAll}
           ></i>
         </span>
-        <h1 className="event-list-headline">All Events</h1>
+        <h1 className="event-list-headline">{this.state.filter}</h1>
 
         {this.state.events.map((evnt, idx) => (
           <EventItem

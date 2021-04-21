@@ -32,30 +32,48 @@ router.post(
 
 router.get("/", (req, res) => {
   Event.find()
-    .sort({ data: -1 })
+    .sort({ date: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
 
 router.get("/today", (req, res) => {
+  let currentDay = new Date();
   Event.find({
     date: {
-      $gte: new Date().setHours(0, 0, 0),
-      $lte: new Date().setHours(23, 59, 59),
+      $gte: currentDay.setHours(0, 0, 0),
+      $lte: currentDay.setHours(23, 59, 59),
     },
   })
+    .sort({ date: 1 })
+    .then((events) => res.json(events))
+    .catch((err) => res.status(400).json(err));
+});
+router.get("/week", (req, res) => {
+  let currentDay = new Date();
+  Event.find({
+    date: {
+      $gte: currentDay.setDate(currentDay.getDate() - currentDay.getDay()),
+      $lte: currentDay.setDate(
+        currentDay.getDate() + (7 - currentDay.getDay())
+      ),
+    },
+  })
+    .sort({ date: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
 
 router.get("/user/:user_id", (req, res) => {
   Event.find({ user: req.params.user_id })
+    .sort({ date: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
 
 router.get("/:id", (req, res) => {
   Event.findById(req.params.id)
+    .sort({ date: 1 })
     .then((event) => res.json(event))
     .catch((err) => res.status(400).json(err));
 });

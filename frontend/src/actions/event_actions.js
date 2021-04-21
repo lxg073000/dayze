@@ -54,6 +54,11 @@ export const fetchTodays = () => (dispatch) =>
     .then((events) => dispatch(receiveEvents(events)))
     .catch((err) => console.log(err));
 
+export const fetchWeek = () => (dispatch) =>
+  APIUtil.getWeek()
+    .then((events) => dispatch(receiveEvents(events)))
+    .catch((err) => console.log(err));
+
 export const fetchUserEvents = (id) => (dispatch) =>
   APIUtil.getUserEvents(id)
     .then((events) => dispatch(receiveUserEvents(events)))
