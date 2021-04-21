@@ -61,6 +61,13 @@ const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
 
+const http = require('http');
+const url = require('url');
+const opn = require('open');
+const destroyer = require('server-destroy');
+
+
+
 // If modifying these scopes, delete token.json.
 
 const SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -84,6 +91,7 @@ fs.readFile(credentialsFile, (err, content) => {
   });
 });
 
+
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -91,21 +99,76 @@ fs.readFile(credentialsFile, (err, content) => {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const { client_secret, client_id, redirect_uris } = credentials.web;//.installed; //.web;
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
     redirect_uris[0]
   );
+  console.log(oAuth2Client);
+  google.options({auth: oAuth2Client});
+  console.log(google.auth);
+
+
 
   // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) return getAccessToken(oAuth2Client, callback);
-    accessToken = JSON.parse(token);
-    oAuth2Client.setCredentials(accessToken);
-    // callback(oAuth2Client);
-  });
+  // fs.readFile(TOKEN_PATH, (err, token) => {
+  //   if (err) return getAccessToken(oAuth2Client, callback);
+  //   accessToken = JSON.parse(token);
+  //   oAuth2Client.setCredentials(accessToken);
+  //   // callback(oAuth2Client);
+  // });
+
+  async function authenticate( scopes) {
+    return new Promise((resolve, reject) => {
+      // grab the url that will be used for authorization
+      const authorizeUrl = oAuth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: scopes.join(' '),
+      });
+      const server = http
+        .createServer(async (req, res) => {
+          try {
+            if (req.url.indexOf('/oauth2callback') > -1) {
+              const qs = new url.URL(req.url, 'http://localhost:3000')
+                .searchParams;
+              res.end('Authentication successful! Please return to the console.');
+              server.destroy();
+              const {tokens} = await oAuth2Client.getToken(qs.get('code'));
+              
+              console.log(oAuth2Client);
+
+              oAuth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
+              resolve(oAuth2Client);
+            }
+          } catch (e) {
+            reject(e);
+          }
+        })
+        .listen(3001, () => {
+          // open the browser to the authorize url to start the workflow
+          opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
+        });
+      destroyer(server);
+    });
+  }
+
+  authenticate(SCOPES)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Get and store new token after prompting for user authorization, and then
@@ -128,6 +191,7 @@ function getAccessToken(oAuth2Client, callback) {
     oAuth2Client.getToken(code, (err, token) => {
       if (err) return console.error("Error retrieving access token", err);
       oAuth2Client.setCredentials(token);
+      console.log('no error for getToken ');
       // Store the token to disk for later program executions
       fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
         if (err) return console.error(err);
@@ -137,6 +201,11 @@ function getAccessToken(oAuth2Client, callback) {
     });
   });
 }
+
+
+
+
+
 
 /**
  * Lists the next 10 events on the user's primary calendar.
