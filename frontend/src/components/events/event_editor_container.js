@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
 import {
   fetchUserEvents,
+  fetchEvent,
   deleteEvent,
   updateEvent,
   fetchTodays,
-  fetchWeek,
 } from "../../actions/event_actions";
-import Events from "./events";
+import EventEditor from "./event_editor";
 
 const mapStateToProps = (state) => {
-  //debugger;
+  debugger;
   return {
-    events: Object.values(state.events.user),
+    event: Object.values(state.events.event_item),
     currentUser: state.session.user,
   };
 };
@@ -20,10 +20,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserEvents: (user) => dispatch(fetchUserEvents(user)),
     fetchTodays: () => dispatch(fetchTodays()),
-    fetchWeek: () => dispatch(fetchWeek()),
+    fetchEvent: (id) => dispatch(fetchEvent(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default connect(mapStateToProps, mapDispatchToProps)(EventEditor);

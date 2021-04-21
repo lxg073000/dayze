@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CreateEvent from "../events/create_event_container";
 
-export default class dailyCard extends Component {
+export default class dayModal extends Component {
   handleClick = () => {
     this.props.toggle();
   };

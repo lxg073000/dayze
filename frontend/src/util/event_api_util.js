@@ -9,6 +9,13 @@ export const getEvent = (id) => {
   return axios.get(`/api/events/${id}`);
 };
 
+export const getToday = () => {
+  return axios.get(`/api/events/today`);
+};
+export const getWeek = () => {
+  return axios.get(`/api/events/week`);
+};
+
 export const getUserEvents = (id) => {
   return axios.get(`/api/events/user/${id}`);
 };
