@@ -37,6 +37,17 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
+router.get("/:day", (req, res) => {
+  Event.find({
+    date: {
+      $gte: new Date().setHours(0, 0, 0),
+      $lte: new Date().setHours(23, 59, 59),
+    },
+  })
+    .then((events) => res.json(events))
+    .catch((err) => res.status(400).json(err));
+});
+
 router.get("/user/:user_id", (req, res) => {
   Event.find({ user: req.params.user_id })
     .then((events) => res.json(events))

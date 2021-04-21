@@ -10,6 +10,8 @@ class Event extends React.Component {
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.filterToday = this.filterToday.bind(this);
+    this.filterAll = this.filterAll.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,13 @@ class Event extends React.Component {
   handleFilter(e) {
     console.log(e.target.id);
   }
+  filterToday() {
+    this.props.fetchTodays();
+  }
+  filterAll() {
+    debugger;
+    this.props.fetchUserEvents(this.props.currentUser.id);
+  }
 
   render() {
     return (
@@ -37,7 +46,7 @@ class Event extends React.Component {
           <i
             className="fab fas fa-calendar-day"
             id="day"
-            onClick={this.handleFilter}
+            onClick={this.filterToday}
           ></i>
           <i
             className="fab fas fa-calendar-week"
@@ -47,7 +56,7 @@ class Event extends React.Component {
           <i
             className="fab fas fa-calendar-alt"
             id="all"
-            onClick={this.handleFilter}
+            onClick={this.filterAll}
           ></i>
         </span>
         <h1 className="event-list-headline">All Events</h1>

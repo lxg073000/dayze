@@ -4,17 +4,13 @@ import EventEditor from "./event_editor";
 class EventBox extends React.Component {
   edit_btn(e, id) {
     debugger;
-    // let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
-    // console.log(e.target.parentElement.parentElement.parentElement.children);
     let selected_event = document.getElementById(`${id}-patch`);
 
     selected_event.classList.toggle("hide");
   }
   delete_btn(e, id) {
     debugger;
-    // let patch_node = document.getElementById(`${id}-patch`);
     this.props.handleDelete(id);
-    // patch_node.parentElement.removeChild(patch_node);
   }
   render() {
     debugger;
