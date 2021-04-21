@@ -50,7 +50,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-  debugger;
+  //debugger;
   Event.findByIdAndUpdate(
     req.params.id,
     {
@@ -61,7 +61,7 @@ router.patch("/:id", (req, res) => {
     { new: true }
   )
     .then((event) => {
-      debugger;
+      //debugger;
       // event.title = req.body.title;
       // event.description = req.body.description;
       // event.date = req.body.date;

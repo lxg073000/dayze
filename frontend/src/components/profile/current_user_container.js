@@ -3,7 +3,7 @@ import { logout } from "../../actions/session_actions";
 import Hub from "./user_calendar_hub";
 
 const mapStateToProps = (state) => {
-  debugger;
+  //debugger;
   return {
     events: Object.values(state.events.user),
     signedIn: state.session.isSignedIn,

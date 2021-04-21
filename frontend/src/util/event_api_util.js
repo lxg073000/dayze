@@ -18,11 +18,11 @@ export const createEvent = (data) => {
 };
 
 export const updateEvent = (id, data) => {
-  debugger;
+  //debugger;
   return axios.patch(`/api/events/${id}`, data);
 };
 
 export const deleteEvent = (id) => {
-  debugger;
+  //debugger;
   return axios.delete(`/api/events/${id}`);
 };

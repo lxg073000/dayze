@@ -10,10 +10,10 @@ const initialState = {
 };
 
 const sessionAPIReducer = (state = initialState, action) => {
-  debugger;
+  //debugger;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      //debugger;
+      ////debugger;
       return {
         ...state,
         isAuthenticated: !!action.currentUser,
@@ -27,7 +27,7 @@ const sessionAPIReducer = (state = initialState, action) => {
         user: undefined,
       };
     case RECEIVE_USER_SIGN_IN:
-      debugger;
+      //debugger;
       action.currentUser.data.id = action.currentUser.data._id;
       return {
         ...state,

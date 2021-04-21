@@ -31,7 +31,7 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
-    //debugger;
+    ////debugger;
     e.preventDefault();
     let user = {
       email: this.state.email,
@@ -45,7 +45,7 @@ class SignupForm extends React.Component {
   renderErrors() {
     if (this.state.errors.username || this.state.errors.password || this.state.errors.email) { 
       let space = document.getElementsByClassName('signup-form-background');
-      debugger
+      //debugger
       space[0].style.marginTop = 0;
       return (
         <div className='errors-signup'>

@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    //debugger;
+    ////debugger;
 
     let user = {
       username: this.state.username,
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
   renderErrors() { 
     if (this.state.errors.username || this.state.errors.password) {
       let space = document.getElementsByClassName('form-background');
-      debugger
+      //debugger
       space[0].style.marginTop = 0;
       return (
           <div className='errors-login'>

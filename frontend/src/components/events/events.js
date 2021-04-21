@@ -13,12 +13,12 @@ class Event extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    //debugger;
     this.props.fetchUserEvents(this.props.currentUser.id);
   }
 
   UNSAFE_componentWillReceiveProps(newState) {
-    debugger;
+    //debugger;
     this.setState({ events: newState.events });
   }
 

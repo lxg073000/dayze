@@ -21,12 +21,12 @@ export default class event_editor extends Component {
   }
 
   composeDate(date, time) {
-    debugger;
+    //debugger;
     return new Date(date + " " + time);
   }
 
   handleSubmit(e) {
-    debugger;
+    //debugger;
     e.preventDefault();
     let event = {
       title: this.state.title,
@@ -45,7 +45,7 @@ export default class event_editor extends Component {
     //   date: "",
     //   time: "",
     // });
-    debugger;
+    //debugger;
     document.getElementById(`${this.props.id}-patch`).classList.toggle("hide");
     // this.props.close();
   }
