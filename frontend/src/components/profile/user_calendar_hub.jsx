@@ -9,8 +9,9 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchUserEvents(this.props.currentUser.id);
     debugger;
-    this.events = this.props.events;
+    // this.events = this.props.events;
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -52,7 +53,7 @@ export default class user_calender_hub extends React.Component {
                 <ul></ul>
 
                 <div>
-                  <Events />
+                  <Events userEvents={this.props.events} />
                 </div>
               </div>
             </div>

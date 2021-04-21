@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-router.get("/:day", (req, res) => {
+router.get("/today", (req, res) => {
   Event.find({
     date: {
       $gte: new Date().setHours(0, 0, 0),

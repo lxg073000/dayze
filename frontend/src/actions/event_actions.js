@@ -11,10 +11,13 @@ export const receiveEvents = (events) => ({
   events,
 });
 
-export const receiveEvent = (event) => ({
-  type: RECEIVE_EVENT,
-  event,
-});
+export const receiveEvent = (event) => {
+  debugger;
+  return {
+    type: RECEIVE_EVENT,
+    event,
+  };
+};
 
 export const receiveUserEvents = (events) => ({
   type: RECEIVE_USER_EVENTS,

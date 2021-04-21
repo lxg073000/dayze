@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import DailyCard from "../../components/events/daily_card";
+import DayModal from "../../components/events/day_modal";
 export default class calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       date: new Date(),
-      dayCard: false,
+      dayModal: false,
       eventForm: false,
     };
     this.months = [
@@ -27,27 +27,7 @@ export default class calendar extends Component {
       date: this.state.date.getDate(),
       date_val: this.state.date.toISOString().substr(0, 10),
     };
-    this.toggleDayCard = this.toggleDayCard.bind(this);
-  }
-
-  // takes a Date Object and returns the full day of the week
-  getDayFull(date) {
-    return this.baseCal[date.getDate()];
-  }
-
-  // takes a Date Object and returns the abreviated day of the week
-  getDayAbrv(dateObject) {
-    return dateObject.toDateString().split(" ")[0];
-  }
-
-  // takes a Date Object and returns the 3-letter abreviated month
-  getMonthAbrv(dateObject) {
-    return dateObject.toDateString().split(" ")[1];
-  }
-
-  // takes a Date Object and returns the base 10 date, padded with a 0
-  getDatePadded(dateObject) {
-    return dateObject.toDateString().split(" ")[2];
+    this.toggleDayModal = this.toggleDayModal.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +40,7 @@ export default class calendar extends Component {
     const date = new Date(year, month, 1);
     const fullCalDays = [];
 
+    // Embed Notification Container into cal-day-full div
     this.baseCal.forEach((day, id) =>
       fullCalDays.push(
         <div className="cal-day-full" key={`cal${id}`}>
@@ -107,12 +88,12 @@ export default class calendar extends Component {
     debugger;
     this.active["date"] = e.currentTarget.innerHTML;
     this.active["date_val"] = e.currentTarget.id;
-    this.toggleDayCard();
+    this.toggleDayModal();
   }
 
-  toggleDayCard = () => {
+  toggleDayModal = () => {
     this.setState({
-      dayCard: !this.state.dayCard,
+      dayModal: !this.state.dayModal,
     });
   };
   toggleEventCard = () => {
@@ -148,11 +129,11 @@ export default class calendar extends Component {
             </span>
           </div>
           <div className="calendar">{this.showCalendar(this.state.date)}</div>
-          <div className={this.state.dayCard ? "show" : "hide"}>
-            <DailyCard
+          <div className={this.state.dayModal ? "show" : "hide"}>
+            <DayModal
               activeDate={this.active.date}
               activeDateVal={this.active.date_val}
-              toggle={this.toggleDayCard}
+              toggle={this.toggleDayModal}
             />
           </div>
         </div>

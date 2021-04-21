@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import EventBox from "./event_box";
+import EventItem from "./event_item_container";
 
 class Event extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
+      events: this.props.events,
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
@@ -16,9 +16,17 @@ class Event extends React.Component {
 
   componentDidMount() {
     debugger;
-    this.props.fetchUserEvents(this.props.currentUser.id);
+    // this.props.fetchUserEvents(this.props.currentUser.id);
+    this.setState({ events: this.props.events });
+    debugger;
   }
 
+  // componentDidUpdate() {
+  //   this.setState({ events: this.props.events });
+  //   // debugger;
+  //   // console.log("mounted");
+  //   console.log(this.state);
+  // }
   UNSAFE_componentWillReceiveProps(newState) {
     debugger;
     this.setState({ events: newState.events });
@@ -62,7 +70,7 @@ class Event extends React.Component {
         <h1 className="event-list-headline">All Events</h1>
 
         {this.state.events.map((evnt, idx) => (
-          <EventBox
+          <EventItem
             key={idx}
             id={evnt._id}
             title={evnt.title}
