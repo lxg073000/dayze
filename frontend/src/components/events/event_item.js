@@ -29,8 +29,11 @@ class EventItem extends React.Component {
   delete_btn(e, id) {
     debugger;
     this.props.handleDelete(id);
-    this.setState({ editor_form: !this.state.editor_form });
+    if (this.state.editor_form === true) {
+      this.setState({ editor_form: !this.state.editor_form });
+    }
   }
+
   render() {
     debugger;
     return (
