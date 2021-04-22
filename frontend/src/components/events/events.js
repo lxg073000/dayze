@@ -10,6 +10,7 @@ class Event extends React.Component {
       filter: "All Events",
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.filterMonth = this.filterMonth.bind(this);
     this.filterWeek = this.filterWeek.bind(this);
     this.filterToday = this.filterToday.bind(this);
     this.filterAll = this.filterAll.bind(this);
@@ -36,6 +37,7 @@ class Event extends React.Component {
     this.setState({ filter: "This Week's Events" });
     document.getElementById("week").classList.toggle("activated");
     document.getElementById("day").classList.remove("activated");
+    document.getElementById("month").classList.remove("activated");
     document.getElementById("all").classList.remove("activated");
   }
   filterToday() {
@@ -44,13 +46,23 @@ class Event extends React.Component {
     this.setState({ filter: "Today's Events" });
     document.getElementById("day").classList.toggle("activated");
     document.getElementById("week").classList.remove("activated");
+    document.getElementById("month").classList.remove("activated");
     document.getElementById("all").classList.remove("activated");
+  }
+  filterMonth() {
+    this.props.fetchMonth(this.props.currentUser.id);
+    this.setState({ filter: "This Month's Events" });
+    document.getElementById("month").classList.toggle("activated");
+    document.getElementById("all").classList.remove("activated");
+    document.getElementById("day").classList.remove("activated");
+    document.getElementById("week").classList.remove("activated");
   }
   filterAll() {
     this.props.fetchUserEvents(this.props.currentUser.id);
     this.setState({ filter: "All Events" });
     document.getElementById("all").classList.toggle("activated");
     document.getElementById("day").classList.remove("activated");
+    document.getElementById("month").classList.remove("activated");
     document.getElementById("week").classList.remove("activated");
   }
 
@@ -58,10 +70,11 @@ class Event extends React.Component {
     return (
       <div className="event-display-window">
         <span className="event-filter-bar">
+          <i className="fas fa-calendar" id="all" onClick={this.filterAll}></i>
           <i
             className="fab fas fa-calendar-alt"
-            id="all"
-            onClick={this.filterAll}
+            id="month"
+            onClick={this.filterMonth}
           ></i>
           <i
             className="fab fas fa-calendar-week"

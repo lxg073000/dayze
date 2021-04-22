@@ -75,6 +75,24 @@ router.get("/week/:user_id", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
+router.get("/month/:user_id", (req, res) => {
+  let currentDay = new Date();
+  Event.find({
+    $and: [
+      {
+        user: req.params.user_id,
+        date: {
+          $gte: currentDay.setDate(1),
+          $lte: currentDay.setMonth(currentDay.getMonth() + 1).setDate(-1),
+        },
+      },
+    ],
+  })
+    .sort({ date: 1 })
+    .then((events) => res.json(events))
+    .catch((err) => res.status(400).json(err));
+});
+
 router.get("/user/:user_id", (req, res) => {
   Event.find({ user: req.params.user_id })
     .sort({ date: 1 })

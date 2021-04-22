@@ -5,6 +5,7 @@ import {
   updateEvent,
   fetchTodays,
   fetchWeek,
+  fetchMonth,
 } from "../../actions/event_actions";
 import Events from "./events";
 
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchUserEvents: (user) => dispatch(fetchUserEvents(user)),
     fetchTodays: (id) => dispatch(fetchTodays(id)),
     fetchWeek: (id) => dispatch(fetchWeek(id)),
+    fetchMonth: (id) => dispatch(fetchMonth(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };

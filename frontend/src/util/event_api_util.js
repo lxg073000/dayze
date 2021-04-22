@@ -15,6 +15,9 @@ export const getToday = (id) => {
 export const getWeek = (id) => {
   return axios.get(`/api/events/week/${id}`);
 };
+export const getMonth = (id) => {
+  return axios.get(`/api/events/month/${id}`);
+};
 
 export const getUserEvents = (id) => {
   return axios.get(`/api/events/user/${id}`);

@@ -59,6 +59,11 @@ export const fetchWeek = (user_id) => (dispatch) =>
     .then((events) => dispatch(receiveEvents(events)))
     .catch((err) => console.log(err));
 
+export const fetchMonth = (user_id) => (dispatch) =>
+  APIUtil.getMonth(user_id)
+    .then((events) => dispatch(receiveEvents(events)))
+    .catch((err) => console.log(err));
+
 export const fetchUserEvents = (id) => (dispatch) =>
   APIUtil.getUserEvents(id)
     .then((events) => dispatch(receiveUserEvents(events)))
