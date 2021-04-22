@@ -129,6 +129,9 @@
   }
 }
 
+.no-click {
+  pointer-events: none;
+}
 .hide {
   display: none;
 }

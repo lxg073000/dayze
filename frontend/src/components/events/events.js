@@ -20,6 +20,7 @@ class Event extends React.Component {
     // debugger;
     this.setState({ events: this.props.events });
     document.getElementById("all").classList.toggle("activated");
+    document.getElementById("all").classList.toggle("no-click");
     // debugger;
   }
 
@@ -36,33 +37,37 @@ class Event extends React.Component {
     this.props.fetchWeek(this.props.currentUser.id);
     this.setState({ filter: "This Week's Events" });
     document.getElementById("week").classList.toggle("activated");
-    document.getElementById("day").classList.remove("activated");
-    document.getElementById("month").classList.remove("activated");
-    document.getElementById("all").classList.remove("activated");
+    document.getElementById("week").classList.toggle("no-click");
+    document.getElementById("day").classList.remove("activated", "no-click");
+    document.getElementById("month").classList.remove("activated", "no-click");
+    document.getElementById("all").classList.remove("activated", "no-click");
   }
   filterToday() {
     this.props.fetchTodays(this.props.currentUser.id);
     this.setState({ filter: "Today's Events" });
     document.getElementById("day").classList.toggle("activated");
-    document.getElementById("week").classList.remove("activated");
-    document.getElementById("month").classList.remove("activated");
-    document.getElementById("all").classList.remove("activated");
+    document.getElementById("day").classList.toggle("no-click");
+    document.getElementById("week").classList.remove("activated", "no-click");
+    document.getElementById("month").classList.remove("activated", "no-click");
+    document.getElementById("all").classList.remove("activated", "no-click");
   }
   filterMonth() {
     this.props.fetchMonth(this.props.currentUser.id);
     this.setState({ filter: "This Month's Events" });
     document.getElementById("month").classList.toggle("activated");
-    document.getElementById("all").classList.remove("activated");
-    document.getElementById("day").classList.remove("activated");
-    document.getElementById("week").classList.remove("activated");
+    document.getElementById("month").classList.toggle("no-click");
+    document.getElementById("all").classList.remove("activated", "no-click");
+    document.getElementById("day").classList.remove("activated", "no-click");
+    document.getElementById("week").classList.remove("activated", "no-click");
   }
   filterAll() {
     this.props.fetchUserEvents(this.props.currentUser.id);
     this.setState({ filter: "All Events" });
     document.getElementById("all").classList.toggle("activated");
-    document.getElementById("day").classList.remove("activated");
-    document.getElementById("month").classList.remove("activated");
-    document.getElementById("week").classList.remove("activated");
+    document.getElementById("all").classList.toggle("no-click");
+    document.getElementById("day").classList.remove("activated", "no-click");
+    document.getElementById("month").classList.remove("activated", "no-click");
+    document.getElementById("week").classList.remove("activated", "no-click");
   }
 
   render() {
