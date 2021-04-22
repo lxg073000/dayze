@@ -41,7 +41,7 @@ const insertEvent = async (dbEvent)=>{
       if (eventsArr.length===0) return calendar.events.insert({calendarId: 'primary', resource: event}, 
         (err,res)=>{
           if (err) return console.error('Calendar Event Creation Error: ',err)
-          console.log(res.data.id);
+          console.log(`google api cal util func:  res.data.id: ${res.data.id}`);
           return res.data.id;  //return google's eventId for this event.
           // return console.log(`Event ${summary} Created.`);
         })

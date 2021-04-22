@@ -51,10 +51,8 @@ app.get("/", (req, res) => {
   app.use(express.static("frontend/build"));
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
-
+///////////
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
-let accessToken;
 
 // google calendar api
 const fs = require("fs");
@@ -81,80 +79,77 @@ const AUTH_DATABASE_ID_PATH = 'auth_database_id.txt';
 // Load client secrets from a local file.
 
 const credentialsFile = "credentials.json";
-fs.readFile(credentialsFile, (err, content) => {
-  if (err) return console.log("Error loading client secret file:", err);
+// fs.readFile(credentialsFile, (err, content) => {
+//   if (err) return console.log("Error loading client secret file:", err);
 
-  // Authorize a client with credentials, then call the Google Calendar API.
-  // authorize(JSON.parse(content), listEvents);
-  authorize(JSON.parse(content), (auth) => {
-    return removeEvent(auth, "nnhdosqn74u95tmliln4p4ogmc");
-  });
-});
-
-
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {
-  const { client_secret, client_id, redirect_uris } = credentials.web;//.installed; //.web;
-  const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0]
-  );
-  console.log(oAuth2Client);
-  google.options({auth: oAuth2Client});
-  console.log(google.auth);
+//   // Authorize a client with credentials, then call the Google Calendar API.
+//   // authorize(JSON.parse(content), listEvents);
+//   authorize(JSON.parse(content), (auth) => {
+//     return removeEvent(auth, "nnhdosqn74u95tmliln4p4ogmc");
+//   });
+// });
+let credentials = JSON.parse(fs.readFileSync(credentialsFile));
+const { client_secret, client_id, redirect_uris } = credentials.web;//.installed; //.web;
+const oAuth2Client = new google.auth.OAuth2(
+  client_id,
+  client_secret,
+  redirect_uris[0]
+);
+console.log(oAuth2Client);
+google.options({auth: oAuth2Client});
+console.log(google.auth);
 
 
 
-  // Check if we have previously stored a token.
-  // fs.readFile(TOKEN_PATH, (err, token) => {
-  //   if (err) return getAccessToken(oAuth2Client, callback);
-  //   accessToken = JSON.parse(token);
-  //   oAuth2Client.setCredentials(accessToken);
-  //   // callback(oAuth2Client);
-  // });
+// Check if we have previously stored a token.
+// fs.readFile(TOKEN_PATH, (err, token) => {
+//   if (err) return getAccessToken(oAuth2Client, callback);
+//   accessToken = JSON.parse(token);
+//   oAuth2Client.setCredentials(accessToken);
+//   // callback(oAuth2Client);
+// });
 
-  async function authenticate( scopes) {
-    return new Promise((resolve, reject) => {
-      // grab the url that will be used for authorization
-      const authorizeUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: scopes.join(' '),
-      });
-      const server = http
-        .createServer(async (req, res) => {
-          try {
-            if (req.url.indexOf('/oauth2callback') > -1) {
-              const qs = new url.URL(req.url, 'http://localhost:3000')
-                .searchParams;
-              res.end('Authentication successful! Please return to the console.');
-              server.destroy();
-              const {tokens} = await oAuth2Client.getToken(qs.get('code'));
-              
-              console.log(oAuth2Client);
-
-              oAuth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
-              resolve(oAuth2Client);
-            }
-          } catch (e) {
-            reject(e);
-          }
-        })
-        .listen(3001, () => {
-          // open the browser to the authorize url to start the workflow
-          opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
-        });
-      destroyer(server);
+async function authenticate( scopes) {
+  return new Promise((resolve, reject) => {
+    // grab the url that will be used for authorization
+    const authorizeUrl = oAuth2Client.generateAuthUrl({
+      access_type: 'offline',
+      scope: scopes.join(' ')
     });
-  }
+    console.log(authorizeUrl)
+    const server = http
+      .createServer(async (req, res) => {
+        console.log('Inside .createServer function ....')
+        try {
+          if (req.url.indexOf('/oauth2callback') > -1) {
+            const qs = new url.URL(req.url, 'http://localhost:3000')
+              .searchParams;
+            res.end('Authentication successful! Please return to the console.');
+            server.destroy();
+            const {tokens} = await oAuth2Client.getToken(qs.get('code'));
+            
+            console.log(tokens);
 
-  authenticate(SCOPES)
+            oAuth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
+            resolve(oAuth2Client);
+          }
+        } catch (e) {
+          reject(e);
+        }
+      })
+      .listen(         3000         , () => {
+        // open the browser to the authorize url to start the workflow
+        console.log('inside listen function for port 3000')
+        opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
+      });
+    destroyer(server);
+  });
 }
+
+authenticate(SCOPES)
+// app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
 
 
 

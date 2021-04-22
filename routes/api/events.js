@@ -39,9 +39,14 @@ router.post("/",
 
 
       const insertThenSave = async ()=>{
-          let googleId = await insertEvent(newEvent);
-          newEvent.googleId = googleId;
-          await newEvent.save().then(event => res.json(event))
+        //   let googleId = 
+        insertEvent(newEvent)
+        .then(async (g)=>{
+            newEvent.googleId = g;
+            console.log(`newEvent.googleId: ${newEvent.googleId}`)
+            
+            await newEvent.save().then(event => res.json(event))
+        })
       }
       insertThenSave();
 });
