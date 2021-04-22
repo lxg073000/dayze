@@ -42,21 +42,23 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  renderErrors() { 
+  renderErrors() {
     if (this.state.errors.username || this.state.errors.password) {
-      let space = document.getElementsByClassName('form-background');
+      let space = document.getElementsByClassName("form-background");
       //debugger
       space[0].style.marginTop = 0;
       return (
-          <div className='errors-login'>
-            <ul>
-              {Object.keys(this.state.errors).map((error, i) => (
-                <li key={`error-${i}`}>{this.state.errors[error]}</li>
-              ))}
-            </ul>
-          </div>
-        );
-    } else {return}
+        <div className="errors-login">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    } else {
+      return;
+    }
   }
 
   render() {
@@ -104,7 +106,7 @@ class LoginForm extends React.Component {
           <div className="session-nav-div">
             <ul className="splash-navs">
               <li>
-                <Link to="/user">Continue as Guest</Link>
+                <Link onClick={this.props.guestLogin}>Continue as Guest</Link>
               </li>
               <li>
                 <Link to="/signup">Sign Up</Link>

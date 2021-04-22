@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchUserEvents } from "../../actions/event_actions";
-import { logout } from "../../actions/session_actions";
+import { logout, guestLogin } from "../../actions/session_actions";
 import Hub from "./user_calendar_hub";
 
 const mapStateToProps = (state) => {
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
     fetchUserEvents: (id) => dispatch(fetchUserEvents(id)),
+    guestLogin: () => dispatch(guestLogin()),
   };
 };
 

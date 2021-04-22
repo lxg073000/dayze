@@ -43,20 +43,26 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-    if (this.state.errors.username || this.state.errors.password || this.state.errors.email) { 
-      let space = document.getElementsByClassName('signup-form-background');
+    if (
+      this.state.errors.username ||
+      this.state.errors.password ||
+      this.state.errors.email
+    ) {
+      let space = document.getElementsByClassName("signup-form-background");
       //debugger
       space[0].style.marginTop = 0;
       return (
-        <div className='errors-signup'>
-        <ul>
-          {Object.keys(this.state.errors).map((error, i) => (
-            <li key={`error-${i}`}>{this.state.errors[error]}</li>
-          ))}
-        </ul>
+        <div className="errors-signup">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
         </div>
       );
-    } else {return}
+    } else {
+      return;
+    }
   }
 
   render() {
@@ -114,7 +120,7 @@ class SignupForm extends React.Component {
           <div className="session-nav-div">
             <ul className="splash-navs">
               <li>
-                <Link to="/user">Continue as Guest</Link>
+                <Link onClick={this.props.guestLogin}>Continue as Guest</Link>
               </li>
               <li>
                 <Link to="/login">Log In</Link>
