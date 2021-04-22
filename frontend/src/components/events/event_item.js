@@ -23,11 +23,11 @@ class EventItem extends React.Component {
   // }
 
   edit_btn() {
-    debugger;
+    // debugger;
     this.setState({ editor_form: !this.state.editor_form });
   }
   delete_btn(e, id) {
-    debugger;
+    // debugger;
     this.props.handleDelete(id);
     if (this.state.editor_form === true) {
       this.setState({ editor_form: !this.state.editor_form });
@@ -35,7 +35,7 @@ class EventItem extends React.Component {
   }
 
   render() {
-    debugger;
+    // debugger;
     return (
       <ul id={this.props.id} className="event-card">
         {this.state.editor_form ? (

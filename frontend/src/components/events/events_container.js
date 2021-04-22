@@ -19,8 +19,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserEvents: (user) => dispatch(fetchUserEvents(user)),
-    fetchTodays: () => dispatch(fetchTodays()),
-    fetchWeek: () => dispatch(fetchWeek()),
+    fetchTodays: (id) => dispatch(fetchTodays(id)),
+    fetchWeek: (id) => dispatch(fetchWeek(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };

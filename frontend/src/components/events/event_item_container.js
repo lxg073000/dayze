@@ -9,7 +9,7 @@ import {
 import EventItem from "./event_item";
 
 const mapStateToProps = (state) => {
-  debugger;
+  // debugger;
   return {
     events: Object.values(state.events.user),
     item: state.events.item,

@@ -129,6 +129,7 @@ p {
   width: 100%;
   margin: auto;
   position: relative;
+  padding: 0em 3em;
 }
 
 .cal-componet {
@@ -163,11 +164,10 @@ p {
 }
 
 .half-card {
-  background-color: rgb(255 255 255 / 5%);
+  background-color: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 9px 7px #cfc2b745;
-  margin: 0px 10px;
+  margin-left: 3em;
   border-radius: 20px;
-  // height: 59vh;
   color: #5c5a58;
   line-height: 31px;
   height: 440px;

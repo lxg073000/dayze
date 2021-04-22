@@ -12,7 +12,7 @@ export const receiveEvents = (events) => ({
 });
 
 export const receiveEvent = (event) => {
-  debugger;
+  // debugger;
   return {
     type: RECEIVE_EVENT,
     event,
@@ -49,13 +49,13 @@ export const fetchEvent = (id) => (dispatch) =>
     .then((event) => dispatch(receiveEvent(event)))
     .catch((err) => console.log(err));
 
-export const fetchTodays = () => (dispatch) =>
-  APIUtil.getToday()
+export const fetchTodays = (user_id) => (dispatch) =>
+  APIUtil.getToday(user_id)
     .then((events) => dispatch(receiveEvents(events)))
     .catch((err) => console.log(err));
 
-export const fetchWeek = () => (dispatch) =>
-  APIUtil.getWeek()
+export const fetchWeek = (user_id) => (dispatch) =>
+  APIUtil.getWeek(user_id)
     .then((events) => dispatch(receiveEvents(events)))
     .catch((err) => console.log(err));
 

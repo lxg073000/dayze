@@ -10,7 +10,7 @@ export default class user_calender_hub extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserEvents(this.props.currentUser.id);
-    debugger;
+    // debugger;
     // this.events = this.props.events;
   }
 

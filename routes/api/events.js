@@ -37,27 +37,38 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-router.get("/today", (req, res) => {
+router.get("/today/:user_id", (req, res) => {
   let currentDay = new Date();
   Event.find({
-    date: {
-      $gte: currentDay.setHours(0, 0, 0),
-      $lte: currentDay.setHours(23, 59, 59),
-    },
+    $and: [
+      {
+        user: req.params.user_id,
+        date: {
+          $gte: currentDay.setHours(0, 0, 0),
+          $lte: currentDay.setHours(23, 59, 59),
+        },
+      },
+    ],
   })
     .sort({ date: 1 })
     .then((events) => res.json(events))
     .catch((err) => res.status(400).json(err));
 });
-router.get("/week", (req, res) => {
+
+router.get("/week/:user_id", (req, res) => {
   let currentDay = new Date();
   Event.find({
-    date: {
-      $gte: currentDay.setDate(currentDay.getDate() - currentDay.getDay()),
-      $lte: currentDay.setDate(
-        currentDay.getDate() + (7 - currentDay.getDay())
-      ),
-    },
+    $and: [
+      {
+        user: req.params.user_id,
+        date: {
+          $gte: currentDay.setDate(currentDay.getDate() - currentDay.getDay()),
+          $lte: currentDay.setDate(
+            currentDay.getDate() + (7 - currentDay.getDay())
+          ),
+        },
+      },
+    ],
   })
     .sort({ date: 1 })
     .then((events) => res.json(events))

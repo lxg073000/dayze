@@ -16,9 +16,10 @@ class Event extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
+    // debugger;
     this.setState({ events: this.props.events });
-    debugger;
+    document.getElementById("all").classList.toggle("activated");
+    // debugger;
   }
 
   UNSAFE_componentWillReceiveProps(newState) {
@@ -30,17 +31,27 @@ class Event extends React.Component {
     this.props.deleteEvent(id);
   }
 
-  filterWeek(e) {
-    this.props.fetchWeek();
+  filterWeek() {
+    this.props.fetchWeek(this.props.currentUser.id);
     this.setState({ filter: "This Week's Events" });
+    document.getElementById("week").classList.toggle("activated");
+    document.getElementById("day").classList.remove("activated");
+    document.getElementById("all").classList.remove("activated");
   }
   filterToday() {
-    this.props.fetchTodays();
+    this.props.fetchTodays(this.props.currentUser.id);
+    console.log(this.props.currentUser.id);
     this.setState({ filter: "Today's Events" });
+    document.getElementById("day").classList.toggle("activated");
+    document.getElementById("week").classList.remove("activated");
+    document.getElementById("all").classList.remove("activated");
   }
   filterAll() {
     this.props.fetchUserEvents(this.props.currentUser.id);
     this.setState({ filter: "All Events" });
+    document.getElementById("all").classList.toggle("activated");
+    document.getElementById("day").classList.remove("activated");
+    document.getElementById("week").classList.remove("activated");
   }
 
   render() {
@@ -48,9 +59,9 @@ class Event extends React.Component {
       <div className="event-display-window">
         <span className="event-filter-bar">
           <i
-            className="fab fas fa-calendar-day"
-            id="day"
-            onClick={this.filterToday}
+            className="fab fas fa-calendar-alt"
+            id="all"
+            onClick={this.filterAll}
           ></i>
           <i
             className="fab fas fa-calendar-week"
@@ -58,9 +69,9 @@ class Event extends React.Component {
             onClick={this.filterWeek}
           ></i>
           <i
-            className="fab fas fa-calendar-alt"
-            id="all"
-            onClick={this.filterAll}
+            className="fab fas fa-calendar-day"
+            id="day"
+            onClick={this.filterToday}
           ></i>
         </span>
         <h1 className="event-list-headline">{this.state.filter}</h1>

@@ -19,12 +19,12 @@
   font-family: "Lato";
   text-align: center;
 }
-.cal-day-full:hover {
-  color: rgb(117, 111, 111);
-}
-.cal-day-full:active {
-  text-align: center;
-}
+// .cal-day-full:hover {
+//   color: rgb(117, 111, 111);
+// }
+// .cal-day-full:active {
+//   text-align: center;
+// }
 
 .date {
   border-radius: 1em;
@@ -143,4 +143,23 @@
 
 .samplle-card-modal {
   background: rgb(255 255 255 / 65%);
+}
+
+::-webkit-time-picker-indicator {
+  border: 2px solid black;
+  display: none;
+}
+
+input.form-item[type="time"] {
+  display: inline-grid;
+  grid-template: 1fr / 18% 32px;
+  place-content: center;
+  display: relative;
+  // &:after {
+  //   content: "O";
+  //   position: absolute;
+  //   right: 150px;
+  //   top: 310px;
+  //   color: #7c726c;
+  // }
 }
