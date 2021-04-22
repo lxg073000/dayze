@@ -431,6 +431,11 @@
 
 .fa,
 .fas {
+  cursor: pointer;
   font-weight: 900;
   padding: 0px 10px;
+}
+
+span > i {
+  margin: 2px;
 }

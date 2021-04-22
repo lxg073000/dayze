@@ -1,11 +1,17 @@
 import React from "react";
 import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
+import LinkedInList from "../nav/linked_in_list";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      linkedIn: true,
+    };
+
     this.handleClick = this.handleClick.bind(this);
+    this.toggleLinkedIn = this.toggleLinkedIn.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +31,16 @@ export default class user_calender_hub extends React.Component {
   handleClick() {
     this.props.logout();
     this.props.history.push("/");
+  }
+
+  toggleLinkedIn() {
+    debugger;
+    document.getElementById("linkedIn").classList.toggle("hide");
+
+    this.setState({
+      linkedIn: !this.state.linkedIn,
+    });
+    console.log(this.state.linkedIn);
   }
   render() {
     return (
@@ -58,6 +74,7 @@ export default class user_calender_hub extends React.Component {
               </div>
             </div>
             <div className="hub-footer">
+              <LinkedInList className="hide" />
               <ul className="hub-navs flex-end">
                 <li>
                   <span onClick={this.handleClick}>Log Out</span>
@@ -77,13 +94,11 @@ export default class user_calender_hub extends React.Component {
                   >
                     <i className="fab fa-facebook-square"></i>
                   </a>
-                  <a
-                    rel="noreferrer"
-                    target="_blank"
-                    href="https://www.linkedin.com/school/app-academy/"
-                  >
-                    <i className="fab fa-linkedin"></i>
-                  </a>
+
+                  <i
+                    onClick={this.toggleLinkedIn}
+                    className="fab fa-linkedin"
+                  ></i>
                 </span>
               </ul>
             </div>

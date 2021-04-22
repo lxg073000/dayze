@@ -77,13 +77,16 @@ router.get("/week/:user_id", (req, res) => {
 
 router.get("/month/:user_id", (req, res) => {
   let currentDay = new Date();
+  let nextMonth = new Date();
+  nextMonth.setMonth(nextMonth.getMonth() + 1);
+  nextMonth.setDate(0);
   Event.find({
     $and: [
       {
         user: req.params.user_id,
         date: {
           $gte: currentDay.setDate(1),
-          $lte: currentDay.setMonth(currentDay.getMonth() + 1).setDate(-1),
+          $lte: nextMonth,
         },
       },
     ],
