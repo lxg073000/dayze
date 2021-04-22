@@ -61,10 +61,74 @@
 
 .linkedIn {
   position: absolute;
-  top: -19px;
-  right: 32px;
-  background: coral;
-  font-size: 1em;
-  height: 1em;
+  bottom: 4px;
+  right: 61px;
+  height: 2em;
   overflow: hidden;
+  border-radius: 1em;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  background: linear-gradient(90deg, #233134, #192528, #233134);
+  cursor: pointer;
+}
+
+.group-links {
+  position: relative;
+  top: 0;
+  right: 0;
+  text-align: center;
+  color: #cacaca99;
+  background: linear-gradient(90deg, #233134, #192528, #233134);
+  border-radius: 1em;
+  padding: 0em 2em;
+  line-height: 3em;
+  li {
+    position: relative;
+    top: 18px;
+    right: 0;
+    font-size: 1.5em;
+    animation: scrolling 6s backwards linear 0.2s infinite;
+    &:hover {
+      text-shadow: 3px 3px 3px #385f9136;
+      color: #ffffffbf;
+    }
+  }
+}
+
+@keyframes scrolling {
+  0% {
+    top: 19px;
+  }
+  15% {
+    top: -9px;
+  }
+  20% {
+    top: -19px;
+  }
+  35% {
+    top: -48px;
+  }
+  40% {
+    top: -58px;
+  }
+  55% {
+    top: -95px;
+  }
+  60% {
+    top: -105px;
+  }
+  75% {
+    top: -144px;
+  }
+  80% {
+    top: -154px;
+  }
+  100% {
+    top: -183px;
+  }
+}
+
+.hide {
+  display: none;
 }

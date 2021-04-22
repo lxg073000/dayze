@@ -35,6 +35,7 @@ export default class user_calender_hub extends React.Component {
 
   toggleLinkedIn() {
     debugger;
+    document.getElementById("linkedIn-btn").classList.toggle("activated");
     document.getElementById("linkedIn").classList.toggle("hide");
 
     this.setState({
@@ -87,15 +88,9 @@ export default class user_calender_hub extends React.Component {
                   >
                     <i className="fab fa-github"></i>
                   </a>
-                  <a
-                    rel="noreferrer"
-                    target="_blank"
-                    href="https://www.facebook.com/appacademyio"
-                  >
-                    <i className="fab fa-facebook-square"></i>
-                  </a>
 
                   <i
+                    id="linkedIn-btn"
                     onClick={this.toggleLinkedIn}
                     className="fab fa-linkedin"
                   ></i>

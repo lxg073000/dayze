@@ -119,9 +119,7 @@ class SignupForm extends React.Component {
           </div>
           <div className="session-nav-div">
             <ul className="splash-navs">
-              <li>
-                <Link onClick={this.props.guestLogin}>Continue as Guest</Link>
-              </li>
+              <li onClick={this.props.guestLogin}>Continue as Guest</li>
               <li>
                 <Link to="/login">Log In</Link>
               </li>
@@ -133,13 +131,7 @@ class SignupForm extends React.Component {
                 >
                   <i className="fab fa-github"></i>
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.facebook.com/appacademyio"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </a>
+
                 <a
                   rel="noreferrer"
                   target="_blank"

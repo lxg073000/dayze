@@ -34,9 +34,7 @@ export default class splash extends React.Component {
             <li>
               <Link to="./signup">Sign Up</Link>
             </li>
-            <li>
-              <Link onClick={this.props.guestLogin}>Continue As Guest</Link>
-            </li>
+            <li onClick={this.props.guestLogin}>Continue As Guest</li>
             <span className="contacts">
               <a
                 rel="noreferrer"
@@ -45,13 +43,7 @@ export default class splash extends React.Component {
               >
                 <i className="fab fa-github"></i>
               </a>
-              <a
-                rel="noreferrer"
-                target="_blank"
-                href="https://www.facebook.com/appacademyio"
-              >
-                <i className="fab fa-facebook-square"></i>
-              </a>
+
               <a
                 rel="noreferrer"
                 target="_blank"
