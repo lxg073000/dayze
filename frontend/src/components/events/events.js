@@ -42,7 +42,6 @@ class Event extends React.Component {
   }
   filterToday() {
     this.props.fetchTodays(this.props.currentUser.id);
-    console.log(this.props.currentUser.id);
     this.setState({ filter: "Today's Events" });
     document.getElementById("day").classList.toggle("activated");
     document.getElementById("week").classList.remove("activated");
