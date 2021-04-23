@@ -1,5 +1,5 @@
 import React from "react";
-import LinkedInList from "../nav/linked_in_list";
+import LinkedInListMini from "../nav/linked_in_list_mini";
 import { Link } from "react-router-dom";
 
 export default class splash extends React.Component {
@@ -20,10 +20,8 @@ export default class splash extends React.Component {
   }
   toggleLinkedIn() {
     debugger;
-    document
-      .getElementById("linkedIn-splash-btn")
-      .classList.toggle("activated");
-    document.getElementById("linkedIn").classList.toggle("hide");
+    document.getElementById("linkedIn-btn").classList.toggle("activated");
+    document.getElementById("linkedIn-mini").classList.toggle("hide");
 
     this.setState({
       linkedIn: !this.state.linkedIn,
@@ -55,10 +53,15 @@ export default class splash extends React.Component {
               <Link to="./signup">Sign Up</Link>
             </li>
             <li onClick={this.props.guestLogin}>Continue As Guest</li>
-            <li>
-              <LinkedInList />
-            </li>
+            {/* <li>
+              <i
+                id="linkedIn-btn"
+                onClick={this.toggleLinkedIn}
+                className="fab fa-linkedin"
+              ></i>
+            </li> */}
           </ul>
+          <LinkedInListMini className="hide" />
         </span>
       </div>
     );

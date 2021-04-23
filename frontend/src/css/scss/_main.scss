@@ -157,7 +157,7 @@ p {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 431px;
   justify-content: center;
   background-image: linear-gradient(0deg, #000000db, #3b2e26, #523f31);
   border-radius: 1em;
@@ -353,4 +353,8 @@ p {
     //   // height: auto;
     // }
   }
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }

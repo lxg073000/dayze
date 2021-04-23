@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import LinkedInListMini from "../nav/linked_in_list_mini";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -134,7 +135,7 @@ class SignupForm extends React.Component {
               <li>
                 <Link to="/login">Log In</Link>
               </li>
-              <span className="contacts">
+              {/* <span className="contacts">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -150,8 +151,9 @@ class SignupForm extends React.Component {
                 >
                   <i className="fab fa-linkedin"></i>
                 </a>
-              </span>
+              </span> */}
             </ul>
+            <LinkedInListMini className="hide" />
           </div>
         </div>
 

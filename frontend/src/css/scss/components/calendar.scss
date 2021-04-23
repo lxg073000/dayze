@@ -86,19 +86,15 @@
   text-align: right;
   border-radius: 0.5em;
   color: black;
-  margin: 1.2em 0 0 0;
-  padding: 0 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   cursor: pointer;
   background-image: url("https://images.unsplash.com/photo-1616361889157-7b095931aea5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   background-size: cover;
+  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  &:hover {
-    color: #231107;
-    text-shadow: 1px 0px 5px #765845;
-  }
+  margin: 1em 1em 0 0;
 }
 
 .sample-click {

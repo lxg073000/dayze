@@ -106,6 +106,13 @@ export default class calendar extends Component {
     return (
       <div className="cal-sec cal-componet">
         <div className="cal-widget">
+          <div id="daypop" className={this.state.dayModal ? "show" : "hide"}>
+            <DayModal
+              activeDate={this.active.date}
+              activeDateVal={this.active.date_val}
+              toggle={this.toggleDayModal}
+            />
+          </div>
           <div className="cal-toggle">
             <p>{`${
               this.months[this.state.date.getMonth()]
@@ -129,13 +136,6 @@ export default class calendar extends Component {
             </span>
           </div>
           <div className="calendar">{this.showCalendar(this.state.date)}</div>
-          <div className={this.state.dayModal ? "show" : "hide"}>
-            <DayModal
-              activeDate={this.active.date}
-              activeDateVal={this.active.date_val}
-              toggle={this.toggleDayModal}
-            />
-          </div>
         </div>
       </div>
     );
