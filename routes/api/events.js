@@ -106,15 +106,7 @@ router.delete("/:id", (req, res) => {
     Event. findByIdAndRemove(req.params.id)
         .then((event)=>{
             console.log(`Deleted event: ${event}`);
-            let googleId = event.googleId;
-
-            const removeAndDelete = async ()=>{
-                await removeEvent(googleId);
-                Event   
-                    .findByIdAndRemove(req.params.id)
-                    .catch(err => res.status(400).json(err))
-            }
-            removeAndDelete();
+            removeEvent(event.googleId);
             res.json(event)
         })
         .catch((err)=> res.status(400).json(err));
