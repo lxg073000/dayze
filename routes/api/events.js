@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
-const mongoose = require('mongoose');
 const validateEventInput = require("../../validation/events");
 const Event = require("../../models/Event");
 const {
@@ -16,27 +14,17 @@ router.get("/test", (req, res) =>  {
 });
 
 router.post("/",
-    // passport.authenticate("jwt", { session: false }),
     (req, res) => {
-
-
       const { isValid, errors } = validateEventInput(req.body);
-
       if(!isValid) {
           return res.status(400).json(errors);
       }
-
       let newEventParams = {     
           user: req.body.user.id,
           title: req.body.title,
           description: req.body.description,
           date: req.body.date,
       };
-
-      
-
-      // newEvent.save().then(event => res.json(event))
-
 
       const insertThenSave = async ()=>{
         insertEvent(newEventParams)
