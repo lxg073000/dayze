@@ -31,10 +31,10 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
-    ////debugger;
     e.preventDefault();
+    ////debugger;
+
     let user = {
-      email: this.state.email,
       username: this.state.username,
       password: this.state.password,
     };
@@ -77,12 +77,21 @@ class SignupForm extends React.Component {
 
         <div className="session-row">
           <div className="logo">
-            <p className="session-title">Sign Up</p>
-            <p className="tagline">we'll remember when.</p>
-            {this.renderErrors()}
-            <form onSubmit={this.handleSubmit}>
+            <h1 className="session-title">
+              Sign Up
+              <p className="form-tagline">
+                Clear your mind, even when your schedule isn't.
+              </p>
+            </h1>
+          </div>
+
+          <div className="signup-form-shell">
+            <form
+              className="signup-form-container"
+              onSubmit={this.handleSubmit}
+            >
               <div className="signup-form-background">
-                <div className="email-c">
+                <div className="ssec email-c">
                   <input
                     className="signup-form-field"
                     type="text"
@@ -91,7 +100,7 @@ class SignupForm extends React.Component {
                     placeholder="Email"
                   />
                 </div>
-                <div className="username-c">
+                <div className="ssec username-c">
                   <input
                     className="signup-form-field"
                     type="text"
@@ -100,7 +109,7 @@ class SignupForm extends React.Component {
                     placeholder="Username"
                   />
                 </div>
-                <div className="password-c">
+                <div className="ssec password-c">
                   <input
                     className="signup-form-field"
                     type="password"
@@ -115,8 +124,10 @@ class SignupForm extends React.Component {
                   </button>
                 </div>
               </div>
+              {this.renderErrors()}
             </form>
           </div>
+
           <div className="session-nav-div">
             <ul className="splash-navs">
               <li onClick={this.props.guestLogin}>Continue as Guest</li>

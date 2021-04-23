@@ -75,11 +75,8 @@ export default class user_calender_hub extends React.Component {
               </div>
             </div>
             <div className="hub-footer">
-              <LinkedInList className="hide" />
               <ul className="hub-navs flex-end">
-                <li>
-                  <span onClick={this.handleClick}>Log Out</span>
-                </li>
+                <li onClick={this.handleClick}>Log Out</li>
                 <span className="contacts">
                   <a
                     rel="noreferrer"
@@ -93,7 +90,9 @@ export default class user_calender_hub extends React.Component {
                     id="linkedIn-btn"
                     onClick={this.toggleLinkedIn}
                     className="fab fa-linkedin"
-                  ></i>
+                  >
+                    <LinkedInList className="hide" />
+                  </i>
                 </span>
               </ul>
             </div>

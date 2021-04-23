@@ -37,7 +37,9 @@ p {
   animation: shift-left-slow 2s forwards;
 }
 .main,
-.sample-select {
+.sample-select,
+.session-title,
+.splash-logo {
   animation: shift-up 1s forwards;
 }
 @keyframes shift-left {
