@@ -150,7 +150,7 @@ const mapDbEventsToGoogleEvents = (dbEvent)=>{
 
 const mapDbParamsToGoogleParams = (dbParams)=>{
   let googleParams = {}
-  if (dbParams.summary) googleParams.summary = dbParams.summary;
+  if (dbParams.title) googleParams.summary = dbParams.title;
   if (dbParams.location) googleParams.location = dbParams.location;
   if (dbParams.description) googleParams.description = dbParams.description;
   if (dbParams.date){

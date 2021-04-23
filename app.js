@@ -21,24 +21,8 @@ mongoose
 
 const port = process.env.PORT || 5000;
 
-require("./config/passport")(passport);
-app.use(passport.initialize());
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-app.use(bodyParser.json());
 
-app.use("/api/events", events);
 
-app.use("/api/users", users);
-
-app.get("/", (req, res) => {
-  app.use(express.static("frontend/build"));
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-});
-app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 // google calendar api
 const fs = require("fs");
@@ -61,42 +45,82 @@ const oAuth2Client = new google.auth.OAuth2(
   redirect_uris[0]
 );
 // console.log(oAuth2Client);
-// google.options({auth: oAuth2Client});
+google.options({auth: oAuth2Client});
 // console.log(google.auth);
 
-async function authenticate( scopes) {
-  return new Promise((resolve, reject) => {
-    // grab the url that will be used for authorization
-    const authorizeUrl = oAuth2Client.generateAuthUrl({
-      access_type: 'offline',
-      scope: scopes.join(' ')
-    });
-    // console.log(authorizeUrl)
-    const server = http
-      .createServer(async (req, res) => {
-        try {
-          if (req.url.indexOf('/oauth2callback') > -1) {
-            const qs = new url.URL(req.url, 'http://localhost:3000')
-              .searchParams;
-            res.end('Authentication successful! Please return to the console.');
-            server.destroy();
-            const {tokens} = await oAuth2Client.getToken(qs.get('code'));
-            // console.log(tokens);
 
-            oAuth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
-            resolve(oAuth2Client);
-          }
-        } catch (e) {
-          reject(e);
-        }
-      })
-      .listen(3000, () => {
-        // open the browser to the authorize url to start the workflow
-        console.log('inside listen function for port 3000')
-        opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
-      });
-    destroyer(server);
+
+
+require("./config/passport")(passport);
+app.use(passport.initialize());
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+app.use(bodyParser.json());
+
+app.use("/api/events", events);
+
+app.use("/api/users", users);
+
+app.get("/", (req, res) => {
+  app.use(express.static("frontend/build"));
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+
+});
+app.get('/auth', async (req,res)=>{
+  const authorizeUrl = oAuth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: SCOPES.join(' ')
   });
-}
+  res.redirect(authorizeUrl);
+})
 
-authenticate(SCOPES)
+app.get('/oauth2callback', async (req,res)=>{
+  const authorizationCode = req.query.code;
+  const {tokens} = await oAuth2Client.getToken(authorizationCode);
+  oAuth2Client.credentials = tokens;
+  res.redirect('http://localhost:3000')  // In prod, just /
+
+
+})
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
+// async function authenticate( scopes) {
+//   return new Promise((resolve, reject) => {
+//     // grab the url that will be used for authorization
+//     const authorizeUrl = oAuth2Client.generateAuthUrl({
+//       access_type: 'offline',
+//       scope: scopes.join(' ')
+//     });
+//     // console.log(authorizeUrl)
+//     const server = http
+//       .createServer(async (req, res) => {
+//         try {
+//           if (req.url.indexOf('/oauth2callback') > -1) {
+//             const qs = new url.URL(req.url, 'http://localhost:3000')
+//               .searchParams;
+//             res.end('Authentication successful! Please return to the console.');
+//             server.destroy();
+//             const {tokens} = await oAuth2Client.getToken(qs.get('code'));
+//             console.log(tokens);
+
+//             oAuth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
+//             resolve(oAuth2Client);
+//           }
+//         } catch (e) {
+//           reject(e);
+//         }
+//       })
+//       .listen(3000, () => {
+//         // open the browser to the authorize url to start the workflow
+//         console.log('inside listen function for port 3000')
+//         opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
+//       });
+//     destroyer(server);
+//   });
+// }
+
+// authenticate(SCOPES)
