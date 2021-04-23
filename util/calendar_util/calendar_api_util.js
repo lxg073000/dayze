@@ -37,16 +37,13 @@ const insertEvent = async (dbEvent)=>{
     (err,res) => {
       if (err) return console.error('Free Busy Query Error:  ', err);
       //check all the busy events in primary
-      const eventsArr = res.data.calendars.primary.busy;
-      if (eventsArr.length===0) return calendar.events.insert({calendarId: 'primary', resource: event}, 
+      return calendar.events.insert({calendarId: 'primary', resource: event}, 
         (err,res)=>{
           if (err) return console.error('Calendar Event Creation Error: ',err)
           console.log(`google api cal util func:  res.data.id: ${res.data.id}`);
-          return res.data.id;  //return google's eventId for this event.
+          dbEvent.googleId = res.data.id;
           // return console.log(`Event ${summary} Created.`);
         })
-      console.log('Unable to create event: another event already made during that time');
-      return ;
     }
   );
 }

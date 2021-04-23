@@ -26,12 +26,12 @@ router.post("/",
           return res.status(400).json(errors);
       }
 
-      const newEvent = new Event({     
+      let newEventParams = {     
           user: req.body.user.id,
           title: req.body.title,
           description: req.body.description,
           date: req.body.date,
-      });
+      };
 
       
 
@@ -39,13 +39,14 @@ router.post("/",
 
 
       const insertThenSave = async ()=>{
-        //   let googleId = 
-        insertEvent(newEvent)
-        .then(async (g)=>{
-            newEvent.googleId = g;
-            console.log(`newEvent.googleId: ${newEvent.googleId}`)
-            
-            await newEvent.save().then(event => res.json(event))
+        insertEvent(newEventParams)
+        .then(( )=>{
+            setTimeout(async ()=>{
+                console.log(`newEvent.googleId: ${newEventParams.googleId}`)
+                // if (!newEvent.googleId)  return ''
+                const newEvent =  new Event(newEventParams);
+                await newEvent.save().then(event => res.json(event))
+            }, 2000);
         })
       }
       insertThenSave();
@@ -102,22 +103,21 @@ router.patch("/:id", (req, res) => {
 })
 
 router.delete("/:id", (req, res) => {
-    Event.findOne({id:req.params.id}, 
-        (err,doc)=>{
-            if (err) return err;
-            let googleId = doc.googleId;
+    Event. findByIdAndRemove(req.params.id)
+        .then((event)=>{
+            console.log(`Deleted event: ${event}`);
+            let googleId = event.googleId;
 
             const removeAndDelete = async ()=>{
                 await removeEvent(googleId);
                 Event   
                     .findByIdAndRemove(req.params.id)
-                    .then(event => res.redirect("/"))
                     .catch(err => res.status(400).json(err))
             }
             removeAndDelete();
-        }
-    )
-
+            res.json(event)
+        })
+        .catch((err)=> res.status(400).json(err));
 })
 
 
