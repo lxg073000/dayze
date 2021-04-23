@@ -83,27 +83,26 @@ router.patch("/:id", (req, res) => {
         date: req.body.date,
     }
 
-    const patchAndUpdate = async () =>{
-        await updateEvent(doc.googleId, updatedDbParams);
-        Event
-            .findbyIdAndUpdate( 
-                req.params.id, 
-                {
-                    title: req.body.title,
-                    description: req.body.description,
-                    date :req.body.date
-                }, 
-                {new:true} 
-            )
-            .then(event => { res.json(event) })
-            .catch(err => res.status(400).json(err))
-    }
-    patchAndUpdate();
+    Event
+        .findByIdAndUpdate( 
+            req.params.id, 
+            {
+                title: req.body.title,
+                description: req.body.description,
+                date :req.body.date
+            }, 
+            {new:true} 
+        )
+        .then(event => { 
+            updateEvent(event.googleId, updatedDbParams);
+            res.json(event) 
+        })
+        .catch(err => res.status(400).json(err));
 
 })
 
 router.delete("/:id", (req, res) => {
-    Event. findByIdAndRemove(req.params.id)
+    Event.findByIdAndRemove(req.params.id)
         .then((event)=>{
             console.log(`Deleted event: ${event}`);
             removeEvent(event.googleId);

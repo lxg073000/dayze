@@ -93,9 +93,8 @@ const updateEvent = async ( googleEventId, updatedDbParams)=>{
     let updatedGoogleParams=  mapDbParamsToGoogleParams(updatedDbParams);
     Object.assign(googleEvent, updatedGoogleParams);
     calendar.events.update({
-      auth,
       calendarId: 'primary',
-      eventId,
+      eventId: googleEventId,
       resource: googleEvent
     },
     (err, res)=>{
@@ -166,7 +165,7 @@ const mapDbParamsToGoogleParams = (dbParams)=>{
       dateTime: dbParams.date,
       timeZone : 'America/New_York'
     }
-    let endDate = new Date(dbEvent.date);
+    let endDate = new Date(dbParams.date);
     endDate.setMinutes(endDate.getMinutes()+30);
     googleParams.end = {
       dateTime: endDate,
