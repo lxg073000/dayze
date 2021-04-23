@@ -104,7 +104,7 @@ export default class calendar extends Component {
 
   render() {
     return (
-      <div className="cal-componet">
+      <div className="cal-sec cal-componet">
         <div className="cal-widget">
           <div className="cal-toggle">
             <p>{`${

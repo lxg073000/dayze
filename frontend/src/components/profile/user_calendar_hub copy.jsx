@@ -45,7 +45,7 @@ export default class user_calender_hub extends React.Component {
   }
   render() {
     return (
-      <div className="user-shell">
+      <div className="shell">
         <img
           alt="bg-img"
           className="background-img1 hub-dark"
@@ -54,49 +54,47 @@ export default class user_calender_hub extends React.Component {
         <div className="hub-content-grid">
           <div className="white"></div>
           <div className="main">
-            <div className="hub-container">
-              <div className="hsec head">
-                <p className="main-headline">
-                  Dazed {/*  {`${this.props.username}`} */}
-                </p>
+            <div className="head">
+              <p className="main-headline">
+                Dazed {/*  {`${this.props.username}`} */}
+              </p>
+            </div>
+            <div className="event-creator show-event">
+              <div className="title">
+                <p className="event-headline">Schedule a reminder</p>
               </div>
-              <div className="hsec event-creator show-event">
-                <div className="title">
-                  <p className="event-headline">Schedule a reminder</p>
+            </div>
+            <div className="container">
+              <Calendar />
+              <div className="half-card top-events">
+                <ul></ul>
+
+                <div>
+                  <Events userEvents={this.props.events} />
                 </div>
               </div>
-              <div className="hsec cal-container container">
-                <Calendar />
-                <div className="cal-sec half-card top-events">
-                  <ul></ul>
+            </div>
+            <div className="hub-footer">
+              <ul className="hub-navs flex-end">
+                <li onClick={this.handleClick}>Log Out</li>
+                <span className="contacts">
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://github.com/lxg073000/dayze/wiki"
+                  >
+                    <i className="fab fa-github"></i>
+                  </a>
 
-                  <div>
-                    <Events userEvents={this.props.events} />
-                  </div>
-                </div>
-              </div>
-              <div className="hsec hub-footer">
-                <ul className="hub-navs flex-end">
-                  <li onClick={this.handleClick}>Log Out</li>
-                  <span className="contacts">
-                    <a
-                      rel="noreferrer"
-                      target="_blank"
-                      href="https://github.com/lxg073000/dayze/wiki"
-                    >
-                      <i className="fab fa-github"></i>
-                    </a>
-
-                    <i
-                      id="linkedIn-btn"
-                      onClick={this.toggleLinkedIn}
-                      className="fab fa-linkedin"
-                    >
-                      <LinkedInList className="hide" />
-                    </i>
-                  </span>
-                </ul>
-              </div>
+                  <i
+                    id="linkedIn-btn"
+                    onClick={this.toggleLinkedIn}
+                    className="fab fa-linkedin"
+                  >
+                    <LinkedInList className="hide" />
+                  </i>
+                </span>
+              </ul>
             </div>
           </div>
 
