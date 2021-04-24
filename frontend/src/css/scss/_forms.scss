@@ -70,6 +70,7 @@
 
 .signup-form-field {
   border-radius: 20px;
+  margin: 0.4em 0;
   padding: 12px;
   background: #f3f3f3;
   color: #5c5a58;
@@ -487,4 +488,8 @@ p.email-t {
     left: -50%;
     width: 200%;
   }
+}
+
+#root.layout-bug {
+  height: 100%;
 }

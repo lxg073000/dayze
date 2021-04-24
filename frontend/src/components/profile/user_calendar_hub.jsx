@@ -16,8 +16,16 @@ export default class user_calender_hub extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserEvents(this.props.currentUser.id);
+    document.getElementById("root").classList.add("layout-bug");
+    // document.getElementById("root").style.height = "100%";
     // debugger;
     // this.events = this.props.events;
+  }
+
+  componentWillUnmount() {
+    document.getElementById("root").classList.remove("layout-bug");
+    // document.getElementById("root").style.height = "100vh";
+    // document.getElementById("root").style.opacity = "0";
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
