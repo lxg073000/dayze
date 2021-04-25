@@ -11,6 +11,10 @@ export default class splash extends React.Component {
     this.toggleLinkedIn = this.toggleLinkedIn.bind(this);
   }
 
+  componentDidMount() {
+    document.getElementById("root").classList.remove("layout-bug");
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push("/user");

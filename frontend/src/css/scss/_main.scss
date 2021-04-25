@@ -10,14 +10,14 @@
   font-weight: 100;
 }
 
-* {
-  transition: background-color, 0.2s ease-in;
-}
+// * {
+//   transition: background-color, 0.2s ease-in;
+// }
 
 .splash-row,
 .logo,
 .main {
-  animation: page-load 2s;
+  animation: page-load 2s 2s;
 }
 
 @keyframes page-load {

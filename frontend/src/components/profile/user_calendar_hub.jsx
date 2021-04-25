@@ -23,9 +23,8 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentWillUnmount() {
-    document.getElementById("root").classList.remove("layout-bug");
-    // document.getElementById("root").style.height = "100vh";
     // document.getElementById("root").style.opacity = "0";
+    // document.getElementById("root").style.height = "100vh";
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
