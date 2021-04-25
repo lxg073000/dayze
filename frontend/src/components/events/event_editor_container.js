@@ -9,7 +9,7 @@ import {
 import EventEditor from "./event_editor";
 
 const mapStateToProps = (state) => {
-  debugger;
+  // debugger;
   return {
     event: Object.values(state.events.event_item),
     currentUser: state.session.user,

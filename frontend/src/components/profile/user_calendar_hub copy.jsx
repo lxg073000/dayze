@@ -34,7 +34,7 @@ export default class user_calender_hub extends React.Component {
   }
 
   toggleLinkedIn() {
-    debugger;
+    // debugger;
     document.getElementById("linkedIn-btn").classList.toggle("activated");
     document.getElementById("linkedIn").classList.toggle("hide");
 
