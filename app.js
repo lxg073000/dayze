@@ -44,7 +44,8 @@ const oAuth2Client = new google.auth.OAuth2(
   client_secret,
   redirect_uris[0]
 );
-// console.log(oAuth2Client);
+console.log('!!!!!');
+console.log(oAuth2Client);
 google.options({auth: oAuth2Client});
 // console.log(google.auth);
 
@@ -80,6 +81,8 @@ app.get('/auth', async (req,res)=>{
 app.get('/oauth2callback', async (req,res)=>{
   const authorizationCode = req.query.code;
   const {tokens} = await oAuth2Client.getToken(authorizationCode);
+  console.log(`tokens! `);
+  console.log(tokens);
   oAuth2Client.credentials = tokens;
   res.redirect('http://localhost:3000')  // In prod, just /
 

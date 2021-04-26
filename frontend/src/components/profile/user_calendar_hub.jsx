@@ -11,6 +11,10 @@ export default class user_calender_hub extends React.Component {
   componentDidMount() {
     //debugger;
     this.events = this.props.events;
+    // if (){
+    //   window.open('http://localhost:5000')
+
+    // }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -20,6 +24,8 @@ export default class user_calender_hub extends React.Component {
 
     this.setState({ errors: nextProps.errors, events: nextProps.events });
   }
+
+
 
   handleClick() {
     this.props.logout();
