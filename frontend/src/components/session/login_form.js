@@ -1,11 +1,12 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import LinkedInListMini from "../nav/linked_in_list_mini";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      email: "",
       username: "",
       password: "",
       errors: {},
@@ -42,21 +43,27 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  renderErrors() { 
-    if (this.state.errors.username || this.state.errors.password) {
-      let space = document.getElementsByClassName('form-background');
+  renderErrors() {
+    if (
+      this.state.errors.username ||
+      this.state.errors.password ||
+      this.state.errors.email
+    ) {
+      let space = document.getElementsByClassName("login-form-background");
       //debugger
       space[0].style.marginTop = 0;
       return (
-          <div className='errors-login'>
-            <ul>
-              {Object.keys(this.state.errors).map((error, i) => (
-                <li key={`error-${i}`}>{this.state.errors[error]}</li>
-              ))}
-            </ul>
-          </div>
-        );
-    } else {return}
+        <div className="errors-signup">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    } else {
+      return;
+    }
   }
 
   render() {
@@ -68,25 +75,35 @@ class LoginForm extends React.Component {
           src="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
         ></img>
         <div className="white"></div>
+
         <div className="session-row">
           <div className="logo">
-            <p className="session-title">Log In</p>
-            <p className="tagline">we'll remember when.</p>
-            {this.renderErrors()}
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-background">
-                <div className="username-c">
+            <h1 className="session-title">
+              Log In
+              <p className="form-tagline">
+                Clear your mind, even when your schedule isn't.
+              </p>
+            </h1>
+          </div>
+
+          <div className="signup-form-shell">
+            <form
+              className="signup-form-container"
+              onSubmit={this.handleSubmit}
+            >
+              <div className="login-form-background">
+                <div className="lsec username-c">
                   <input
-                    className="login-form-field"
+                    className="signup-form-field"
                     type="text"
                     value={this.state.username}
                     onChange={this.update("username")}
                     placeholder="Username"
                   />
                 </div>
-                <div className="password-c">
+                <div className="lsec password-c">
                   <input
-                    className="login-form-field"
+                    className="signup-form-field"
                     type="password"
                     value={this.state.password}
                     onChange={this.update("password")}
@@ -99,17 +116,17 @@ class LoginForm extends React.Component {
                   </button>
                 </div>
               </div>
+              {this.renderErrors()}
             </form>
           </div>
+
           <div className="session-nav-div">
             <ul className="splash-navs">
-              <li>
-                <Link to="/user">Continue as Guest</Link>
-              </li>
+              <li onClick={this.props.guestLogin}>Continue as Guest</li>
               <li>
                 <Link to="/signup">Sign Up</Link>
               </li>
-              <span className="contacts">
+              {/* <span className="contacts">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -117,13 +134,7 @@ class LoginForm extends React.Component {
                 >
                   <i className="fab fa-github"></i>
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.facebook.com/appacademyio"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </a>
+
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -131,8 +142,9 @@ class LoginForm extends React.Component {
                 >
                   <i className="fab fa-linkedin"></i>
                 </a>
-              </span>
+              </span> */}
             </ul>
+            <LinkedInListMini className="hide" />
           </div>
         </div>
 
@@ -141,5 +153,4 @@ class LoginForm extends React.Component {
     );
   }
 }
-
 export default withRouter(LoginForm);

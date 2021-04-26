@@ -7,12 +7,16 @@ export default class event_editor extends Component {
     this.state = {
       title: this.props.evntTitle,
       description: this.props.evntDesc,
-      date: new Date(this.props.evntDate).toISOString().substr(0, 10),
-      time: new Date(this.props.evntDate).toTimeString().slice(0, 8),
-      newEvent: "",
+      date: this.props.evntDate,
+      time: this.props.evntTime,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    this.props.fetchEvent(this.props.id);
+  }
+
   update(field) {
     return (e) =>
       this.setState({
@@ -38,21 +42,14 @@ export default class event_editor extends Component {
 
     let id = this.props.id;
 
-    this.props.handleUpdate(id, event);
-    // this.setState({
-    //   title: "",
-    //   description: "",
-    //   date: "",
-    //   time: "",
-    // });
-    //debugger;
-    document.getElementById(`${this.props.id}-patch`).classList.toggle("hide");
-    // this.props.close();
+    debugger;
+    this.props.updateEvent(id, event);
+    this.props.closeEdit();
   }
 
   render() {
     return (
-      <div id={`${this.props.id}-patch`} className="hide event-editor">
+      <div id={`${this.props.id}-patch`} className="event-editor">
         <form className="event-edit-form" onSubmit={this.handleSubmit}>
           <input
             className="form-item"

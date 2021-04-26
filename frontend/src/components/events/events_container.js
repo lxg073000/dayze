@@ -3,6 +3,9 @@ import {
   fetchUserEvents,
   deleteEvent,
   updateEvent,
+  fetchTodays,
+  fetchWeek,
+  fetchMonth,
 } from "../../actions/event_actions";
 import Events from "./events";
 
@@ -10,7 +13,6 @@ const mapStateToProps = (state) => {
   //debugger;
   return {
     events: Object.values(state.events.user),
-
     currentUser: state.session.user,
   };
 };
@@ -18,8 +20,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserEvents: (user) => dispatch(fetchUserEvents(user)),
+    fetchTodays: (id) => dispatch(fetchTodays(id)),
+    fetchWeek: (id) => dispatch(fetchWeek(id)),
+    fetchMonth: (id) => dispatch(fetchMonth(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
-    updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

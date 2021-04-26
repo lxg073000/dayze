@@ -6,13 +6,14 @@ const mapStateToProps = (state) => {
   //debugger;
   return {
     currentUser: state.session.user,
+    events: Object.values(state.events.user),
     //newEvent: state.events.new
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createEvent: (data) => dispatch(createEvent(data)),
+    // createEvent: (data) => dispatch(createEvent(data)),
   };
 };
 

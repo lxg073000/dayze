@@ -11,10 +11,13 @@ export const receiveEvents = (events) => ({
   events,
 });
 
-export const receiveEvent = (event) => ({
-  type: RECEIVE_EVENT,
-  event,
-});
+export const receiveEvent = (event) => {
+  // debugger;
+  return {
+    type: RECEIVE_EVENT,
+    event,
+  };
+};
 
 export const receiveUserEvents = (events) => ({
   type: RECEIVE_USER_EVENTS,
@@ -46,6 +49,21 @@ export const fetchEvent = (id) => (dispatch) =>
     .then((event) => dispatch(receiveEvent(event)))
     .catch((err) => console.log(err));
 
+export const fetchTodays = (user_id) => (dispatch) =>
+  APIUtil.getToday(user_id)
+    .then((events) => dispatch(receiveEvents(events)))
+    .catch((err) => console.log(err));
+
+export const fetchWeek = (user_id) => (dispatch) =>
+  APIUtil.getWeek(user_id)
+    .then((events) => dispatch(receiveEvents(events)))
+    .catch((err) => console.log(err));
+
+export const fetchMonth = (user_id) => (dispatch) =>
+  APIUtil.getMonth(user_id)
+    .then((events) => dispatch(receiveEvents(events)))
+    .catch((err) => console.log(err));
+
 export const fetchUserEvents = (id) => (dispatch) =>
   APIUtil.getUserEvents(id)
     .then((events) => dispatch(receiveUserEvents(events)))
@@ -59,13 +77,15 @@ export const createEvent = (data) => (dispatch) =>
     })
     .catch((err) => console.log(err));
 
-export const updateEvent = (id, data) => async (dispatch) =>
-  APIUtil.updateEvent(id, data)
+export const updateEvent = (id, data) => async (dispatch) => {
+  debugger;
+  return APIUtil.updateEvent(id, data)
     .then((event) => {
       //debugger;
       return dispatch(receiveUpdateEvent(event));
     })
     .catch((err) => console.log(err));
+};
 
 export const deleteEvent = (id) => (dispatch) =>
   APIUtil.deleteEvent(id)

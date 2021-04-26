@@ -1,7 +1,3 @@
-// {"installed":{"client_id":"433806467427-bnmt1ootn9rjhl73tke29gl35e25tcu8.apps.googleusercontent.com","project_id":"dayze-1617029341560","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"H-DxhrMkN-jHZpOf9EGBL5AA","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
-
-
-
 const {google} = require('googleapis');
 const {OAuth2} = google.auth;
 // const {getCalendarInfo} = require('./util/calendar_util');
