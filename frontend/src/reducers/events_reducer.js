@@ -1,6 +1,6 @@
 import {
   RECEIVE_EVENTS,
-  RECEIVE_EVENT,
+  // RECEIVE_EVENT,
   RECEIVE_USER_EVENTS,
   RECEIVE_NEW_EVENT,
   RECEIVE_UPDATE_EVENT,
@@ -8,7 +8,7 @@ import {
 } from "../actions/event_actions";
 
 const EventsReducer = (
-  state = { all: {}, user: {}, new: undefined, event_item: {} },
+  state = { all: {}, user: {}, new: undefined },
   action
 ) => {
   //debugger;
@@ -16,11 +16,7 @@ const EventsReducer = (
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_EVENTS:
-      newState.user = action.events.data;
-      return newState;
-    case RECEIVE_EVENT:
-      // debugger;
-      newState.event_item = action.event.data;
+      newState.all = action.events.data;
       return newState;
     case RECEIVE_USER_EVENTS:
       //debugger;
@@ -28,7 +24,7 @@ const EventsReducer = (
       return newState;
     case RECEIVE_NEW_EVENT:
       newState.new = action.event.data;
-      // newState.user.push(newState.new);
+      newState.user.push(newState.new);
       return newState;
     case RECEIVE_UPDATE_EVENT:
       //debugger;

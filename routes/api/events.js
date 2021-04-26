@@ -43,7 +43,6 @@ router.post("/",
 
 
 router.get("/", (req, res) => {
-<<<<<<< HEAD
     Event
         .find()
         .sort({ data: -1 })
@@ -64,86 +63,6 @@ router.get("/:id", (req, res) => {
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err))
 })
-=======
-  Event.find()
-    .sort({ date: 1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(400).json(err));
-});
-
-router.get("/today/:user_id", (req, res) => {
-  let currentDay = new Date();
-  Event.find({
-    $and: [
-      {
-        user: req.params.user_id,
-        date: {
-          $gte: currentDay.setHours(0, 0, 0),
-          $lte: currentDay.setHours(23, 59, 59),
-        },
-      },
-    ],
-  })
-    .sort({ date: 1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(400).json(err));
-});
-
-router.get("/week/:user_id", (req, res) => {
-  let currentDay = new Date();
-  Event.find({
-    $and: [
-      {
-        user: req.params.user_id,
-        date: {
-          $gte: currentDay.setDate(currentDay.getDate() - currentDay.getDay()),
-          $lte: currentDay.setDate(
-            currentDay.getDate() + (7 - currentDay.getDay())
-          ),
-        },
-      },
-    ],
-  })
-    .sort({ date: 1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(400).json(err));
-});
-
-router.get("/month/:user_id", (req, res) => {
-  let currentDay = new Date();
-  let nextMonth = new Date();
-  nextMonth.setMonth(nextMonth.getMonth() + 1);
-  nextMonth.setDate(0);
-  Event.find({
-    $and: [
-      {
-        user: req.params.user_id,
-        date: {
-          $gte: currentDay.setDate(1),
-          $lte: nextMonth,
-        },
-      },
-    ],
-  })
-    .sort({ date: 1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(400).json(err));
-});
-
-router.get("/user/:user_id", (req, res) => {
-  Event.find({ user: req.params.user_id })
-    .sort({ date: 1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(400).json(err));
-});
-
-router.get("/:id", (req, res) => {
-  Event.findById(req.params.id)
-    .sort({ date: 1 })
-    .then((event) => res.json(event))
-    .catch((err) => res.status(400).json(err));
-});
->>>>>>> main
 
 router.patch("/:id", (req, res) => {
     let updatedDbParams = {

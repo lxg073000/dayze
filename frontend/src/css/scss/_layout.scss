@@ -184,6 +184,7 @@
   z-index: 1;
   box-shadow: 0 0 rgba(83, 83, 83, 0.253);
   position: absolute;
+  height: 100%;
 }
 .hide {
   display: none;
@@ -241,15 +242,15 @@
 
 .splash-logo {
   font-family: "Poppins";
-  font-size: min(max(6em, 30vw), 12em);
+  font-size: 170px;
   color: #bbb4af;
   text-shadow: -9px -3px 6px rgb(255 255 255 / 58%);
   font-style: italic;
 }
 
-// .splash-navs > li:first-child {
-//   padding-right: 20px;
-// }
+.splash-navs > li:first-child {
+  padding-right: 20px;
+}
 .splash-navs > li:hover {
   text-shadow: 3px 3px 3px #385f9136;
   color: #ffffffbf;
@@ -266,15 +267,15 @@
   padding: 0 6px;
 }
 
-// .splash-navs > li,
-// .contacts {
-//   margin: 0 15px;
-//   border-right: 1px solid white;
-//   padding-right: 43px;
-//   padding: 0 10px;
-//   border-radius: 14px;
-//   cursor: pointer;
-// }
+.splash-navs > li,
+.contacts {
+  margin: 0 15px;
+  border-right: 1px solid white;
+  padding-right: 43px;
+  padding: 0 10px;
+  border-radius: 14px;
+  cursor: pointer;
+}
 
 //////////////
 .session-grid {
@@ -337,11 +338,10 @@
 
 .session-title {
   font-family: "Poppins", sans-serif;
-  font-size: min(max(6em, 10vw), 26vw);
+  font-size: 110px;
   color: #ffffff54;
   text-shadow: -4px 1px 0px #858785;
   font-style: italic;
-  position: relative;
 }
 
 .hub-navs {
@@ -356,10 +356,6 @@
 
 .hub-navs > li:first-child {
   padding-right: 20px;
-  margin: 0;
-  align-self: center;
-  line-height: min(max(27px, 2.5vw), 2.5em);
-  border-radius: 10px;
 }
 .hub-navs > li:hover {
   text-shadow: 3px 3px 3px #385f9136;
@@ -369,25 +365,26 @@
 
 .splash-navs {
   width: 100%;
-  padding: 0.2em;
+  padding: 0.1em;
   text-align: center;
   color: #ffffff99;
   display: flex;
-  font-size: min(max(16px, 3vw), 1.5em);
+  font-size: 31px;
   justify-content: center;
+  padding-right: 190px;
   z-index: 1;
   margin: 0.5em 0;
   background: linear-gradient(90deg, #9bb1b817, #9bb1b8, #9bb1b80f);
 }
 
-// .splash-navs > li:first-child {
-//   padding-right: 20px;
-// }
-// .splash-navs > li:hover {
-//   text-shadow: 3px 3px 3px #385f9136;
-//   color: #ffffffbf;
-//   background: #b2bcbf;
-// }
+.splash-navs > li:first-child {
+  padding-right: 20px;
+}
+.splash-navs > li:hover {
+  text-shadow: 3px 3px 3px #385f9136;
+  color: #ffffffbf;
+  background: #b2bcbf;
+}
 
 .fab:hover {
   color: #ffffffbf;
@@ -399,15 +396,15 @@
   padding: 0 6px;
 }
 
-// .splash-navs > li,
-// .contacts {
-//   margin: 0 15px;
-//   border-right: 1px solid white;
-//   padding-right: 43px;
-//   padding: 0 10px;
-//   border-radius: 14px;
-//   cursor: pointer;
-// }
+.splash-navs > li,
+.contacts {
+  margin: 0 15px;
+  border-right: 1px solid white;
+  padding-right: 43px;
+  padding: 0 10px;
+  border-radius: 14px;
+  cursor: pointer;
+}
 .hub-navs > li,
 .contacts {
   margin: 0 15px;
@@ -434,20 +431,6 @@
 
 .fa,
 .fas {
-  cursor: pointer;
   font-weight: 900;
   padding: 0px 10px;
-}
-
-span > i {
-  margin: 2px;
-}
-
-.signup-form-shell {
-  display: grid;
-  place-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  margin-top: 2em;
 }
