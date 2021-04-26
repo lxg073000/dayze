@@ -25,20 +25,37 @@ export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT,
 });
 
-export const signup = (user) => (dispatch) =>{
+export const signup = (user) => (dispatch) => {
   //debugger
 
-  return   APIUtil.signup(user).then(
+  return APIUtil.signup(user).then(
     (user) => {
-      return dispatch(receiveUserSignIn(user))
+      return dispatch(receiveUserSignIn(user));
     },
     (err) => dispatch(receiveErrors(err.response.data))
   );
-}
+};
 
 export const login = (user) => (dispatch) => {
   ////debugger;
   return APIUtil.login(user)
+    .then((res) => {
+      //debugger
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      APIUtil.setAuthToken(token);
+      const decoded = jwt_decode(token);
+      dispatch(receiveCurrentUser(decoded));
+    })
+    .catch((err) => {
+      dispatch(receiveErrors(err.response.data));
+    });
+};
+export const guestLogin = (
+  user = { username: "GuestUser", password: "1234567890asdfghjkl" }
+) => (dispatch) => {
+  ////debugger;
+  return APIUtil.guestUser(user)
     .then((res) => {
       //debugger
       const { token } = res.data;
