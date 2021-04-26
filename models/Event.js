@@ -20,6 +20,10 @@ const EventSchema = new Schema ({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    googleId: {
+        type: String, 
+        required: true
     }
 });
 

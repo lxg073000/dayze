@@ -2,17 +2,11 @@ import React from "react";
 import EventEditor from "./event_editor";
 
 class EventBox extends React.Component {
-<<<<<<< HEAD
-  edit_btn(e, id) {
-    debugger;
-    // let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
-=======
   edit_btn(e) {
     //debugger;
     let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
->>>>>>> c1025b0a85fdb95ddaa107364cdb682fcb6c8bdb
     // console.log(e.target.parentElement.parentElement.parentElement.children);
-    let selected_event = document.getElementById(`${id}-patch`);
+    let selected_event = document.getElementById(event_patch_id);
 
     selected_event.classList.toggle("hide");
   }
@@ -38,12 +32,9 @@ class EventBox extends React.Component {
         <li key={`${this.props.id}-title`}>
           {this.props.title}
           <span className="event-tools">
+            <i onClick={(e) => this.edit_btn(e)} className="fas fa-edit"></i>
             <i
-              onClick={(e) => this.edit_btn(e, this.props.id)}
-              className="fas fa-edit"
-            ></i>
-            <i
-              onClick={(e) => this.delete_btn(e, this.props.id)}
+              onClick={(e) => this.delete_btn(e)}
               className="far fa-calendar-times"
             ></i>
           </span>
