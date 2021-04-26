@@ -34,14 +34,12 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
     //debugger;
     this.events = this.props.events;
     // if (){
     //   window.open('http://localhost:5000')
 
     // }
-=======
     this.props.fetchUserEvents(this.props.currentUser.id);
     document.getElementById("root").classList.add("layout-bug");
     // document.getElementById("root").style.height = "100%";
@@ -52,7 +50,6 @@ export default class user_calender_hub extends React.Component {
   componentWillUnmount() {
     // document.getElementById("root").style.opacity = "0";
     // document.getElementById("root").style.height = "100vh";
->>>>>>> main
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
