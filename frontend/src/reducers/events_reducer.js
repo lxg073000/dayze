@@ -28,7 +28,7 @@ const EventsReducer = (
       return newState;
     case RECEIVE_NEW_EVENT:
       newState.new = action.event.data;
-      newState.user.push(newState.new);
+      // newState.user.push(newState.new);
       return newState;
     case RECEIVE_UPDATE_EVENT:
       //debugger;

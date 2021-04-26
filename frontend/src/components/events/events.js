@@ -27,6 +27,22 @@ class Event extends React.Component {
   UNSAFE_componentWillReceiveProps(newState) {
     //debugger;
     this.setState({ events: newState.events });
+    // switch (this.state.filter) {
+    //   case "All Events":
+    //     this.filterAll();
+    //     break;
+    //   case "This Month's Events":
+    //     this.filterMonth();
+    //     break;
+    //   case "This Week's Events":
+    //     this.filterWeek();
+    //     break;
+    //   case "Today's Events":
+    //     this.filterToday();
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 
   handleDelete(id) {
