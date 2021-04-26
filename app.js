@@ -28,11 +28,6 @@ const port = process.env.PORT || 5000;
 const fs = require("fs");
 const { google } = require("googleapis");
 
-const http = require('http');
-const url = require('url');
-const opn = require('open');
-const destroyer = require('server-destroy');
-
 
 const SCOPES = ["https://www.googleapis.com/auth/calendar"];
 const credentialsFile = "credentials.json";
