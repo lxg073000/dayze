@@ -13,6 +13,7 @@ export default class dayModal extends Component {
           className="sample-select"
         >{`${this.props.activeDate}`}</p>
         <CreateEvent
+          createEvent={this.props.createEvent}
           activeDateVal={this.props.activeDateVal}
           close={this.props.toggle}
         />

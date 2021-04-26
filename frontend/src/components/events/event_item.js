@@ -46,7 +46,7 @@ class EventItem extends React.Component {
             evntTime={new Date(this.props.date).toTimeString().slice(0, 8)}
             evntDesc={this.props.description}
             currentUser={this.props.currentUser}
-            handleUpdate={this.props.handleUpdate}
+            updateEvent={this.props.updateEvent}
             closeEdit={this.edit_btn}
           />
         ) : null}

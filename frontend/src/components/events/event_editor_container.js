@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchTodays: () => dispatch(fetchTodays()),
     fetchEvent: (id) => dispatch(fetchEvent(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
-    updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

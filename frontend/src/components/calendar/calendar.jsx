@@ -108,6 +108,7 @@ export default class calendar extends Component {
         <div className="cal-widget">
           <div id="daypop" className={this.state.dayModal ? "show" : "hide"}>
             <DayModal
+              createEvent={this.props.createEvent}
               activeDate={this.active.date}
               activeDateVal={this.active.date_val}
               toggle={this.toggleDayModal}

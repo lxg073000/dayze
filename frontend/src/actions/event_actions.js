@@ -77,13 +77,15 @@ export const createEvent = (data) => (dispatch) =>
     })
     .catch((err) => console.log(err));
 
-export const updateEvent = (id, data) => async (dispatch) =>
-  APIUtil.updateEvent(id, data)
+export const updateEvent = (id, data) => async (dispatch) => {
+  debugger;
+  return APIUtil.updateEvent(id, data)
     .then((event) => {
       //debugger;
       return dispatch(receiveUpdateEvent(event));
     })
     .catch((err) => console.log(err));
+};
 
 export const deleteEvent = (id) => (dispatch) =>
   APIUtil.deleteEvent(id)

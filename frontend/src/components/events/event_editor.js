@@ -42,8 +42,8 @@ export default class event_editor extends Component {
 
     let id = this.props.id;
 
-    this.props.handleUpdate(id, event);
-    // debugger;
+    debugger;
+    this.props.updateEvent(id, event);
     this.props.closeEdit();
   }
 

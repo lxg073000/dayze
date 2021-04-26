@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchWeek: (id) => dispatch(fetchWeek(id)),
     fetchMonth: (id) => dispatch(fetchMonth(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
-    updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import {
   fetchUserEvents,
   deleteEvent,
-  updateEvent,
+  // updateEvent,
   fetchTodays,
   fetchEvent,
 } from "../../actions/event_actions";
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchEvent: (id) => dispatch(fetchEvent(id)),
     fetchTodays: () => dispatch(fetchTodays()),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
-    updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

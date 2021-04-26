@@ -8,10 +8,29 @@ export default class user_calender_hub extends React.Component {
     super(props);
     this.state = {
       linkedIn: true,
+      switched: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.toggleLinkedIn = this.toggleLinkedIn.bind(this);
+    this.toggleSwitched = this.toggleSwitched.bind(this);
+    this.handleNewEvent = this.handleNewEvent.bind(this);
+    this.handleUpdateEvent = this.handleUpdateEvent.bind(this);
+  }
+
+  //submission { dispatch, setState(switched value)}
+  toggleSwitched() {
+    this.setState({ switched: false });
+  }
+  handleNewEvent(data) {
+    debugger;
+    this.props.createEvent(data);
+    this.setState({ switched: true });
+  }
+  handleUpdateEvent(id, data) {
+    debugger;
+    this.props.updateEvent(id, data);
+    this.setState({ switched: true });
   }
 
   componentDidMount() {
@@ -73,12 +92,17 @@ export default class user_calender_hub extends React.Component {
                 </div>
               </div>
               <div className="hsec cal-container container">
-                <Calendar />
+                <Calendar createEvent={this.handleNewEvent} />
                 <div className="cal-sec half-card top-events">
                   <ul></ul>
 
                   <div>
-                    <Events userEvents={this.props.events} />
+                    <Events
+                      toggleSwitched={this.toggleSwitched}
+                      switched={this.state.switched}
+                      updateEvent={this.handleUpdateEvent}
+                      userEvents={this.props.events}
+                    />
                   </div>
                 </div>
               </div>

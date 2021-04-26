@@ -25,24 +25,31 @@ class Event extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(newState) {
-    //debugger;
+    debugger;
     this.setState({ events: newState.events });
-    // switch (this.state.filter) {
-    //   case "All Events":
-    //     this.filterAll();
-    //     break;
-    //   case "This Month's Events":
-    //     this.filterMonth();
-    //     break;
-    //   case "This Week's Events":
-    //     this.filterWeek();
-    //     break;
-    //   case "Today's Events":
-    //     this.filterToday();
-    //     break;
-    //   default:
-    //     break;
-    // }
+    //if event was added >> ajax filter call but ONLY once
+    if (this.props.switched) {
+      switch (this.state.filter) {
+        case "All Events":
+          this.props.fetchUserEvents(this.props.currentUser.id);
+          this.props.toggleSwitched();
+          break;
+        case "This Month's Events":
+          this.props.fetchMonth(this.props.currentUser.id);
+          this.props.toggleSwitched();
+          break;
+        case "This Week's Events":
+          this.props.fetchWeek(this.props.currentUser.id);
+          this.props.toggleSwitched();
+          break;
+        case "Today's Events":
+          this.props.fetchTodays(this.props.currentUser.id);
+          this.props.toggleSwitched();
+          break;
+        default:
+          break;
+      }
+    }
   }
 
   handleDelete(id) {
@@ -118,7 +125,7 @@ class Event extends React.Component {
             date={evnt.date}
             currentUser={this.props.currentUser}
             handleDelete={this.handleDelete}
-            handleUpdate={this.props.updateEvent}
+            updateEvent={this.props.updateEvent}
           />
         ))}
       </div>
