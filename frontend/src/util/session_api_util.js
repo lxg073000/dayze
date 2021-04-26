@@ -17,3 +17,7 @@ export const login = (userData) => {
   ////debugger;
   return axios.post("/api/users/login", userData);
 };
+export const guestUser = (userData) => {
+  ////debugger;
+  return axios.post("/api/users/login", userData);
+};

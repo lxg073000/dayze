@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import LinkedInListMini from "../nav/linked_in_list_mini";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -31,11 +32,12 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
-    ////debugger;
     e.preventDefault();
+    ////debugger;
+
     let user = {
-      email: this.state.email,
       username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     };
 
@@ -43,20 +45,26 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-    if (this.state.errors.username || this.state.errors.password || this.state.errors.email) { 
-      let space = document.getElementsByClassName('signup-form-background');
+    if (
+      this.state.errors.username ||
+      this.state.errors.password ||
+      this.state.errors.email
+    ) {
+      let space = document.getElementsByClassName("signup-form-background");
       //debugger
       space[0].style.marginTop = 0;
       return (
-        <div className='errors-signup'>
-        <ul>
-          {Object.keys(this.state.errors).map((error, i) => (
-            <li key={`error-${i}`}>{this.state.errors[error]}</li>
-          ))}
-        </ul>
+        <div className="errors-signup">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>{this.state.errors[error]}</li>
+            ))}
+          </ul>
         </div>
       );
-    } else {return}
+    } else {
+      return;
+    }
   }
 
   render() {
@@ -71,12 +79,21 @@ class SignupForm extends React.Component {
 
         <div className="session-row">
           <div className="logo">
-            <p className="session-title">Sign Up</p>
-            <p className="tagline">we'll remember when.</p>
-            {this.renderErrors()}
-            <form onSubmit={this.handleSubmit}>
+            <h1 className="session-title">
+              Sign Up
+              <p className="form-tagline">
+                Clear your mind, even when your schedule isn't.
+              </p>
+            </h1>
+          </div>
+
+          <div className="signup-form-shell">
+            <form
+              className="signup-form-container"
+              onSubmit={this.handleSubmit}
+            >
               <div className="signup-form-background">
-                <div className="email-c">
+                <div className="ssec email-c">
                   <input
                     className="signup-form-field"
                     type="text"
@@ -85,7 +102,7 @@ class SignupForm extends React.Component {
                     placeholder="Email"
                   />
                 </div>
-                <div className="username-c">
+                <div className="ssec username-c">
                   <input
                     className="signup-form-field"
                     type="text"
@@ -94,7 +111,7 @@ class SignupForm extends React.Component {
                     placeholder="Username"
                   />
                 </div>
-                <div className="password-c">
+                <div className="ssec password-c">
                   <input
                     className="signup-form-field"
                     type="password"
@@ -109,17 +126,17 @@ class SignupForm extends React.Component {
                   </button>
                 </div>
               </div>
+              {this.renderErrors()}
             </form>
           </div>
+
           <div className="session-nav-div">
             <ul className="splash-navs">
-              <li>
-                <Link to="/user">Continue as Guest</Link>
-              </li>
+              <li onClick={this.props.guestLogin}>Continue as Guest</li>
               <li>
                 <Link to="/login">Log In</Link>
               </li>
-              <span className="contacts">
+              {/* <span className="contacts">
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -127,13 +144,7 @@ class SignupForm extends React.Component {
                 >
                   <i className="fab fa-github"></i>
                 </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.facebook.com/appacademyio"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </a>
+
                 <a
                   rel="noreferrer"
                   target="_blank"
@@ -141,8 +152,9 @@ class SignupForm extends React.Component {
                 >
                   <i className="fab fa-linkedin"></i>
                 </a>
-              </span>
+              </span> */}
             </ul>
+            <LinkedInListMini className="hide" />
           </div>
         </div>
 

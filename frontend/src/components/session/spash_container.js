@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { guestLogin, login } from "../../actions/session_actions";
-import LoginForm from "./login_form";
+import { guestLogin } from "../../actions/session_actions";
+import Splash from "./splash";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,9 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (user) => dispatch(login(user)),
     guestLogin: () => dispatch(guestLogin()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
