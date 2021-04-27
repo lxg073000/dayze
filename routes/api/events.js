@@ -6,7 +6,8 @@ const {
     insertEvent,
     updateEvent,
     removeEvent
-} = require('../../util/calendar_util/calendar_api_util')
+} = require('../../util/calendar_util/calendar_api_util');
+const User = require("../../models/User");
 
 
 router.get("/test", (req, res) =>  {
@@ -164,9 +165,6 @@ router.delete("/:id", (req, res) => {
         })
         .catch((err)=> res.status(400).json(err));
 })
-
-
-
 
 
 

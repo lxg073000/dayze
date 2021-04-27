@@ -8,6 +8,10 @@ const passport = require("passport"); ///
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
+const { google } = require("googleapis");
+const fs = require("fs");
+
+
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
 router.get(
@@ -102,4 +106,68 @@ router.post("/login", (req, res) => {
   });
 });
 
+
+
+
+
+router.get('/token', (req,res)=>{/// we should get the mongodb id in our req
+  const dbid = req.body.id;
+  User.findById(dbid)
+  .then(user =>{
+
+    let tokenList = user.googleCredentials;
+
+
+    if (!tokenList || tokenList.length === 0){//get tokens  
+      const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+      const authorizeUrl = oAuth2Client.generateAuthUrl({
+            access_type: 'offline',
+            scope: SCOPES.join(' ')
+      });
+      res.redirect(authorizeUrl);
+      
+    }else{
+      oAuth2Client = createOAuth2Client();
+      oAuth2Client.credentials = {
+        access_token: tokenList[0],
+        refresh_token:tokenList[1],
+        scope:tokenList[2],
+        token_type:tokenList[3],
+        expiry_date:tokenList[4]
+      }
+      google.options({auth: oAuth2Client});
+    }
+  });
+});
+
+
+
+router.get('/oauth2callback', async (req,res)=>{
+  const authorizationCode = req.query.code;
+  let oAuth2Client = createOAuth2Client();
+
+
+  const {tokens} = await oAuth2Client.getToken(authorizationCode);
+  console.log(`tokens! `);
+  console.log(tokens);
+
+  oAuth2Client.credentials = tokens;
+  google.options({auth: oAuth2Client});
+
+  res.redirect('http://localhost:3000')  // In prod, just /
+})
+
+
+
+const createOAuth2Client = ()=>{
+  const credentialsFile = "../../credentials.json";
+  let credentials = JSON.parse(fs.readFileSync(credentialsFile));
+  const { client_secret, client_id, redirect_uris } = credentials.web;//.installed;
+
+  return new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+}
 module.exports = router;

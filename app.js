@@ -25,24 +25,14 @@ const port = process.env.PORT || 5000;
 
 
 // google calendar api
-const fs = require("fs");
-const { google } = require("googleapis");
+// const fs = require("fs");
+// const { google } = require("googleapis");
 
 
-const SCOPES = ["https://www.googleapis.com/auth/calendar"];
-const credentialsFile = "credentials.json";
-let credentials = JSON.parse(fs.readFileSync(credentialsFile));
-const { client_secret, client_id, redirect_uris } = credentials.web;//.installed; //.web;
-
-const oAuth2Client = new google.auth.OAuth2(
-  client_id,
-  client_secret,
-  redirect_uris[0]
-);
-console.log('!!!!!');
-console.log(oAuth2Client);
-google.options({auth: oAuth2Client});
-// console.log(google.auth);
+// const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+// const credentialsFile = "credentials.json";
+// let credentials = JSON.parse(fs.readFileSync(credentialsFile));
+// const { client_secret, client_id, redirect_uris } = credentials.web;//.installed; //.web;
 
 
 
@@ -65,22 +55,31 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 
 });
-app.get('/auth', async (req,res)=>{
-  const authorizeUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES.join(' ')
-  });
-  res.redirect(authorizeUrl);
-})
+// app.get('/auth', async (req,res)=>{
 
-app.get('/oauth2callback', async (req,res)=>{
-  const authorizationCode = req.query.code;
-  const {tokens} = await oAuth2Client.getToken(authorizationCode);
-  console.log(`tokens! `);
-  console.log(tokens);
-  oAuth2Client.credentials = tokens;
-  res.redirect('http://localhost:3000')  // In prod, just /
+//   const oAuth2Client = new google.auth.OAuth2(
+//     client_id,
+//     client_secret,
+//     redirect_uris[0]
+//   );
+//   // console.log('!!!!!');
+//   // console.log(oAuth2Client);
+//   google.options({auth: oAuth2Client});
+  
 
+//   const authorizeUrl = oAuth2Client.generateAuthUrl({
+//         access_type: 'offline',
+//         scope: SCOPES.join(' ')
+//   });
+//   res.redirect(authorizeUrl);
+// })
 
-})
+// app.get('/oauth2callback', async (req,res)=>{
+//   const authorizationCode = req.query.code;
+//   const {tokens} = await oAuth2Client.getToken(authorizationCode);
+//   console.log(`tokens! `);
+//   console.log(tokens);
+//   oAuth2Client.credentials = tokens;
+//   res.redirect('http://localhost:3000')  // In prod, just /
+// })
 app.listen(port, () => console.log(`Server is running on port ${port}`));
