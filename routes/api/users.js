@@ -159,6 +159,10 @@ router.get('/oauth2callback', async (req,res)=>{
   oAuth2Client.credentials = tokens;
   google.options({auth: oAuth2Client});
 
+  //Get CurrentUser and store tokens in .googleCredentials
+  let gcreds = Object.values(tokens);
+  // CurrentUserId
+
   res.redirect('http://localhost:3000')  // In prod, just /
 })
 
