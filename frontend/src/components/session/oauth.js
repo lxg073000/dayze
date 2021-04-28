@@ -43,11 +43,7 @@ export default class oauth extends Component {
             <li>Allow Permissions</li>
           </ul>
           <div>
-            <a
-              rel="noreferrer"
-              target="_blank"
-              href="https://www.localhost5000/auth"
-            >
+            <a rel="noreferrer" target="_blank" href="localhost5000/auth">
               <p className="sync-confirm-btn">Sync My Account</p>
             </a>
             <p className="sync-deny-btn" onClick={this.handleDeny}>
