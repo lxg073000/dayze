@@ -53,6 +53,7 @@ router.post("/register", (req, res) => {
           username: req.body.username,
           email: req.body.email,
           password: req.body.password,
+          isLinkedGoogleAccount: req.body.isLinkedGoogleAccount
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -63,7 +64,20 @@ router.post("/register", (req, res) => {
               .save()
               .then((user) =>{ 
                 setCurrentUserId(user.id);
-                return res.json(user) 
+
+                //if 
+                    //redirect()
+                if (req.body.isLinkedGoogleAccount){
+                  const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+                  const authorizeUrl = oAuth2Client.generateAuthUrl({
+                    access_type: 'offline',
+                    scope: SCOPES.join(' ')
+                  });
+                  res.redirect(authorizeUrl);
+                }
+                  console.log('A new user!');
+                  console.log(user);
+                  return res.json(user) 
               })
               .catch((err) => console.log(err));
           });
@@ -92,6 +106,7 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           username: user.username,
+          isLinkedGoogleAccount:user.isLinkedGoogleAccount
         };
         jwt.sign(
           payload,
@@ -126,20 +141,40 @@ router.post("/login", (req, res) => {
 
 // });
 router.get('/token', (req,res)=>{/// we should get the mongodb id in our req
+  
+  /*
+  //login
+    check if isLinkedGoogleAccount
+    if True, get the credentials from the db
+    else =>  run as unlinked account
+
+
+  On Frontend:  write form and click on modal
+  //Register
+    //ask to link  google account, show modal
+    //if isLinkedGoogleAccount 
+        make oauth2client and redirect to new tab
+
+
+    
+  */
+
+
+
+  //register/login  for this
   const dbid = req.body.id;
   User.findById(dbid)
   .then(user =>{
-
     let tokenList = user.googleCredentials;
 
-
+    //
     if (!tokenList || tokenList.length === 0){//get tokens  
-      const SCOPES = ["https://www.googleapis.com/auth/calendar"];
-      const authorizeUrl = oAuth2Client.generateAuthUrl({
-            access_type: 'offline',
-            scope: SCOPES.join(' ')
-      });
-      res.redirect(authorizeUrl);
+      // const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+      // const authorizeUrl = oAuth2Client.generateAuthUrl({
+      //       access_type: 'offline',
+      //       scope: SCOPES.join(' ')
+      // });
+      // res.redirect(authorizeUrl);
       
     }else{
       oAuth2Client = createOAuth2Client();

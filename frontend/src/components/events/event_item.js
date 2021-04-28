@@ -28,7 +28,7 @@ class EventItem extends React.Component {
   }
   delete_btn(e, id) {
     // debugger;
-    this.props.handleDelete(id);
+    this.props.handleDelete(id, this.props.currentUser.isLinkedGoogleAccount);
     if (this.state.editor_form === true) {
       this.setState({ editor_form: !this.state.editor_form });
     }

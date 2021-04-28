@@ -93,18 +93,26 @@ router.post("/",
           date: req.body.date,
       };
 
+      let isLinked = req.body.user.isLinkedGoogleAccount;
+      
       const insertThenSave = async ()=>{
         insertEvent(newEventParams)
         .then(( )=>{
-            setTimeout(async ()=>{
-                console.log(`newEvent.googleId: ${newEventParams.googleId}`)
-                // if (!newEvent.googleId)  return ''
-                const newEvent =  new Event(newEventParams);
-                await newEvent.save().then(event => res.json(event))
-            }, 2000);
+          setTimeout(async ()=>{
+            console.log(`newEvent.googleId: ${newEventParams.googleId}`)
+            // if (!newEvent.googleId)  return ''
+              const newEvent =  new Event(newEventParams);
+              await newEvent.save().then(event => res.json(event))
+          }, 2000);
         })
       }
-      insertThenSave();
+
+      if (isLinked){
+        insertThenSave();
+      }else{
+        const newEvent =  new Event(newEventParams);
+        newEvent.save().then(event => res.json(event))
+      }
 });
 
 
@@ -138,6 +146,8 @@ router.patch("/:id", (req, res) => {
         date: req.body.date,
     }
 
+    let isLinked = req.body.isLinkedGoogleAccount; //////////
+
     Event
         .findByIdAndUpdate( 
             req.params.id, 
@@ -149,18 +159,24 @@ router.patch("/:id", (req, res) => {
             {new:true} 
         )
         .then(event => { 
-            updateEvent(event.googleId, updatedDbParams);
+            if (isLinked){
+              updateEvent(event.googleId, updatedDbParams);
+            }
             res.json(event) 
         })
         .catch(err => res.status(400).json(err));
-
 })
 
 router.delete("/:id", (req, res) => {
+
+    let isLinked = req.body.isLinkedGoogleAccount;////////
+    
     Event.findByIdAndRemove(req.params.id)
         .then((event)=>{
             console.log(`Deleted event: ${event}`);
-            removeEvent(event.googleId);
+            if (isLinked){
+              removeEvent(event.googleId);
+            }
             res.json(event)
         })
         .catch((err)=> res.status(400).json(err));

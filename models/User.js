@@ -24,7 +24,7 @@ const UserSchema = new Schema({
   ], 
   isLinkedGoogleAccount: {
     type: Boolean,
-    default: false
+    default: true
   }
 })
 
