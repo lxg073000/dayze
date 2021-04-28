@@ -3,7 +3,7 @@ import {
   fetchUserEvents,
   fetchEvent,
   deleteEvent,
-  updateEvent,
+  // updateEvent,
   fetchTodays,
 } from "../../actions/event_actions";
 import EventEditor from "./event_editor";

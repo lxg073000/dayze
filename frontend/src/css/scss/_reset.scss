@@ -170,4 +170,15 @@ Link {
 
 * {
   scrollbar-width: none;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+p,
+h1,
+h2,
+h3 {
+  color: hsl(11deg 11% 29%);
+  font-weight: 100;
 }

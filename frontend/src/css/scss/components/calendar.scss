@@ -13,6 +13,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  .fas {
+    color: hsl(11deg 11% 29%);
+    &:hover {
+      color: #ffffffbf;
+      text-shadow: 3px 3px 3px #385f9136;
+    }
+  }
 }
 
 .cal-day-full {
@@ -32,7 +39,7 @@
   text-align: center;
   font-size: 1em;
   color: #ffffff75;
-  background: #210e0e8a;
+  background: #91675a3b;
   cursor: pointer;
 }
 .date:hover {
@@ -94,7 +101,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin: 1em 1em 0 0;
+  margin: 0.5em 1em 0 0;
 }
 
 .sample-click {
@@ -141,21 +148,22 @@
   background: rgb(255 255 255 / 65%);
 }
 
-::-webkit-time-picker-indicator {
-  border: 2px solid black;
-  display: none;
-}
+// ::-webkit-time-picker-indicator {
+//   border: 2px solid black;
+//   display: none;
+// }
 
 input.form-item[type="time"] {
   display: inline-grid;
-  grid-template: 1fr / 18% 32px;
+  grid-template: 1fr/100% 32px;
   place-content: center;
-  display: relative;
-  // &:after {
-  //   content: "O";
-  //   position: absolute;
-  //   right: 150px;
-  //   top: 310px;
-  //   color: #7c726c;
-  // }
+  padding: 0 2em;
+  min-width: 138px;
+  &:after {
+    content: "O";
+    position: absolute;
+    right: 150px;
+    top: 310px;
+    color: #7c726c;
+  }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
+import OAuth from "../session/oauth_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -72,10 +73,11 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="user-shell">
+        <OAuth />
         <img
           alt="bg-img"
-          className="background-img1 hub-dark"
-          src="https://images.unsplash.com/photo-1616361889157-7b095931aea5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+          className="background-img1 hub-dark main-bg1"
+          src="https://images.unsplash.com/photo-1516619533489-577675d1553a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80"
         ></img>
         <div className="hub-content-grid">
           <div className="white"></div>

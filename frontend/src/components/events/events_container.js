@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import {
   fetchUserEvents,
   deleteEvent,
-  updateEvent,
   fetchTodays,
   fetchWeek,
   fetchMonth,
@@ -24,7 +23,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchWeek: (id) => dispatch(fetchWeek(id)),
     fetchMonth: (id) => dispatch(fetchMonth(id)),
     deleteEvent: (id) => dispatch(deleteEvent(id)),
-    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

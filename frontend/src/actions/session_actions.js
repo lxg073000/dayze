@@ -2,6 +2,7 @@ import * as APIUtil from "../util/session_api_util";
 import jwt_decode from "jwt-decode";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const RECEIVE_OAUTH_TOKENS = "RECEIVE_OAUTH_TOKENS";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
@@ -9,6 +10,10 @@ export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
+});
+export const receiveOAuthTokens = (tokens) => ({
+  type: RECEIVE_OAUTH_TOKENS,
+  tokens,
 });
 
 export const receiveUserSignIn = (currentUser) => ({
@@ -31,6 +36,16 @@ export const signup = (user) => (dispatch) => {
   return APIUtil.signup(user).then(
     (user) => {
       return dispatch(receiveUserSignIn(user));
+    },
+    (err) => dispatch(receiveErrors(err.response.data))
+  );
+};
+export const updateOAuthTokens = (user, tokens) => (dispatch) => {
+  //debugger
+
+  return APIUtil.updateOAuthTokens(user, tokens).then(
+    (tokens) => {
+      return dispatch(receiveOAuthTokens(tokens));
     },
     (err) => dispatch(receiveErrors(err.response.data))
   );

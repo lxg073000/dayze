@@ -7,6 +7,10 @@ export const setAuthToken = (token) => {
     delete axios.defaults.headers.common["Authorization"];
   }
 };
+export const updateOAuthTokens = (user, tokens) => {
+  ////debugger;
+  return axios.patch(`/api/users/${user.id}/googleAuth`, tokens);
+};
 
 export const signup = (userData) => {
   ////debugger;

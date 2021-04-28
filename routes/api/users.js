@@ -102,4 +102,20 @@ router.post("/login", (req, res) => {
   });
 });
 
+router.patch("/:id/googleAuth", (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.id,
+    {
+      token1: req.body.token1,
+      _clientId: req.body._clientId,
+      _clientSecret: req.body._clientSecret,
+    },
+    { new: true }
+  )
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => res.status(400).json(err));
+});
+
 module.exports = router;

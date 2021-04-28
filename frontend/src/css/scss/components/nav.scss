@@ -103,10 +103,15 @@
   display: flex;
   justify-content: flex-end;
   background: linear-gradient(90deg, #233134, #192528, #233134);
+  background: linear-gradient(90deg, #beaea300, #bfaea429, #9f8575);
   cursor: pointer;
   opacity: 1;
   transform: scaleX(1);
   transition: cubic-bezier(0.19, 0.59, 1, 1) 0.5s opacity;
+}
+
+.linkedIn li::selection {
+  background: none;
 }
 
 .group-links {
@@ -116,6 +121,7 @@
   text-align: center;
   color: #cacaca99;
   background: linear-gradient(90deg, #233134, #192528, #233134);
+  background: linear-gradient(90deg, #987f701f, #a7887c, #a08375);
   border-radius: 1em;
   padding: 0em 2em;
   line-height: 3em;
@@ -133,36 +139,46 @@
   }
 }
 
+// @keyframes scrolling {
+//   0% {
+//     top: 19px;
+//   }
+//   15% {
+//     top: -9px;
+//   }
+//   20% {
+//     top: -19px;
+//   }
+//   35% {
+//     top: -48px;
+//   }
+//   40% {
+//     top: -58px;
+//   }
+//   55% {
+//     top: -95px;
+//   }
+//   60% {
+//     top: -105px;
+//   }
+//   75% {
+//     top: -144px;
+//   }
+//   80% {
+//     top: -154px;
+//   }
+//   100% {
+//     top: -183px;
+//   }
+// }
+
 @keyframes scrolling {
-  0% {
-    top: 19px;
-  }
-  15% {
+  from {
     top: -9px;
   }
-  20% {
-    top: -19px;
-  }
-  35% {
-    top: -48px;
-  }
-  40% {
-    top: -58px;
-  }
-  55% {
-    top: -95px;
-  }
-  60% {
-    top: -105px;
-  }
-  75% {
-    top: -144px;
-  }
-  80% {
+
+  to {
     top: -154px;
-  }
-  100% {
-    top: -183px;
   }
 }
 
