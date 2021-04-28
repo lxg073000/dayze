@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
+const CurrentUserId = require('../../models/CurrentUserId');
 const bcrypt = require("bcryptjs");
 const keys = require("../../config/keys");
 const jwt = require("jsonwebtoken");
@@ -59,7 +60,10 @@ router.post("/register", (req, res) => {
             newUser.password = hash;
             newUser
               .save()
-              .then((user) => res.json(user))
+              .then((user) =>{ 
+                setCurrentUserId(user.id);
+                return res.json(user) 
+              })
               .catch((err) => console.log(err));
           });
         });
@@ -99,6 +103,7 @@ router.post("/login", (req, res) => {
             });
           }
         );
+        setCurrentUserId(user.id);
       } else {
         return res.status(404).json({ password: "Incorrect password" });
       }
@@ -170,4 +175,20 @@ const createOAuth2Client = ()=>{
     redirect_uris[0]
   );
 }
+
+const setCurrentUserId = async (id)=>{
+  CurrentUserId.find({})
+  .then(userarray=>{
+    if (userarray.length === 0){
+      let currentUser  = new CurrentUserId({id});
+      currentUser.save();
+      
+    }else if (userarray.length === 1){
+      CurrentUserId.findByIdAndUpdate(userarray[0]._id, {id:id})
+    }
+  });
+}
+
+
+
 module.exports = router;

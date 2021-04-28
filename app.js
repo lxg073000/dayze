@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
+const currentUserIds = require('./routes/api/currentUserIds');
 
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -49,6 +50,8 @@ app.use(bodyParser.json());
 app.use("/api/events", events);
 
 app.use("/api/users", users);
+
+app.use('/api/currentUserIds', currentUserIds);
 
 app.get("/", (req, res) => {
   app.use(express.static("frontend/build"));

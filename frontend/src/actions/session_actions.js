@@ -72,6 +72,7 @@ export const guestLogin = (
 export const logout = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
   APIUtil.setAuthToken(false);
+  APIUtil.removeCurrentUserId();
   dispatch(logoutUser());
 };
 
