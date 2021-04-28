@@ -11,6 +11,7 @@ const validateLoginInput = require("../../validation/login");
 
 const { google } = require("googleapis");
 const fs = require("fs");
+const path = require('path');
 
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
@@ -114,7 +115,16 @@ router.post("/login", (req, res) => {
 
 
 
+// router.get('/token', (req,res)=>{ //TEST
+//   let oAuth2Client = createOAuth2Client();
+//   const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+//   const authorizeUrl = oAuth2Client.generateAuthUrl({
+//         access_type: 'offline',
+//         scope: SCOPES.join(' ')
+//   });
+//   res.redirect(authorizeUrl);
 
+// });
 router.get('/token', (req,res)=>{/// we should get the mongodb id in our req
   const dbid = req.body.id;
   User.findById(dbid)
@@ -138,7 +148,7 @@ router.get('/token', (req,res)=>{/// we should get the mongodb id in our req
         refresh_token:tokenList[1],
         scope:tokenList[2],
         token_type:tokenList[3],
-        expiry_date:tokenList[4]
+        expiry_date: parseInt(tokenList[4])
       }
       google.options({auth: oAuth2Client});
     }
@@ -161,7 +171,17 @@ router.get('/oauth2callback', async (req,res)=>{
 
   //Get CurrentUser and store tokens in .googleCredentials
   let gcreds = Object.values(tokens);
-  // CurrentUserId
+  gcreds[4] = gcreds[4].toString();
+  CurrentUserId.find({})
+  .then(cuList =>{
+    console.log(`culist is ${cuList}`);
+    let cuid = cuList[0].id;
+    User.findByIdAndUpdate(cuid,{googleCredentials: gcreds, isLinkedGoogleAccount: true}, {new:true})
+    .then((u)=>{
+      console.log('UPdated current User: ');
+      console.log(u);
+    });
+  })
 
   res.redirect('http://localhost:3000')  // In prod, just /
 })
@@ -170,7 +190,7 @@ router.get('/oauth2callback', async (req,res)=>{
 
 const createOAuth2Client = ()=>{
   const credentialsFile = "../../credentials.json";
-  let credentials = JSON.parse(fs.readFileSync(credentialsFile));
+  let credentials = JSON.parse(fs.readFileSync(path.resolve(__dirname, credentialsFile)));
   const { client_secret, client_id, redirect_uris } = credentials.web;//.installed;
 
   return new google.auth.OAuth2(
