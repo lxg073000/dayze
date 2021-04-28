@@ -35,7 +35,7 @@ export default class oauth extends Component {
           <h1>Link Your Google Calendar?</h1>
           <h2>
             Dayze powered by Google allows you to sync all your events in{" "}
-            <strong>three easy step!</strong>
+            <strong>three easy steps!</strong>
           </h2>
           <ul>
             <li>Follow the link</li>
