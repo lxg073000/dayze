@@ -23,7 +23,7 @@ const EventSchema = new Schema ({
     },
     googleId: {
         type: String, 
-        required: true
+        
     }
 });
 

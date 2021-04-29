@@ -55,7 +55,7 @@ export const login = (user) => (dispatch) => {
   ////debugger;
   return APIUtil.login(user)
     .then((res) => {
-      //debugger
+      debugger
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
@@ -87,6 +87,7 @@ export const guestLogin = (
 export const logout = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
   APIUtil.setAuthToken(false);
+  APIUtil.removeCurrentUserId();
   dispatch(logoutUser());
 };
 

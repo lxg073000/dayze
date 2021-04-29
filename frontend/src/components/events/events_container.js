@@ -22,7 +22,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchTodays: (id) => dispatch(fetchTodays(id)),
     fetchWeek: (id) => dispatch(fetchWeek(id)),
     fetchMonth: (id) => dispatch(fetchMonth(id)),
-    deleteEvent: (id) => dispatch(deleteEvent(id)),
+    deleteEvent: (id, isLinkedGoogleAccount) => dispatch(deleteEvent(id,isLinkedGoogleAccount)),
+    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
   };
 };
 

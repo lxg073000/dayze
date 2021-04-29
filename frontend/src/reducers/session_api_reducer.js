@@ -28,11 +28,21 @@ const sessionAPIReducer = (state = initialState, action) => {
       };
     case RECEIVE_USER_SIGN_IN:
       //debugger;
-      action.currentUser.data.id = action.currentUser.data._id;
+      
+      let u = action.currentUser.data;
+      u.id = u._id;
       return {
         ...state,
         isSignedIn: true,
-        user: action.currentUser.data,
+        user: {
+          username: u.username,
+          isLinkedGoogleAccount: u.isLinkedGoogleAccount,
+          email: u.email, 
+          id: u.id,
+          _id: u.id, 
+          googleUrl: u.googleUrl
+          
+        },
       };
     default:
       return state;

@@ -38,6 +38,7 @@ export default class event_editor extends Component {
       date: this.composeDate(this.state.date, this.state.time),
       user: this.props.currentUser.id,
       _id: this.props.id,
+      isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount
     };
 
     let id = this.props.id;
