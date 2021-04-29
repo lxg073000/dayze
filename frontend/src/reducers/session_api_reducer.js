@@ -39,7 +39,8 @@ const sessionAPIReducer = (state = initialState, action) => {
           isLinkedGoogleAccount: u.isLinkedGoogleAccount,
           email: u.email, 
           id: u.id,
-          _id: u.id
+          _id: u.id, 
+          googleUrl: u.googleUrl
           
         },
       };

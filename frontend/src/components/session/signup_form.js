@@ -40,9 +40,12 @@ class SignupForm extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
+    // isLinkedGoogleAccount:                           true//this.state.isLinkedGoogleAccount///////////////////
 
     this.props.signup(user);
   }
+
+  
 
   renderErrors() {
     if (

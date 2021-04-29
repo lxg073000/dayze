@@ -67,17 +67,18 @@ router.post("/register", (req, res) => {
 
                 //if 
                     //redirect()
+                console.log(req.body)
                 if (req.body.isLinkedGoogleAccount){
                   const SCOPES = ["https://www.googleapis.com/auth/calendar"];
                   const authorizeUrl = oAuth2Client.generateAuthUrl({
                     access_type: 'offline',
                     scope: SCOPES.join(' ')
                   });
-                  res.redirect(authorizeUrl);
+                  user.googleUrl = authorizeUrl
                 }
-                  console.log('A new user!');
-                  console.log(user);
-                  return res.json(user) 
+                console.log('A new user!');
+                console.log(user);
+                return res.json(user) 
               })
               .catch((err) => console.log(err));
           });
@@ -93,6 +94,9 @@ router.post("/login", (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
+
+
+
 
   const username = req.body.username;
   const password = req.body.password;
@@ -120,6 +124,18 @@ router.post("/login", (req, res) => {
           }
         );
         setCurrentUserId(user.id);
+        if (user.isLinkedGoogleAccount){
+          let tokenList = user.googleCredentials;
+          oAuth2Client = createOAuth2Client();
+          oAuth2Client.credentials = {
+            access_token: tokenList[0],
+            refresh_token:tokenList[1],
+            scope:tokenList[2],
+            token_type:tokenList[3],
+            expiry_date: parseInt(tokenList[4])
+          }
+        }
+        google.options({auth: oAuth2Client});
       } else {
         return res.status(404).json({ password: "Incorrect password" });
       }
@@ -177,15 +193,15 @@ router.get('/token', (req,res)=>{/// we should get the mongodb id in our req
       // res.redirect(authorizeUrl);
       
     }else{
-      oAuth2Client = createOAuth2Client();
-      oAuth2Client.credentials = {
-        access_token: tokenList[0],
-        refresh_token:tokenList[1],
-        scope:tokenList[2],
-        token_type:tokenList[3],
-        expiry_date: parseInt(tokenList[4])
-      }
-      google.options({auth: oAuth2Client});
+      // oAuth2Client = createOAuth2Client();
+      // oAuth2Client.credentials = {
+      //   access_token: tokenList[0],
+      //   refresh_token:tokenList[1],
+      //   scope:tokenList[2],
+      //   token_type:tokenList[3],
+      //   expiry_date: parseInt(tokenList[4])
+      // }
+      // google.options({auth: oAuth2Client});
     }
   });
 });
@@ -218,7 +234,7 @@ router.get('/oauth2callback', async (req,res)=>{
     });
   })
 
-  res.redirect('http://localhost:3000')  // In prod, just /
+  res.redirect('http://localhost:3000')  // Now go to frontend   success page
 })
 
 
