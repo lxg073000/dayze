@@ -16,10 +16,13 @@ export const receiveOAuthTokens = (tokens) => ({
   tokens,
 });
 
-export const receiveUserSignIn = (currentUser) => ({
-  type: RECEIVE_USER_SIGN_IN,
-  currentUser,
-});
+export const receiveUserSignIn = (currentUser) => {
+  debugger;
+  return {
+    type: RECEIVE_USER_SIGN_IN,
+    currentUser,
+  };
+};
 
 export const receiveErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -31,7 +34,7 @@ export const logoutUser = () => ({
 });
 
 export const signup = (user) => (dispatch) => {
-  //debugger
+  debugger;
 
   return APIUtil.signup(user).then(
     (user) => {
@@ -55,7 +58,7 @@ export const login = (user) => (dispatch) => {
   ////debugger;
   return APIUtil.login(user)
     .then((res) => {
-      debugger
+      debugger;
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
@@ -87,7 +90,7 @@ export const guestLogin = (
 export const logout = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
   APIUtil.setAuthToken(false);
-  APIUtil.removeCurrentUserId();
+  APIUtil.removeAuthAndID();
   dispatch(logoutUser());
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import LinkedInListMini from "../nav/linked_in_list_mini";
+import OAuth from "../session/oauth_container";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -10,9 +11,11 @@ class SignupForm extends React.Component {
       username: "",
       password: "",
       errors: {},
+      toggleAuth: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleAuth = this.toggleAuth.bind(this);
     this.clearedErrors = false;
   }
 
@@ -31,21 +34,26 @@ class SignupForm extends React.Component {
       });
   }
 
-  handleSubmit(e) {
+  toggleAuth(e) {
+    // debugger;
     e.preventDefault();
-    ////debugger;
+    this.setState({ toggleAuth: !this.state.toggleAuth });
+    // document.getElementById("oauth-modal").classList.remove("hide");
+  }
 
+  handleSubmit(isLinked) {
+    debugger;
     let user = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
+      isLinkedGoogleAccount: isLinked,
     };
     // isLinkedGoogleAccount:                           true//this.state.isLinkedGoogleAccount///////////////////
 
     this.props.signup(user);
+    // this.setState({ toggleAuth: !this.state.toggleAuth });
   }
-
-  
 
   renderErrors() {
     if (
@@ -73,6 +81,9 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="session-grid">
+        {this.state.toggleAuth ? (
+          <OAuth handleSubmit={this.handleSubmit} close={this.toggleAuth} />
+        ) : null}
         <img
           alt="bg-img"
           className="background-img1 dark"
@@ -91,10 +102,7 @@ class SignupForm extends React.Component {
           </div>
 
           <div className="signup-form-shell">
-            <form
-              className="signup-form-container"
-              onSubmit={this.handleSubmit}
-            >
+            <form className="signup-form-container" onSubmit={this.toggleAuth}>
               <div className="signup-form-background">
                 <div className="ssec email-c">
                   <input

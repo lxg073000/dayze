@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
-import OAuth from "../session/oauth_container";
+import GoogleUrl from "../session/google_url_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -73,7 +73,7 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="user-shell">
-        <OAuth />
+        {this.props.currentUser.googleUrl ? <GoogleUrl /> : null}
         <img
           alt="bg-img"
           className="background-img1 hub-dark main-bg1"

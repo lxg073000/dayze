@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
-const CurrentUserId = require('../../models/CurrentUserId');
+const CurrentUserId = require("../../models/CurrentUserId");
 const bcrypt = require("bcryptjs");
 const keys = require("../../config/keys");
 const jwt = require("jsonwebtoken");
@@ -11,8 +11,7 @@ const validateLoginInput = require("../../validation/login");
 
 const { google } = require("googleapis");
 const fs = require("fs");
-const path = require('path');
-
+const path = require("path");
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
@@ -53,7 +52,7 @@ router.post("/register", (req, res) => {
           username: req.body.username,
           email: req.body.email,
           password: req.body.password,
-          isLinkedGoogleAccount: req.body.isLinkedGoogleAccount
+          isLinkedGoogleAccount: req.body.isLinkedGoogleAccount,
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -62,23 +61,29 @@ router.post("/register", (req, res) => {
             newUser.password = hash;
             newUser
               .save()
-              .then((user) =>{ 
+              .then((user) => {
                 setCurrentUserId(user.id);
 
-                //if 
-                    //redirect()
-                console.log(req.body)
-                if (req.body.isLinkedGoogleAccount){
+                //if
+                //redirect()
+                let authorizeUrl;
+
+                console.log(req.body);
+                if (req.body.isLinkedGoogleAccount) {
+                  let oAuth2Client = createOAuth2Client();
                   const SCOPES = ["https://www.googleapis.com/auth/calendar"];
-                  const authorizeUrl = oAuth2Client.generateAuthUrl({
-                    access_type: 'offline',
-                    scope: SCOPES.join(' ')
+                  authorizeUrl = oAuth2Client.generateAuthUrl({
+                    access_type: "offline",
+                    scope: SCOPES.join(" "),
                   });
-                  user.googleUrl = authorizeUrl
+                  user.googleUrl = authorizeUrl;
+                  console.log(`googleURL - ${user.googleUrl}`);
                 }
-                console.log('A new user!');
+                console.log("A new user!");
                 console.log(user);
-                return res.json(user) 
+
+                console.log(user);
+                return res.json(user);
               })
               .catch((err) => console.log(err));
           });
@@ -95,9 +100,6 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-
-
-
   const username = req.body.username;
   const password = req.body.password;
   User.findOne({ username }).then((user) => {
@@ -110,7 +112,7 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           username: user.username,
-          isLinkedGoogleAccount:user.isLinkedGoogleAccount
+          isLinkedGoogleAccount: user.isLinkedGoogleAccount,
         };
         jwt.sign(
           payload,
@@ -124,18 +126,18 @@ router.post("/login", (req, res) => {
           }
         );
         setCurrentUserId(user.id);
-        if (user.isLinkedGoogleAccount){
+        if (user.isLinkedGoogleAccount) {
           let tokenList = user.googleCredentials;
           oAuth2Client = createOAuth2Client();
           oAuth2Client.credentials = {
             access_token: tokenList[0],
-            refresh_token:tokenList[1],
-            scope:tokenList[2],
-            token_type:tokenList[3],
-            expiry_date: parseInt(tokenList[4])
-          }
+            refresh_token: tokenList[1],
+            scope: tokenList[2],
+            token_type: tokenList[3],
+            expiry_date: parseInt(tokenList[4]),
+          };
         }
-        google.options({auth: oAuth2Client});
+        google.options({ auth: oAuth2Client });
       } else {
         return res.status(404).json({ password: "Incorrect password" });
       }
@@ -159,9 +161,6 @@ router.patch("/:id/googleAuth", (req, res) => {
     .catch((err) => res.status(400).json(err));
 });
 
-
-
-
 // router.get('/token', (req,res)=>{ //TEST
 //   let oAuth2Client = createOAuth2Client();
 //   const SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -172,63 +171,56 @@ router.patch("/:id/googleAuth", (req, res) => {
 //   res.redirect(authorizeUrl);
 // });
 
-
-router.get('/oauth2callback', async (req,res)=>{
+router.get("/oauth2callback", async (req, res) => {
   const authorizationCode = req.query.code;
   let oAuth2Client = createOAuth2Client();
 
-
-  const {tokens} = await oAuth2Client.getToken(authorizationCode);
+  const { tokens } = await oAuth2Client.getToken(authorizationCode);
   console.log(`tokens! `);
   console.log(tokens);
 
   oAuth2Client.credentials = tokens;
-  google.options({auth: oAuth2Client});
+  google.options({ auth: oAuth2Client });
 
   //Get CurrentUser and store tokens in .googleCredentials
   let gcreds = Object.values(tokens);
-  gcreds[4] = gcreds[4].toString();
-  CurrentUserId.find({})
-  .then(cuList =>{
+  console.log(`------->GREDS: ${gcreds}`);
+  gcreds[3] = gcreds[3].toString();
+  CurrentUserId.find({}).then((cuList) => {
     console.log(`culist is ${cuList}`);
     let cuid = cuList[0].id;
-    User.findByIdAndUpdate(cuid,{googleCredentials: gcreds, isLinkedGoogleAccount: true}, {new:true})
-    .then((u)=>{
-      console.log('UPdated current User: ');
+    User.findByIdAndUpdate(
+      cuid,
+      { googleCredentials: gcreds, isLinkedGoogleAccount: true },
+      { new: true }
+    ).then((u) => {
+      console.log("UPdated current User: ");
       console.log(u);
     });
-  })
+  });
 
-  res.redirect('http://localhost:3000')  // Now go to frontend   success page
-})
+  res.redirect("http://localhost:3000/#/user"); // Now go to frontend   success page
+});
 
-
-
-const createOAuth2Client = ()=>{
+const createOAuth2Client = () => {
   const credentialsFile = "../../credentials.json";
-  let credentials = JSON.parse(fs.readFileSync(path.resolve(__dirname, credentialsFile)));
-  const { client_secret, client_id, redirect_uris } = credentials.web;//.installed;
-
-  return new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0]
+  let credentials = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, credentialsFile))
   );
-}
+  const { client_secret, client_id, redirect_uris } = credentials.web; //.installed;
 
-const setCurrentUserId = async (id)=>{
-  CurrentUserId.find({})
-  .then(userarray=>{
-    if (userarray.length === 0){
-      let currentUser  = new CurrentUserId({id});
+  return new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+};
+
+const setCurrentUserId = async (id) => {
+  CurrentUserId.find({}).then((userarray) => {
+    if (userarray.length === 0) {
+      let currentUser = new CurrentUserId({ id });
       currentUser.save();
-      
-    }else if (userarray.length === 1){
-      CurrentUserId.findByIdAndUpdate(userarray[0]._id, {id:id})
+    } else if (userarray.length === 1) {
+      CurrentUserId.findByIdAndUpdate(userarray[0]._id, { id: id });
     }
   });
-}
-
-
+};
 
 module.exports = router;

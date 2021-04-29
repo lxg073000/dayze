@@ -27,8 +27,8 @@ const sessionAPIReducer = (state = initialState, action) => {
         user: undefined,
       };
     case RECEIVE_USER_SIGN_IN:
-      //debugger;
-      
+      debugger;
+
       let u = action.currentUser.data;
       u.id = u._id;
       return {
@@ -37,11 +37,10 @@ const sessionAPIReducer = (state = initialState, action) => {
         user: {
           username: u.username,
           isLinkedGoogleAccount: u.isLinkedGoogleAccount,
-          email: u.email, 
+          email: u.email,
           id: u.id,
-          _id: u.id, 
-          googleUrl: u.googleUrl
-          
+          _id: u.id,
+          googleUrl: u.googleUrl,
         },
       };
     default:

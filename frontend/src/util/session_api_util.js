@@ -26,6 +26,6 @@ export const guestUser = (userData) => {
   return axios.post("/api/users/login", userData);
 };
 
-export const removeCurrentUserId = ()=>{
-  return axios.delete('/api/currentUserIds/');
-}
+export const removeAuthAndID = () => {
+  return axios.delete("/api/currentUserIds/");
+};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class oauth extends Component {
+export default class googleUrl extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,25 +12,10 @@ export default class oauth extends Component {
     };
 
     // this.handleTokens = this.handleTokens.bind(this);
-    this.handleDeny = this.handleDeny.bind(this);
-    this.handleConfirm = this.handleConfirm.bind(this);
   }
 
   componentDidMount() {
     debugger;
-  }
-
-  handleConfirm() {
-    // this.props.close();
-    debugger;
-    return this.props.handleSubmit(true);
-  }
-
-  handleDeny() {
-    // this.props.close();
-    return this.props.handleSubmit(false);
-    // this.props.close();
-    // this.props.noSync();
   }
 
   render() {
@@ -48,12 +33,17 @@ export default class oauth extends Component {
             <li>Allow Permissions</li>
           </ul>
           <div>
-            <p className="sync-confirm-btn" onClick={this.handleConfirm}>
-              Sync My Account
-            </p>
-            <p className="sync-deny-btn" onClick={this.handleDeny}>
-              Sync Later
-            </p>
+            <a
+              className="sync-confirm-btn"
+              href={this.props.currentUser.googleUrl}
+              onClick={() =>
+                document
+                  .getElementsByClassName("oauth-modal-container")[0]
+                  .classList.add("hide")
+              }
+            >
+              Continue to Google Authenticate
+            </a>
           </div>
         </div>
       </div>
