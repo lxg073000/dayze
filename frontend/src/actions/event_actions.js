@@ -87,8 +87,8 @@ export const updateEvent = (id, data) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const deleteEvent = (id) => (dispatch) =>
-  APIUtil.deleteEvent(id)
+export const deleteEvent = (id, isLinkedGoogleAccount) => (dispatch) =>
+  APIUtil.deleteEvent(id, isLinkedGoogleAccount)
     .then((event) => {
       //debugger;
       return dispatch(receiveDeleteEvent(event));

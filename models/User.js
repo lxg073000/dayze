@@ -19,6 +19,13 @@ const UserSchema = new Schema({
     type:String,
     required:true
   },
+  googleCredentials: [
+    {type:String}
+  ], 
+  isLinkedGoogleAccount: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const User = mongoose.model('users', UserSchema);
