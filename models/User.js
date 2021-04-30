@@ -26,6 +26,10 @@ const UserSchema = new Schema({
   googleUrl: {
     type: String,
   },
+  friends: {
+    type: Map,
+    of: String,
+  },
 });
 
 const User = mongoose.model("users", UserSchema);

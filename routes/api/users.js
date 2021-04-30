@@ -15,6 +15,13 @@ const path = require("path");
 
 router.get("/test", (req, res) => res.json({ msg: "This is the users route" }));
 
+router.get("/", (req, res) => {
+  User.find()
+    .sort({ date: 1 })
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json(err));
+});
+
 router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
