@@ -167,7 +167,7 @@ router.post("/login", (req, res) => {
         setCurrentUserId(user.id);
         if (user.isLinkedGoogleAccount) {
           let tokenList = user.googleCredentials;
-          oAuth2Client = createOAuth2Client();
+          let oAuth2Client = createOAuth2Client();
           oAuth2Client.credentials = {
             access_token: tokenList[0],
             refresh_token: tokenList[1],
@@ -175,8 +175,8 @@ router.post("/login", (req, res) => {
             token_type: tokenList[3],
             expiry_date: parseInt(tokenList[4]),
           };
+          google.options({ auth: oAuth2Client });
         }
-        google.options({ auth: oAuth2Client });
       } else {
         return res.status(404).json({ password: "Incorrect password" });
       }

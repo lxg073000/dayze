@@ -98,9 +98,11 @@ export const guestLogin = (
 };
 
 export const logout = () => (dispatch) => {
+  if (localStorage.jwtToken){
+    APIUtil.removeAuthAndID();
+  }
   localStorage.removeItem("jwtToken");
   APIUtil.setAuthToken(false);
-  APIUtil.removeAuthAndID();
   dispatch(logoutUser());
 };
 
