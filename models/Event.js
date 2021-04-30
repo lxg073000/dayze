@@ -6,6 +6,11 @@ const EventSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "users"
     },
+    invites:{
+        type: Map,
+        of: String,
+        default: {}
+    },
     title: {
         type: String,
         required: true,

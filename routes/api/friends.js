@@ -8,10 +8,27 @@ router.get("/test", (req, res) => {
   res.json({ msg: "This is the friends route" });
 });
 router.get("/userId/:userId", (req, res) => {
-  res.json({ msg: "This is the getUsersFriends route" });
+  User.findById(req.params.userId)
+  .then(user=>{
+    let friends = user.friends;
+    let friendArray = [];
+    for (let [key, value] of friends.entries()) {
+      friendArray.push({[key]:value});
+    }
+    res.json(friendArray);
+  })
+  
+
+
+
+
 });
 router.get("/:id", (req, res) => {
-  res.json({ msg: "This is the getFriend route" });
+
+
+
+
+
 });
 router.post("/:id", (req, res) => {
   CurrentUserId.find({}).then(cuList => {
@@ -25,7 +42,7 @@ router.post("/:id", (req, res) => {
         friends.set(friendId, friendUsername);
         console.log(`updated friends`)
         console.log(friends)
-        user.friends= friends;
+        // user.friends= friends;
 
         user.save()
         .then(user => {
@@ -37,7 +54,16 @@ router.post("/:id", (req, res) => {
   });
 });
 router.delete("/:id", (req, res) => {
-  res.json({ msg: "This is the deleteFriend route" });
+  CurrentUserId.find({}).then(cuList => {
+    let cuid = cuList[0].id
+    User.findById(cuid).then(user =>{
+      let friends = user.friends
+      let friendId = req.params.id; 
+      friends.delete(friendId);
+      user.save();
+      res.json(friendId)
+    });
+  });
 });
 
 module.exports = router;
