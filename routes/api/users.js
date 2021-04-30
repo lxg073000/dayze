@@ -64,6 +64,9 @@ router.post("/register", (req, res) => {
               .then((user) => {
                 setCurrentUserId(user.id);
 
+
+
+
                 //if
                 //redirect()
                 let authorizeUrl;
@@ -82,8 +85,38 @@ router.post("/register", (req, res) => {
                 console.log("A new user!");
                 console.log(user);
 
-                console.log(user);
-                return res.json(user);
+                const payload = {
+                  id: user.id,
+                  username: user.username,
+                  _id: user._id,
+                  email: user.email,
+                  googleUrl: user.googleUrl,
+                  isLinkedGoogleAccount: user.isLinkedGoogleAccount,
+                };
+
+                jwt.sign(
+                  payload,
+                  keys.secretOrKey,
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    res.json({
+                      success: true,
+                      token: "Bearer " + token,
+                      id: user.id,
+                      username: user.username,
+                      _id: user._id,
+                      email: user.email,
+                      googleUrl: user.googleUrl,
+                      isLinkedGoogleAccount: user.isLinkedGoogleAccount,
+                    });
+                  }
+                );
+
+                // return res.json(user);
+
+
+
+
               })
               .catch((err) => console.log(err));
           });
@@ -122,6 +155,13 @@ router.post("/login", (req, res) => {
             res.json({
               success: true,
               token: "Bearer " + token,
+              id: user.id,
+              username: user.username,
+              _id: user._id,
+              email: user.email,
+              googleUrl: user.googleUrl,
+              isLinkedGoogleAccount: user.isLinkedGoogleAccount,
+              
             });
           }
         );
@@ -199,7 +239,7 @@ router.get("/oauth2callback", async (req, res) => {
     });
   });
 
-  res.redirect("http://localhost:3000/#/user"); // Now go to frontend   success page
+  res.redirect("http://localhost:3000/#/user/forward"); // Now go to frontend   success page
 });
 
 const createOAuth2Client = () => {

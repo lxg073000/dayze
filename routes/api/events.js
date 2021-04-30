@@ -140,6 +140,8 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
+    console.log('Patch req Body')
+    console.log(req.body);
     let updatedDbParams = {
         title: req.body.title,
         description: req.body.description,
@@ -168,7 +170,8 @@ router.patch("/:id", (req, res) => {
 })
 
 router.delete("/:id", (req, res) => {
-
+    console.log('Delete req.body: ');
+    console.log(req.body)
     let isLinked = req.body.isLinkedGoogleAccount;////////
     
     Event.findByIdAndRemove(req.params.id)
