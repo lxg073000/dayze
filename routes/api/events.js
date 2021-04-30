@@ -91,6 +91,7 @@ router.post("/",
           title: req.body.title,
           description: req.body.description,
           date: req.body.date,
+          // invites: req.body.invites
       };
 
       let isLinked = req.body.user.isLinkedGoogleAccount;
