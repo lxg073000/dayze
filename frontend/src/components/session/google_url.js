@@ -16,8 +16,7 @@ export default class googleUrl extends Component {
 
   componentDidMount() {
     debugger;
-    console.log(this.props)
-   
+    console.log(this.props);
   }
 
   render() {
@@ -34,7 +33,7 @@ export default class googleUrl extends Component {
             <li>Sign Into your Google Account</li>
             <li>Allow Permissions</li>
           </ul>
-          <div>
+          <div className="google-URL-grid">
             <a
               className="sync-confirm-btn"
               href={this.props.currentUser.googleUrl}

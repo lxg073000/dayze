@@ -6,6 +6,7 @@ export const RECEIVE_OAUTH_TOKENS = "RECEIVE_OAUTH_TOKENS";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_NEW_USER = "RECEIVE_NEW_USER";
+export const RECEIVE_GOOGLELINK_BOOL = "RECEIVE_GOOGLELINK_BOOL";
 
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -16,7 +17,6 @@ export const receiveOAuthTokens = (tokens) => ({
   tokens,
 });
 
-
 export const receiveErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors,
@@ -26,13 +26,18 @@ export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT,
 });
 
-export const receiveNewUser = (user)=>{
+export const receiveNewUser = (user) => {
   return {
     type: RECEIVE_NEW_USER,
-    user
-  }
-}
-
+    user,
+  };
+};
+export const receiveGoogleLinkBool = (link) => {
+  return {
+    type: RECEIVE_GOOGLELINK_BOOL,
+    link,
+  };
+};
 
 export const signup = (user) => (dispatch) => {
   debugger;
@@ -97,6 +102,13 @@ export const logout = () => (dispatch) => {
   APIUtil.setAuthToken(false);
   APIUtil.removeAuthAndID();
   dispatch(logoutUser());
+};
+
+export const linkGoogleCal = () => (dispatch) => {
+  APIUtil.linkGoogleCal().then((bool) => {
+    debugger;
+    return dispatch(receiveGoogleLinkBool(bool));
+  });
 };
 
 // export const logout = () => (dispatch) =>

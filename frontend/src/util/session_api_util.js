@@ -29,3 +29,7 @@ export const guestUser = (userData) => {
 export const removeAuthAndID = () => {
   return axios.delete("/api/currentUserIds/");
 };
+
+export const linkGoogleCal = () => {
+  return axios.get("api/users/LinkToGoogleCal");
+};

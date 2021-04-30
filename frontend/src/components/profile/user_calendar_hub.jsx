@@ -35,9 +35,9 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props);
     this.props.fetchUserEvents(this.props.currentUser.id);
-    document.getElementById("root").classList.add("layout-bug");
+    // document.getElementById("root").classList.add("layout-bug");
     // document.getElementById("root").style.height = "100%";
     // debugger;
     // this.events = this.props.events;
@@ -74,11 +74,10 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="user-shell">
-        {this.props.currentUser.googleUrl && 
-        !this.props.location.pathname.includes('forward') 
-        ? <GoogleUrl /> 
-        : null
-        }
+        {this.props.currentUser.googleUrl &&
+        !this.props.location.pathname.includes("forward") ? (
+          <GoogleUrl />
+        ) : null}
         <img
           alt="bg-img"
           className="background-img1 hub-dark main-bg1"

@@ -12,7 +12,7 @@ export default class splash extends React.Component {
   }
 
   componentDidMount() {
-    document.getElementById("root").classList.remove("layout-bug");
+    // document.getElementById("root").classList.remove("layout-bug");
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {

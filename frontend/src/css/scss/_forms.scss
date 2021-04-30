@@ -457,7 +457,7 @@ p.email-t {
   right: -50%;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   .signup-form-background,
   .login-form-background {
     width: 98vw;
@@ -490,6 +490,6 @@ p.email-t {
   }
 }
 
-#root.layout-bug {
-  height: 100%;
-}
+// #root.layout-bug {
+//   height: 100%;
+// }

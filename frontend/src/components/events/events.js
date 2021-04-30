@@ -54,7 +54,9 @@ class Event extends React.Component {
   }
 
   handleDelete(id) {
-    this.props.deleteEvent(id, {isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount});
+    this.props.deleteEvent(id, {
+      isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount,
+    });
   }
 
   handleLinkGoogleCal() {
@@ -118,7 +120,7 @@ class Event extends React.Component {
             id="day"
             onClick={this.filterToday}
           ></i>
-          {this.props.currentUser.isLinkedGoogleAccount ? (
+          {!this.props.currentUser.isLinkedGoogleAccount ? (
             <i
               className="fas fa-link"
               id="link"

@@ -2,6 +2,7 @@ import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USER_LOGOUT,
   RECEIVE_NEW_USER,
+  RECEIVE_GOOGLELINK_BOOL,
 } from "../actions/session_actions";
 
 const initialState = {
@@ -41,6 +42,14 @@ const sessionAPIReducer = (state = initialState, action) => {
           id: u.id,
           _id: u.id,
           googleUrl: u.googleUrl,
+        },
+      };
+    case RECEIVE_GOOGLELINK_BOOL:
+      debugger;
+      return {
+        ...state,
+        user: {
+          isLinkedGoogleAccount: action.user.isLinkedGoogleAccount,
         },
       };
     default:

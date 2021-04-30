@@ -64,9 +64,6 @@ router.post("/register", (req, res) => {
               .then((user) => {
                 setCurrentUserId(user.id);
 
-
-
-
                 //if
                 //redirect()
                 let authorizeUrl;
@@ -113,10 +110,6 @@ router.post("/register", (req, res) => {
                 );
 
                 // return res.json(user);
-
-
-
-
               })
               .catch((err) => console.log(err));
           });
@@ -161,7 +154,6 @@ router.post("/login", (req, res) => {
               email: user.email,
               googleUrl: user.googleUrl,
               isLinkedGoogleAccount: user.isLinkedGoogleAccount,
-              
             });
           }
         );
@@ -211,6 +203,16 @@ router.patch("/:id/googleAuth", (req, res) => {
 //   res.redirect(authorizeUrl);
 // });
 
+router.get("/LinkToGoogleCal", (req, res) => {
+  let oAuth2Client = createOAuth2Client();
+  const SCOPES = ["https://www.googleapis.com/auth/calendar"];
+  authorizeUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: SCOPES.join(" "),
+  });
+  res.redirect(authorizeUrl);
+});
+
 router.get("/oauth2callback", async (req, res) => {
   const authorizationCode = req.query.code;
   let oAuth2Client = createOAuth2Client();
@@ -239,6 +241,7 @@ router.get("/oauth2callback", async (req, res) => {
     });
   });
 
+  // res.json({ isLinkedGoogleAccount: true });
   res.redirect("http://localhost:3000/#/user/forward"); // Now go to frontend   success page
 });
 

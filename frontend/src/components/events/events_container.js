@@ -6,6 +6,7 @@ import {
   fetchWeek,
   fetchMonth,
 } from "../../actions/event_actions";
+import { linkGoogleCal } from "../../actions/session_actions";
 import Events from "./events";
 
 const mapStateToProps = (state) => {
@@ -22,8 +23,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchTodays: (id) => dispatch(fetchTodays(id)),
     fetchWeek: (id) => dispatch(fetchWeek(id)),
     fetchMonth: (id) => dispatch(fetchMonth(id)),
-    deleteEvent: (id, data) => dispatch(deleteEvent(id,data)),
-    // updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    deleteEvent: (id, data) => dispatch(deleteEvent(id, data)),
+    linkGoogleCal: () => dispatch(linkGoogleCal()),
   };
 };
 
