@@ -52,7 +52,7 @@ class SignupForm extends React.Component {
     // isLinkedGoogleAccount:                           true//this.state.isLinkedGoogleAccount///////////////////
 
     this.props.signup(user);
-    // this.setState({ toggleAuth: !this.state.toggleAuth });
+    this.setState({ toggleAuth: !this.state.toggleAuth });
   }
 
   renderErrors() {
