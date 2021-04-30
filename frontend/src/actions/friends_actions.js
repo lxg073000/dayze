@@ -45,7 +45,7 @@ export const fetchFriend = () => (dispatch) =>
 
 //fetch all friends of a particular user
 export const fetchFriends = (id) => (dispatch) =>
-  APIUtil.getFriends(id)
+  APIUtil.getUsersFriends(id)
     .then((event) => dispatch(receiveFriends(event)))
     .catch((err) => console.log(err));
 

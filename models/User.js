@@ -29,6 +29,7 @@ const UserSchema = new Schema({
   friends: {
     type: Map,
     of: String,
+    default: {}
   },
 });
 

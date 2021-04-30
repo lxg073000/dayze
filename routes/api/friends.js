@@ -18,16 +18,23 @@ router.post("/:id", (req, res) => {
     let cuid = cuList[0].id
     User.findById(cuid).then(user =>{
       let friends = user.friends
-      friends: {
-        id: req.params,
-        username: User.findById(req.params.id).then(friend =>{
-          friend.username
-        })
-      }
+      let friendId = req.params.id;  ////
+      
+      User.findById(req.params.id).then(friend =>{
+        let friendUsername = friend.username;
+        friends.set(friendId, friendUsername);
+        console.log(`updated friends`)
+        console.log(friends)
+        user.friends= friends;
 
-    })
-  }
-  res.json({ msg: "This is the postFriend route" });
+        user.save()
+        .then(user => {
+          res.json({ [friendId]:friendUsername });
+        })
+        .catch(err=> res.status(400).json(err));
+      });
+    });
+  });
 });
 router.delete("/:id", (req, res) => {
   res.json({ msg: "This is the deleteFriend route" });
