@@ -10,6 +10,7 @@ class Event extends React.Component {
       filter: "All Events",
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleLinkGoogleCal = this.handleLinkGoogleCal.bind(this);
     this.filterMonth = this.filterMonth.bind(this);
     this.filterWeek = this.filterWeek.bind(this);
     this.filterToday = this.filterToday.bind(this);
@@ -54,6 +55,10 @@ class Event extends React.Component {
 
   handleDelete(id) {
     this.props.deleteEvent(id);
+  }
+
+  handleLinkGoogleCal() {
+    this.props.linkGoogleCal();
   }
 
   filterWeek() {
@@ -113,6 +118,13 @@ class Event extends React.Component {
             id="day"
             onClick={this.filterToday}
           ></i>
+          {this.props.currentUser.isLinkedGoogleAccount ? (
+            <i
+              className="fas fa-link"
+              id="link"
+              onClick={this.handleLinkGoogleCal}
+            ></i>
+          ) : null}
         </span>
         <h1 className="event-list-headline">{this.state.filter}</h1>
 
