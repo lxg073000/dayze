@@ -1,7 +1,7 @@
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USER_LOGOUT,
-  RECEIVE_USER_SIGN_IN,
+  RECEIVE_NEW_USER,
 } from "../actions/session_actions";
 
 const initialState = {
@@ -26,10 +26,10 @@ const sessionAPIReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: undefined,
       };
-    case RECEIVE_USER_SIGN_IN:
+    case RECEIVE_NEW_USER:
       debugger;
 
-      let u = action.currentUser.data;
+      let u = action.user;
       u.id = u._id;
       return {
         ...state,

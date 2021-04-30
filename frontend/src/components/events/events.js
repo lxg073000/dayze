@@ -53,7 +53,7 @@ class Event extends React.Component {
   }
 
   handleDelete(id) {
-    this.props.deleteEvent(id);
+    this.props.deleteEvent(id, {isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount});
   }
 
   filterWeek() {

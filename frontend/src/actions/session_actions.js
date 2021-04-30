@@ -5,7 +5,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_OAUTH_TOKENS = "RECEIVE_OAUTH_TOKENS";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
-export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const RECEIVE_NEW_USER = "RECEIVE_NEW_USER";
 
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -16,13 +16,6 @@ export const receiveOAuthTokens = (tokens) => ({
   tokens,
 });
 
-export const receiveUserSignIn = (currentUser) => {
-  debugger;
-  return {
-    type: RECEIVE_USER_SIGN_IN,
-    currentUser,
-  };
-};
 
 export const receiveErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -33,12 +26,24 @@ export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT,
 });
 
+export const receiveNewUser = (user)=>{
+  return {
+    type: RECEIVE_NEW_USER,
+    user
+  }
+}
+
+
 export const signup = (user) => (dispatch) => {
   debugger;
 
   return APIUtil.signup(user).then(
-    (user) => {
-      return dispatch(receiveUserSignIn(user));
+    (res) => {
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      APIUtil.setAuthToken(token);
+      const decoded = jwt_decode(token);
+      return dispatch(receiveNewUser(decoded));
     },
     (err) => dispatch(receiveErrors(err.response.data))
   );

@@ -16,6 +16,8 @@ export default class googleUrl extends Component {
 
   componentDidMount() {
     debugger;
+    console.log(this.props)
+   
   }
 
   render() {

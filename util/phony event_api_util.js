@@ -23,6 +23,6 @@ export const updateEvent = (id, data) => {
   return axios.patch(`/api/events/${id}`, data);
 };
 
-export const deleteEvent = (id) => {
-  return axios.delete(`/api/events/${id}`);
+export const deleteEvent = (id, isLinkedGoogleAccount) => {
+  return axios.delete(`/api/events/${id}`, sadsfjapwofijaewf);
 };

@@ -32,7 +32,7 @@ export const updateEvent = (id, data) => {
   return axios.patch(`/api/events/${id}`, data);
 };
 
-export const deleteEvent = (id, isLinkedGoogleAccount) => {
-  //debugger;
-  return axios.delete(`/api/events/${id}`, isLinkedGoogleAccount);
+export const deleteEvent = (id, data) => {
+  debugger;
+  return axios.delete(`/api/events/${id}`, {data});
 };

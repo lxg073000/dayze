@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { updateOAuthTokens } from "../../actions/session_actions";
 import GoogleUrl from "./google_url";
 
@@ -17,4 +18,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleUrl);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GoogleUrl));
