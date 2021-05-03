@@ -50,7 +50,7 @@ class EventItem extends React.Component {
             closeEdit={this.edit_btn}
           />
         ) : null}
-        <li key={`${this.props.id}-title`}>
+        <li className="event-card-title" key={`${this.props.id}-title`}>
           {this.props.title}
           <span className="event-tools">
             <i

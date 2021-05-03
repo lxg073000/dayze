@@ -81,7 +81,7 @@ export default class user_calender_hub extends React.Component {
         <img
           alt="bg-img"
           className="background-img1 hub-dark main-bg1"
-          src="https://images.unsplash.com/photo-1516619533489-577675d1553a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80"
+          src="/assets/mainbg.jpg"
         ></img>
         <div className="hub-content-grid">
           <div className="white"></div>

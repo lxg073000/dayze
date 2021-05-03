@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
         <img
           alt="bg-img"
           className="background-img1 dark"
-          src="https://images.unsplash.com/photo-1531353826977-0941b4779a1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+          src="assets/login.jpg"
         ></img>
         <div className="white"></div>
 

@@ -38,6 +38,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use(express.static("public"));
 app.use("/api/events", events);
 
 app.use("/api/users", users);

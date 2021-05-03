@@ -38,7 +38,7 @@ export default class splash extends React.Component {
         <img
           alt="bg-img"
           className="background-img1"
-          src="https://post.healthline.com/wp-content/uploads/2020/08/tired_young_man-1200x628-facebook-1200x628.jpg"
+          src="/assets/splash_0.jpg"
         ></img>
         <div className="gradient"></div>
         <div className="splash-main">

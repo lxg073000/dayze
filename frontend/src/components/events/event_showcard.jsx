@@ -76,7 +76,7 @@ export default class event_showcard extends Component {
     //debugger;
     return Object.values(this.state.events).map((event, idx) => (
       <ul key={idx} className="event-card">
-        <li key={event.id}>{`${event.title}`}</li>
+        <li className="event-card-title" key={event.id}>{`${event.title}`}</li>
         <li key={event.id + 1}>{`${event.description}`}</li>
         <li key={event.id + 2}>{`${event.date}`}</li>
         <div className="linebreak"></div>

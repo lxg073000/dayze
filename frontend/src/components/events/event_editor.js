@@ -38,7 +38,7 @@ export default class event_editor extends Component {
       date: this.composeDate(this.state.date, this.state.time),
       user: this.props.currentUser.id,
       _id: this.props.id,
-      isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount
+      isLinkedGoogleAccount: this.props.currentUser.isLinkedGoogleAccount,
     };
 
     let id = this.props.id;
@@ -80,11 +80,7 @@ export default class event_editor extends Component {
             onChange={this.update("time")}
             placeholder="Event time"
           />
-          <input
-            className="sample-btn form-item"
-            type="submit"
-            value="Update Event"
-          />
+          <input className="form-item" type="submit" value="Update Event" />
         </form>
       </div>
     );

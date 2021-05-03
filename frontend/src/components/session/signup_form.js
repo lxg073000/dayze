@@ -87,7 +87,7 @@ class SignupForm extends React.Component {
         <img
           alt="bg-img"
           className="background-img1 dark"
-          src="https://images.unsplash.com/photo-1531588972149-aa60049701fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+          src="/assets/signup.jpg"
         ></img>
         <div className="white"></div>
 
