@@ -34,7 +34,7 @@ class CreateEvent extends React.Component {
     e.preventDefault();
     let event = {
       title: this.state.title,
-      description: this.state.description,
+      description: this.state.description || "Plans for the day",
       date: this.composeDate(this.state.date, this.state.time),
       user: this.props.currentUser,
     };
