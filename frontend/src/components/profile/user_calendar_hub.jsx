@@ -89,7 +89,7 @@ export default class user_calender_hub extends React.Component {
             <div className="hub-container">
               <div className="hsec head">
                 <p className="main-headline">
-                  Dazed {/*  {`${this.props.username}`} */}
+                  Dayze {/*  {`${this.props.username}`} */}
                 </p>
               </div>
               <div className="hsec event-creator show-event">

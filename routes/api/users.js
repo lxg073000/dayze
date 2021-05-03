@@ -217,7 +217,7 @@ router.get("/LinkToGoogleCal", (req, res) => {
     access_type: "offline",
     scope: SCOPES.join(" "),
   });
-  res.redirect(authorizeUrl);
+  res.json(authorizeUrl);
 });
 
 router.get("/oauth2callback", async (req, res) => {
