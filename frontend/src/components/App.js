@@ -16,6 +16,7 @@ const App = () => {
       <Route exact path="/user" component={UserCalendarHub} />
       <Route exact path="/user/granted" component={UserCalendarHub} />
       <Route exact path="/authorized" component={Authorized} />
+      {/* <Route  path="/notification" component={Notification}/> */}
     </div>
   );
 };
