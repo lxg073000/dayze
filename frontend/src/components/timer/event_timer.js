@@ -4,9 +4,7 @@ import Notifications from "../notifications/notification";
 export default class EventTimer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      createdTimers: this.props.eventTimers,
-    };
+    this.state = {};
     this.handleEventTimer = this.handleEventTimer.bind(this);
     this.createNotifications = this.createNotifications.bind(this);
   }
@@ -28,7 +26,9 @@ export default class EventTimer extends React.Component {
 
     //create eventTimerObject for dispatch
     ///// eventId, setTimeoutID
-    let eventTimeoutID = setTimeout(() => {}, this.createNotifications(event));
+    let eventTimeoutID = setTimeout(() => {
+      window.open(`http://www.localhost:3000/api/notifcations/${urlPrams}`);
+    }, this.createNotifications(event));
     let eventTimer = {
       [event.id]: eventTimeoutID,
     };
