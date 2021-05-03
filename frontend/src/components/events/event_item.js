@@ -22,9 +22,10 @@ class EventItem extends React.Component {
   //   debugger;
   // }
 
-  edit_btn() {
+  edit_btn(e) {
     // debugger;
     this.setState({ editor_form: !this.state.editor_form });
+    e.target.classList.toggle("activated");
   }
   delete_btn(e, id) {
     // debugger;
