@@ -221,6 +221,7 @@ router.get("/LinkToGoogleCal", (req, res) => {
 });
 
 router.get("/oauth2callback", async (req, res) => {
+  if (req.query.error) return res.redirect('http://localhost:3000/#/user/')
   const authorizationCode = req.query.code;
   let oAuth2Client = createOAuth2Client();
 
@@ -249,7 +250,7 @@ router.get("/oauth2callback", async (req, res) => {
   });
 
   // res.json({ isLinkedGoogleAccount: true });
-  res.redirect("http://localhost:3000/#/user/forward"); // Now go to frontend   success page
+  res.redirect("http://localhost:3000/#/user/granted"); // Now go to frontend   success page
 });
 
 const createOAuth2Client = () => {

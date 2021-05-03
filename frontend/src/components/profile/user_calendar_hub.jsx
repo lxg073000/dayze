@@ -41,6 +41,10 @@ export default class user_calender_hub extends React.Component {
     // document.getElementById("root").style.height = "100%";
     // debugger;
     // this.events = this.props.events;
+
+    if (this.props.location.pathname.includes("granted") ){
+      this.props.changeIsLinkedGoogleAccount(true);
+    }
   }
 
   componentWillUnmount() {
@@ -75,7 +79,7 @@ export default class user_calender_hub extends React.Component {
     return (
       <div className="user-shell">
         {this.props.currentUser.googleUrl &&
-        !this.props.location.pathname.includes("forward") ? (
+        !this.props.location.pathname.includes("granted") ? (
           <GoogleUrl />
         ) : null}
         <img

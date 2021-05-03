@@ -23,12 +23,12 @@ export default class oauth extends Component {
   handleConfirm() {
     // this.props.close();
     debugger;
-    return this.props.handleSubmit(true);
+    return this.props.handleSubmit();
   }
 
   handleDeny() {
     // this.props.close();
-    return this.props.handleSubmit(false);
+    return this.props.handleSubmit();
     // this.props.close();
     // this.props.noSync();
   }

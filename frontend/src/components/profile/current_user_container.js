@@ -4,7 +4,7 @@ import {
   createEvent,
   updateEvent,
 } from "../../actions/event_actions";
-import { logout, guestLogin } from "../../actions/session_actions";
+import { logout, guestLogin, receiveIsLinkedGoogleAccount} from "../../actions/session_actions";
 import Hub from "./user_calendar_hub";
 
 const mapStateToProps = (state) => {
@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     guestLogin: () => dispatch(guestLogin()),
     createEvent: (data) => dispatch(createEvent(data)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    changeIsLinkedGoogleAccount: (bool)=> dispatch(receiveIsLinkedGoogleAccount(bool))
   };
 };
 
