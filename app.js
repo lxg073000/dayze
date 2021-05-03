@@ -5,6 +5,7 @@ const users = require("./routes/api/users");
 const friends = require("./routes/api/friends");
 const events = require("./routes/api/events");
 const currentUserIds = require("./routes/api/currentUserIds");
+const {notify} = require('./util/notifications');
 
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -51,30 +52,8 @@ app.get("/", (req, res) => {
   app.use(express.static("frontend/build"));
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
-// app.get('/auth', async (req,res)=>{
 
-//   const oAuth2Client = new google.auth.OAuth2(
-//     client_id,
-//     client_secret,
-//     redirect_uris[0]
-//   );
-//   // console.log('!!!!!');
-//   // console.log(oAuth2Client);
-//   google.options({auth: oAuth2Client});
+app.post('/api/notifications', notify);
 
-//   const authorizeUrl = oAuth2Client.generateAuthUrl({
-//         access_type: 'offline',
-//         scope: SCOPES.join(' ')
-//   });
-//   res.redirect(authorizeUrl);
-// })
 
-// app.get('/oauth2callback', async (req,res)=>{
-//   const authorizationCode = req.query.code;
-//   const {tokens} = await oAuth2Client.getToken(authorizationCode);
-//   console.log(`tokens! `);
-//   console.log(tokens);
-//   oAuth2Client.credentials = tokens;
-//   res.redirect('http://localhost:3000')  // In prod, just /
-// })
 app.listen(port, () => console.log(`Server is running on port ${port}`));

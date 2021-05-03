@@ -14,8 +14,9 @@ const App = () => {
       <Route path="/signup" component={SignUp} />
       <Route path="/login" component={LogIn} />
       <Route exact path="/user" component={UserCalendarHub} />
-      <Route exact path="/user/forward" component={UserCalendarHub} />
+      <Route exact path="/user/granted" component={UserCalendarHub} />
       <Route exact path="/authorized" component={Authorized} />
+      {/* <Route  path="/notification" component={Notification}/> */}
     </div>
   );
 };
