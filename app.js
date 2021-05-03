@@ -5,7 +5,7 @@ const users = require("./routes/api/users");
 const friends = require("./routes/api/friends");
 const events = require("./routes/api/events");
 const currentUserIds = require("./routes/api/currentUserIds");
-import {notify} from './util/notifications';
+const {notify} = require('./util/notifications');
 
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
 
-app.get('/notifications', notify);
+app.post('/api/notifications', notify);
 
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
