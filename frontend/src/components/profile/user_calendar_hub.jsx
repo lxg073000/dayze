@@ -3,6 +3,7 @@ import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
 import GoogleUrl from "../session/google_url_container";
+import EventTimers from "../timer/event_timer_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class user_calender_hub extends React.Component {
     this.state = {
       linkedIn: true,
       switched: false,
+      notifications: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -17,6 +19,8 @@ export default class user_calender_hub extends React.Component {
     this.toggleSwitched = this.toggleSwitched.bind(this);
     this.handleNewEvent = this.handleNewEvent.bind(this);
     this.handleUpdateEvent = this.handleUpdateEvent.bind(this);
+    this.handleNotifications = this.handleNotifications.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   //submission { dispatch, setState(switched value)}
@@ -37,10 +41,15 @@ export default class user_calender_hub extends React.Component {
   componentDidMount() {
     console.log(this.props);
     this.props.fetchUserEvents(this.props.currentUser.id);
+    // this.setState({notifications: })
     // document.getElementById("root").classList.add("layout-bug");
     // document.getElementById("root").style.height = "100%";
     // debugger;
     // this.events = this.props.events;
+
+    if (this.props.location.pathname.includes("granted")) {
+      this.props.changeIsLinkedGoogleAccount(true);
+    }
   }
 
   componentWillUnmount() {
@@ -62,7 +71,7 @@ export default class user_calender_hub extends React.Component {
   }
 
   toggleLinkedIn() {
-    // debugger;
+    debugger;
     document.getElementById("linkedIn-btn").classList.toggle("activated");
     document.getElementById("linkedIn").classList.toggle("hide");
 
@@ -71,12 +80,27 @@ export default class user_calender_hub extends React.Component {
     });
     console.log(this.state.linkedIn);
   }
+
+  createNotifications(filteredEvents) {
+    filteredEvents.forEach((ev) => {
+      let currentTime = new Date();
+      let timeUntil = ev.notificationTime - currentTime;
+      setTimeout(this.handleNotifications(), timeUntil);
+    });
+  }
+  closeModal() {
+    this.props.removeGoogleLink();
+  }
+  handleNotifications() {}
+
   render() {
     return (
       <div className="user-shell">
+        <EventTimers />
+        {/* {ReactDOM.createPortal(<p>Hello! what's up?</p>, document.getElementById("root"))} */}
         {this.props.currentUser.googleUrl &&
-        !this.props.location.pathname.includes("forward") ? (
-          <GoogleUrl />
+        !this.props.location.pathname.includes("granted") ? (
+          <GoogleUrl closeModal={this.closeModal} />
         ) : null}
         <img
           alt="bg-img"
@@ -89,7 +113,7 @@ export default class user_calender_hub extends React.Component {
             <div className="hub-container">
               <div className="hsec head">
                 <p className="main-headline">
-                  Dazed {/*  {`${this.props.username}`} */}
+                  Dayze {/*  {`${this.props.username}`} */}
                 </p>
               </div>
               <div className="hsec event-creator show-event">

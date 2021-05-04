@@ -8,7 +8,7 @@ import {
 } from "../actions/event_actions";
 
 const EventsReducer = (
-  state = { all: {}, user: {}, new: undefined, event_item: {} },
+  state = { all: {}, user: [], new: undefined, event_item: {} },
   action
 ) => {
   //debugger;

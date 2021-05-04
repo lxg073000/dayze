@@ -41,18 +41,19 @@ class SignupForm extends React.Component {
     // document.getElementById("oauth-modal").classList.remove("hide");
   }
 
-  handleSubmit(isLinked) {
+  handleSubmit(bool) {
     debugger;
     let user = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
-      isLinkedGoogleAccount: isLinked,
+      isLinkedGoogleAccount: bool,
     };
     // isLinkedGoogleAccount:                           true//this.state.isLinkedGoogleAccount///////////////////
 
     this.props.signup(user);
     this.setState({ toggleAuth: !this.state.toggleAuth });
+    debugger;
   }
 
   renderErrors() {

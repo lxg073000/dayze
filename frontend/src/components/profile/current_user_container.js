@@ -4,8 +4,14 @@ import {
   createEvent,
   updateEvent,
 } from "../../actions/event_actions";
-import { logout, guestLogin } from "../../actions/session_actions";
+import {
+  logout,
+  guestLogin,
+  receiveIsLinkedGoogleAccount,
+  removeGoogleLink,
+} from "../../actions/session_actions";
 import Hub from "./user_calendar_hub";
+import { filterEventsByTime } from "../../util/filters";
 
 const mapStateToProps = (state) => {
   //debugger;
@@ -14,6 +20,8 @@ const mapStateToProps = (state) => {
     currentUser: state.session.user,
     signedIn: state.session.isSignedIn,
     errors: state.errors.session,
+    eventsByHalfHour: filterEventsByTime(15, Object.values(state.events.user)),
+    eventsByHour: filterEventsByTime(30, Object.values(state.events.user)),
   };
 };
 
@@ -24,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
     guestLogin: () => dispatch(guestLogin()),
     createEvent: (data) => dispatch(createEvent(data)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
+    changeIsLinkedGoogleAccount: (bool) =>
+      dispatch(receiveIsLinkedGoogleAccount(bool)),
+    removeGoogleLink: () => dispatch(removeGoogleLink()),
   };
 };
 

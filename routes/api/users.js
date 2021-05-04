@@ -95,7 +95,7 @@ router.post("/register", (req, res) => {
                   _id: user._id,
                   email: user.email,
                   googleUrl: user.googleUrl,
-                  isLinkedGoogleAccount: user.isLinkedGoogleAccount,
+                  isLinkedGoogleAccount: false,
                 };
 
                 jwt.sign(
@@ -217,10 +217,11 @@ router.get("/LinkToGoogleCal", (req, res) => {
     access_type: "offline",
     scope: SCOPES.join(" "),
   });
-  res.redirect(authorizeUrl);
+  res.json(authorizeUrl);
 });
 
 router.get("/oauth2callback", async (req, res) => {
+  if (req.query.error) return res.redirect("http://localhost:3000/#/user/");
   const authorizationCode = req.query.code;
   let oAuth2Client = createOAuth2Client();
 
@@ -249,7 +250,7 @@ router.get("/oauth2callback", async (req, res) => {
   });
 
   // res.json({ isLinkedGoogleAccount: true });
-  res.redirect("http://localhost:3000/#/user/forward"); // Now go to frontend   success page
+  res.redirect("http://localhost:3000/#/user/granted"); // Now go to frontend   success page
 });
 
 const createOAuth2Client = () => {

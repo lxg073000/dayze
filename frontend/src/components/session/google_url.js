@@ -45,6 +45,7 @@ export default class googleUrl extends Component {
             >
               Continue to Google Authenticate
             </a>
+            <i className="fas fa-times" onClick={this.props.closeModal}></i>
           </div>
         </div>
       </div>

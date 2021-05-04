@@ -6,7 +6,10 @@ export const RECEIVE_OAUTH_TOKENS = "RECEIVE_OAUTH_TOKENS";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_NEW_USER = "RECEIVE_NEW_USER";
-export const RECEIVE_GOOGLELINK_BOOL = "RECEIVE_GOOGLELINK_BOOL";
+export const RECEIVE_GOOGLELINK = "RECEIVE_GOOGLELINK";
+export const REMOVE_GOOGLELINK = "REMOVE_GOOGLELINK";
+export const RECEIVE_IS_LINKED_GOOGLE_ACCOUNT =
+  "RECEIVE_IS_LINKED_GOOGLE_ACCOUNT";
 
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -32,10 +35,22 @@ export const receiveNewUser = (user) => {
     user,
   };
 };
-export const receiveGoogleLinkBool = (link) => {
+export const receiveGoogleLinkBool = (url) => {
   return {
-    type: RECEIVE_GOOGLELINK_BOOL,
-    link,
+    type: RECEIVE_GOOGLELINK,
+    url: url,
+  };
+};
+export const removeGoogleLink = () => {
+  return {
+    type: REMOVE_GOOGLELINK,
+  };
+};
+
+export const receiveIsLinkedGoogleAccount = (bool) => {
+  return {
+    type: RECEIVE_IS_LINKED_GOOGLE_ACCOUNT,
+    value: bool,
   };
 };
 
@@ -98,7 +113,7 @@ export const guestLogin = (
 };
 
 export const logout = () => (dispatch) => {
-  if (localStorage.jwtToken){
+  if (localStorage.jwtToken) {
     APIUtil.removeAuthAndID();
   }
   localStorage.removeItem("jwtToken");
@@ -107,9 +122,9 @@ export const logout = () => (dispatch) => {
 };
 
 export const linkGoogleCal = () => (dispatch) => {
-  APIUtil.linkGoogleCal().then((bool) => {
+  APIUtil.linkGoogleCal().then((res) => {
     debugger;
-    return dispatch(receiveGoogleLinkBool(bool));
+    return dispatch(receiveGoogleLinkBool(res.data));
   });
 };
 
