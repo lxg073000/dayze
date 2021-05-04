@@ -14,7 +14,7 @@
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix frontend && npm run build --prefix frontend"
   },
-   "engines": {
+  "engines": {
     "node": "14.16.0"
   },
   "repository": {
@@ -51,6 +51,11 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "sass": "^1.32.8"
+    "html-webpack-plugin": "^5.3.1",
+    "sass": "^1.32.8",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-middleware": "^4.1.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
