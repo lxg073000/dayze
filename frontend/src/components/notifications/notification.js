@@ -1,21 +1,15 @@
 import React from "react";
 
-export default function notification(props) {
-  debugger
+export default function notification() {
+  let urlParams = new URLSearchParams(window.location.search);
+  let [desc, title, date] = urlParams.values();
+  
   return (
     <div className="notifcations-shell">
-      
-      Hello Notifications
-      <p>Yo</p>
-      {
-        props.events.map(e=>{
-          return <div>
-            <p>INside</p>
-            <p>{`${e.title}    ${e.description}`}</p>
-          </div>
-        })
-      }
-
+      Notification.
+      <h1>{title}</h1>
+      <h2>{date}</h2>
+      <p>{desc}</p>
     </div>
   )
 }

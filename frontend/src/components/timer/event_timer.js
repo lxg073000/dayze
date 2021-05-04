@@ -10,26 +10,14 @@ export default class EventTimer extends React.Component {
     this.handleEventTimer = this.handleEventTimer.bind(this);
     this.createNotifications = this.createNotifications.bind(this);
     this.createQueryString = this.createQueryString.bind(this);
+    this.manageEventTimers = this.manageEventTimers.bind(this);
   }
 
   componentDidMount() {
     //get all filtered upcoming events
     debugger;
+    this.setIntervalId = setInterval(this.manageEventTimers, 20000)
 
-    let eventReminders = {};
-
-    let eventList = this.props.eventsInHalfHour.concat(
-      this.props.eventsInQuarterHour
-    );
-
-    eventList.forEach((event) => {
-      if (eventReminders[event.id]) {
-        eventReminders[event.id].push(this.handleEventTimer(event));
-      }
-      eventReminders[event.id] = [this.handleEventTimer(event)];
-    });
-
-    this.props.createEventTimers(eventReminders);
     // this.props.eventsByHalfHour.forEach((event) => {
     //   this.handleEventTimer(event);
     // });
@@ -39,16 +27,48 @@ export default class EventTimer extends React.Component {
     // });
   }
 
+manageEventTimers(){
+
+    //clear the event timeouts
+    for (const [eventId, timeoutIdList] of Object.entries(this.props.eventTimers.eventIds)){
+      timeoutIdList.forEach(toid =>{
+        clearTimeout(toid);
+      })
+    }
+
+    //create new event timeouts
+    let eventReminders = {};
+    let eventList = this.props.eventsInHalfHour.concat(
+      this.props.eventsInQuarterHour
+    );
+
+    eventList.forEach((event) => {
+      debugger
+      if (eventReminders[event._id]) {
+        eventReminders[event._id].push(this.handleEventTimer(event));
+      }else{
+        eventReminders[event._id] = [this.handleEventTimer(event)];
+      }
+    });
+
+    this.props.createEventTimers(eventReminders);
+}  
+
   //for (const [key, val] of Object.entries(eventReminders)) {
   //   let eventTimer = {
   //     [key]: val,
   //   };
   // }
-  UNSAFE_componentWillReceiveProps(newState) {
-    debugger;
 
-    //compare old to new state
-    //pass array formated changes to prev used code
+  // UNSAFE_componentWillReceiveProps(newState) {
+  //   debugger;
+  //   //compare old to new state
+  //   //pass array formated changes to prev used code
+  // }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+
+
   }
 
   handleEventTimer(event) {

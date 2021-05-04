@@ -6,6 +6,7 @@ import LogIn from "../components/session/login_form_container";
 import UserCalendarHub from "../components/profile/current_user_container";
 import Authorized from "../components/profile/authorized";
 import React from "react";
+import Notification from '../components/notifications/notification'
 
 const App = () => {
   return (
