@@ -1,5 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const openNotification = (event)=>{
-  return axios.post('/api/notifications', event)
-}
+export const openNotification = (event) => {
+  return axios.post("/api/notifications", event);
+};

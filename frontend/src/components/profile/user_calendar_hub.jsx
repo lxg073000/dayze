@@ -3,7 +3,7 @@ import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
 import GoogleUrl from "../session/google_url_container";
-
+import EventTimers from "../timer/event_timer_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class user_calender_hub extends React.Component {
     this.state = {
       linkedIn: true,
       switched: false,
-      notifications: []
+      notifications: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -46,7 +46,7 @@ export default class user_calender_hub extends React.Component {
     // debugger;
     // this.events = this.props.events;
 
-    if (this.props.location.pathname.includes("granted") ){
+    if (this.props.location.pathname.includes("granted")) {
       this.props.changeIsLinkedGoogleAccount(true);
     }
   }
@@ -80,21 +80,16 @@ export default class user_calender_hub extends React.Component {
     console.log(this.state.linkedIn);
   }
 
-
-  createNotifications(filteredEvents){
-
-    filteredEvents.forEach((ev)=>{
+  createNotifications(filteredEvents) {
+    filteredEvents.forEach((ev) => {
       let currentTime = new Date();
-      let timeUntil = (ev.notificationTime - currentTime)
-      setTimeout(this.handleNotifications(),timeUntil);
-    })
+      let timeUntil = ev.notificationTime - currentTime;
+      setTimeout(this.handleNotifications(), timeUntil);
+    });
   }
-  handleNotifications(){
-
-  }
+  handleNotifications() {}
 
   render() {
-    
     return (
       <div className="user-shell">
         {/* {ReactDOM.createPortal(<p>Hello! what's up?</p>, document.getElementById("root"))} */}
@@ -163,6 +158,7 @@ export default class user_calender_hub extends React.Component {
 
           <div className="white"></div>
         </div>
+        <EventTimers />
       </div>
     );
   }

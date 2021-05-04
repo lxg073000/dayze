@@ -1,21 +1,29 @@
 import { connect } from "react-redux";
 import {
-  receiveEventTimer,
+  receiveEventTimerBatch,
+  receiveEventTimerData,
   removeEventTimer,
 } from "../../actions/event_timer_actions";
+import { filterEventsByTime } from "../../util/filters";
 import timer from "./event_timer";
 
 const mapStateToProps = (state) => {
   return {
     eventTimers: state.eventTimers,
-    timerByHalfHour: state.events.filtered,
-    timerByHour: state.events.filtered,
+    eventsInHalfHour: filterEventsByTime(30, Object.values(state.events.user)),
+    eventsInQuarterHour: filterEventsByTime(
+      15,
+      Object.values(state.events.user)
+    ),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createEventTimer: (eventTimer) => dispatch(receiveEventTimer(eventTimer)),
+    createEventTimers: (eventTimers) =>
+      dispatch(receiveEventTimerBatch(eventTimers)),
+    createEventTimer: (eventTimer) =>
+      dispatch(receiveEventTimerData(eventTimer)),
     removeEventTimer: (eventTimerId) =>
       dispatch(removeEventTimer(eventTimerId)),
     // updateTimeout: (myTimeoutID, event) => dispatch(updateTimeout()),
