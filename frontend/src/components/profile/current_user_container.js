@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
     currentUser: state.session.user,
     signedIn: state.session.isSignedIn,
     errors: state.errors.session,
-    eventsByHalfHour: filterEventsByTime(30, Object.values(state.events.user)),
-    eventsByHour: filterEventsByTime(60, Object.values(state.events.user)),
+    eventsByHalfHour: filterEventsByTime(15, Object.values(state.events.user)),
+    eventsByHour: filterEventsByTime(30, Object.values(state.events.user)),
   };
 };
 

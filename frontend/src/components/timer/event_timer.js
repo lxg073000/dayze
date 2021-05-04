@@ -4,7 +4,9 @@ import Notifications from "../notifications/notification";
 export default class EventTimer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      events: this.props.eventsInHalfHour
+    };
     this.handleEventTimer = this.handleEventTimer.bind(this);
     this.createNotifications = this.createNotifications.bind(this);
     this.createQueryString = this.createQueryString.bind(this);
@@ -44,6 +46,7 @@ export default class EventTimer extends React.Component {
   // }
   UNSAFE_componentWillReceiveProps(newState) {
     debugger;
+
     //compare old to new state
     //pass array formated changes to prev used code
   }
@@ -76,7 +79,9 @@ export default class EventTimer extends React.Component {
   render() {
     return (
       <div>
-        <Notifications />
+        <Notifications 
+          events = {this.props.eventsInQuarterHour}
+        />
       </div>
     );
   }

@@ -92,6 +92,7 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="user-shell">
+        <EventTimers />
         {/* {ReactDOM.createPortal(<p>Hello! what's up?</p>, document.getElementById("root"))} */}
         {this.props.currentUser.googleUrl &&
         !this.props.location.pathname.includes("granted") ? (
@@ -155,10 +156,10 @@ export default class user_calender_hub extends React.Component {
               </div>
             </div>
           </div>
+        
 
           <div className="white"></div>
         </div>
-        <EventTimers />
       </div>
     );
   }
