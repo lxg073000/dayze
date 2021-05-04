@@ -3,7 +3,7 @@ import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
 import GoogleUrl from "../session/google_url_container";
-// import EventTimers from "../timer/event_timer_container";
+import EventTimers from "../timer/event_timer_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -96,6 +96,7 @@ export default class user_calender_hub extends React.Component {
   render() {
     return (
       <div className="user-shell">
+        <EventTimers />
         {/* {ReactDOM.createPortal(<p>Hello! what's up?</p>, document.getElementById("root"))} */}
         {this.props.currentUser.googleUrl &&
         !this.props.location.pathname.includes("granted") ? (
@@ -162,7 +163,6 @@ export default class user_calender_hub extends React.Component {
 
           <div className="white"></div>
         </div>
-        {/* <EventTimers /> */}
       </div>
     );
   }

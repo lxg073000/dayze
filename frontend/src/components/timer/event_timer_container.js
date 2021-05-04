@@ -8,12 +8,13 @@ import { filterEventsByTime } from "../../util/filters";
 import timer from "./event_timer";
 
 const mapStateToProps = (state) => {
+  debugger
   return {
     eventTimers: state.eventTimers,
-    eventsInHalfHour: filterEventsByTime(30, Object.values(state.events.user)),
+    eventsInHalfHour: filterEventsByTime(30, state.events.user),
     eventsInQuarterHour: filterEventsByTime(
       15,
-      Object.values(state.events.user)
+      state.events.user
     ),
   };
 };
