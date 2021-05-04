@@ -95,7 +95,7 @@ router.post("/register", (req, res) => {
                   _id: user._id,
                   email: user.email,
                   googleUrl: user.googleUrl,
-                  isLinkedGoogleAccount: user.isLinkedGoogleAccount,
+                  isLinkedGoogleAccount: false,
                 };
 
                 jwt.sign(
@@ -221,7 +221,7 @@ router.get("/LinkToGoogleCal", (req, res) => {
 });
 
 router.get("/oauth2callback", async (req, res) => {
-  if (req.query.error) return res.redirect('http://localhost:3000/#/user/')
+  if (req.query.error) return res.redirect("http://localhost:3000/#/user/");
   const authorizationCode = req.query.code;
   let oAuth2Client = createOAuth2Client();
 

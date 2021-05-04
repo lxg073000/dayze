@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import EventItem from "./event_item_container";
-import GoogleURL from "../session/google_url_container";
 
 class Event extends React.Component {
   constructor(props) {

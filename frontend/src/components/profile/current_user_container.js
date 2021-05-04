@@ -4,9 +4,14 @@ import {
   createEvent,
   updateEvent,
 } from "../../actions/event_actions";
-import { logout, guestLogin, receiveIsLinkedGoogleAccount} from "../../actions/session_actions";
+import {
+  logout,
+  guestLogin,
+  receiveIsLinkedGoogleAccount,
+  removeGoogleLink,
+} from "../../actions/session_actions";
 import Hub from "./user_calendar_hub";
-import {filterEventsByTime} from '../../util/filters';
+import { filterEventsByTime } from "../../util/filters";
 
 const mapStateToProps = (state) => {
   //debugger;
@@ -27,7 +32,9 @@ const mapDispatchToProps = (dispatch) => {
     guestLogin: () => dispatch(guestLogin()),
     createEvent: (data) => dispatch(createEvent(data)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
-    changeIsLinkedGoogleAccount: (bool)=> dispatch(receiveIsLinkedGoogleAccount(bool))
+    changeIsLinkedGoogleAccount: (bool) =>
+      dispatch(receiveIsLinkedGoogleAccount(bool)),
+    removeGoogleLink: () => dispatch(removeGoogleLink()),
   };
 };
 

@@ -3,7 +3,7 @@ import Calendar from "../calendar/calendar_container";
 import Events from "../events/events_container";
 import LinkedInList from "../nav/linked_in_list";
 import GoogleUrl from "../session/google_url_container";
-import EventTimers from "../timer/event_timer_container";
+// import EventTimers from "../timer/event_timer_container";
 
 export default class user_calender_hub extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ export default class user_calender_hub extends React.Component {
     this.handleNewEvent = this.handleNewEvent.bind(this);
     this.handleUpdateEvent = this.handleUpdateEvent.bind(this);
     this.handleNotifications = this.handleNotifications.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   //submission { dispatch, setState(switched value)}
@@ -87,6 +88,9 @@ export default class user_calender_hub extends React.Component {
       setTimeout(this.handleNotifications(), timeUntil);
     });
   }
+  closeModal() {
+    this.props.removeGoogleLink();
+  }
   handleNotifications() {}
 
   render() {
@@ -95,7 +99,7 @@ export default class user_calender_hub extends React.Component {
         {/* {ReactDOM.createPortal(<p>Hello! what's up?</p>, document.getElementById("root"))} */}
         {this.props.currentUser.googleUrl &&
         !this.props.location.pathname.includes("granted") ? (
-          <GoogleUrl />
+          <GoogleUrl closeModal={this.closeModal} />
         ) : null}
         <img
           alt="bg-img"
@@ -158,7 +162,7 @@ export default class user_calender_hub extends React.Component {
 
           <div className="white"></div>
         </div>
-        <EventTimers />
+        {/* <EventTimers /> */}
       </div>
     );
   }

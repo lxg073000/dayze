@@ -458,6 +458,16 @@ p {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1em;
+    position: relative;
+  }
+  .fa-times {
+    position: absolute;
+    top: -6px;
+    right: -20px;
+    color: red;
+    &:hover {
+      text-shadow: 0 0 4px #524542;
+    }
   }
 }
 

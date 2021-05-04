@@ -7,7 +7,9 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_NEW_USER = "RECEIVE_NEW_USER";
 export const RECEIVE_GOOGLELINK = "RECEIVE_GOOGLELINK";
-export const RECEIVE_IS_LINKED_GOOGLE_ACCOUNT = 'RECEIVE_IS_LINKED_GOOGLE_ACCOUNT';
+export const REMOVE_GOOGLELINK = "REMOVE_GOOGLELINK";
+export const RECEIVE_IS_LINKED_GOOGLE_ACCOUNT =
+  "RECEIVE_IS_LINKED_GOOGLE_ACCOUNT";
 
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -39,13 +41,18 @@ export const receiveGoogleLinkBool = (url) => {
     url: url,
   };
 };
+export const removeGoogleLink = () => {
+  return {
+    type: REMOVE_GOOGLELINK,
+  };
+};
 
-export const receiveIsLinkedGoogleAccount = (bool)=>{
+export const receiveIsLinkedGoogleAccount = (bool) => {
   return {
     type: RECEIVE_IS_LINKED_GOOGLE_ACCOUNT,
-    value: bool
-  }
-}
+    value: bool,
+  };
+};
 
 export const signup = (user) => (dispatch) => {
   debugger;
