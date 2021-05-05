@@ -31,7 +31,8 @@ const EventTimersReducer = (state = initialState, action) => {
       delete newState.eventIds[action.eventId];
       return newState;
     case RECEIVE_DELETE_EVENT:
-      newState.eventIds[action.event.data._id].forEach(id=>clearTimeout(id));
+      let eventIdList = newState.eventIds[action.event.data._id]
+      if (eventIdList) eventIdList.forEach(id=>clearTimeout(id));
       delete newState.eventIds[action.event.data._id];
       return newState;
     case RECEIVE_UPDATE_EVENT:
