@@ -1,0 +1,14 @@
+.notifcations-shell {
+  // background-image: url("https://images.unsplash.com/photo-1501622549218-2c3ef86627cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80");
+  background-size: cover;
+  // background: red;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.notification-bg {
+  object-fit: cover;
+}
