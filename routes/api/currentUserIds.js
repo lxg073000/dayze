@@ -8,7 +8,6 @@ router.delete("/", (req, res) => {
   CurrentUserId.find({}).then((idList) => {
     if (idList.length === 1) {
       CurrentUserId.findByIdAndDelete(idList[0]._id).then((cu) => {
-        console.log(cu);
       });
     }
   });

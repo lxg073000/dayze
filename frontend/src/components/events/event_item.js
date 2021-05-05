@@ -16,18 +16,11 @@ class EventItem extends React.Component {
     this.edit_btn = this.edit_btn.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.fetchEvent(this.props.currentUser.id);
-  //   this.setState({ events: this.props.events });
-  //   debugger;
-  // }
 
   edit_btn(e) {
-    // debugger;
     this.setState({ editor_form: !this.state.editor_form });
   }
   delete_btn(e, id) {
-    // debugger;
     this.props.handleDelete(id, this.props.currentUser.isLinkedGoogleAccount);
     if (this.state.editor_form === true) {
       this.setState({ editor_form: !this.state.editor_form });
@@ -35,7 +28,6 @@ class EventItem extends React.Component {
   }
 
   render() {
-    // debugger;
     let eventEditorDate = new Date(this.props.date);
     let off = eventEditorDate.getTimezoneOffset()/60;
     eventEditorDate.setHours(eventEditorDate.getHours()-off);

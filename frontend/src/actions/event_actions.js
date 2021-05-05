@@ -12,7 +12,6 @@ export const receiveEvents = (events) => ({
 });
 
 export const receiveEvent = (event) => {
-  // debugger;
   return {
     type: RECEIVE_EVENT,
     event,
@@ -72,7 +71,6 @@ export const fetchUserEvents = (id) => (dispatch) =>
 export const createEvent = (data) => (dispatch) =>
   APIUtil.createEvent(data)
     .then((event) => {
-      //debugger;
       return dispatch(receiveNewEvent(event));
     })
     .catch((err) => console.log(err));
@@ -80,7 +78,6 @@ export const createEvent = (data) => (dispatch) =>
 export const updateEvent = (id, data) => async (dispatch) => {
   return APIUtil.updateEvent(id, data)
     .then((event) => {
-      //debugger;
       return dispatch(receiveUpdateEvent(event));
     })
     .catch((err) => console.log(err));
@@ -89,7 +86,6 @@ export const updateEvent = (id, data) => async (dispatch) => {
 export const deleteEvent = (id, data) => (dispatch) =>
   APIUtil.deleteEvent(id, data)
     .then((event) => {
-      //debugger;
       return dispatch(receiveDeleteEvent(event));
     })
     .catch((err) => console.log(err));

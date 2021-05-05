@@ -4,11 +4,9 @@ import EventEditor from "./event_editor";
 class EventBox extends React.Component {
 <<<<<<< HEAD
   edit_btn(e, id) {
-    // debugger;
     // let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
 =======
   edit_btn(e) {
-    //debugger;
     let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
 >>>>>>> c1025b0a85fdb95ddaa107364cdb682fcb6c8bdb
     // console.log(e.target.parentElement.parentElement.parentElement.children);
@@ -17,13 +15,11 @@ class EventBox extends React.Component {
     selected_event.classList.toggle("hide");
   }
   delete_btn(e) {
-    //debugger;
     this.props.handleDelete(
       e.target.parentElement.parentElement.parentElement.id
     );
   }
   render() {
-    //debugger;
     return (
       <ul id={this.props.id} className="event-card">
         <EventEditor

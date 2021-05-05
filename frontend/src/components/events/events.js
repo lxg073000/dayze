@@ -18,11 +18,9 @@ class Event extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
     this.setState({ events: this.props.events });
     document.getElementById("all").classList.toggle("activated");
     document.getElementById("all").classList.toggle("no-click");
-    // debugger;
   }
 
   UNSAFE_componentWillReceiveProps(newState) {

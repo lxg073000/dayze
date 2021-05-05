@@ -100,8 +100,6 @@ router.post("/",
         insertEvent(newEventParams)
         .then(( )=>{
           setTimeout(async ()=>{
-            console.log(`newEvent.googleId: ${newEventParams.googleId}`)
-            // if (!newEvent.googleId)  return ''
               const newEvent =  new Event(newEventParams);
               await newEvent.save().then(event => res.json(event))
           }, 2000);
@@ -141,14 +139,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-    console.log('Patch req Body')
     let updatedDbParams = {
       title: req.body.title,
       description: req.body.description,
       date: req.body.date,
     }
-    console.log(req.body.date);
-
 
     let isLinked = req.body.isLinkedGoogleAccount; //////////
 
@@ -172,13 +167,10 @@ router.patch("/:id", (req, res) => {
 })
 
 router.delete("/:id", (req, res) => {
-    console.log('Delete req.body: ');
-    console.log(req.body)
     let isLinked = req.body.isLinkedGoogleAccount;////////
     
     Event.findByIdAndRemove(req.params.id)
         .then((event)=>{
-            console.log(`Deleted event: ${event}`);
             if (isLinked){
               removeEvent(event.googleId);
             }

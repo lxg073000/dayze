@@ -85,7 +85,6 @@ export default class calendar extends Component {
   }
 
   setActiveDate(e) {
-    ////debugger;
     this.active["date"] = e.currentTarget.innerHTML;
     this.active["date_val"] = e.currentTarget.id;
     this.toggleDayModal();

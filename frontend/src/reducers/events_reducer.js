@@ -11,7 +11,6 @@ const EventsReducer = (
   state = { all: {}, user: [], new: undefined, event_item: {} },
   action
 ) => {
-  //debugger;
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
@@ -19,11 +18,9 @@ const EventsReducer = (
       newState.user = action.events.data;
       return newState;
     case RECEIVE_EVENT:
-      // debugger;
       newState.event_item = action.event.data;
       return newState;
     case RECEIVE_USER_EVENTS:
-      //debugger;
       newState.user = action.events.data;
       return newState;
     case RECEIVE_NEW_EVENT:
@@ -31,7 +28,6 @@ const EventsReducer = (
       // newState.user.push(newState.new);
       return newState;
     case RECEIVE_UPDATE_EVENT:
-      //debugger;
       newState.user = state.user.map((ele) => {
         if (ele._id === action.event.data._id) {
           return action.event.data;
@@ -41,7 +37,6 @@ const EventsReducer = (
       });
       return newState;
     case RECEIVE_DELETE_EVENT:
-      //debugger;
       newState.user = state.user.filter(
         (ele) => ele._id !== action.event.data._id
       );

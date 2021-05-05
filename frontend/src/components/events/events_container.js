@@ -10,7 +10,6 @@ import { linkGoogleCal } from "../../actions/session_actions";
 import Events from "./events";
 
 const mapStateToProps = (state) => {
-  //debugger;
   return {
     events: Object.values(state.events.user),
     currentUser: state.session.user,

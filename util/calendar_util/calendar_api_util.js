@@ -11,7 +11,6 @@ const getCalendarInfo = ()=>{
       console.log(`Error could not get calendar info. ${err}`); 
       return;
     }
-    console.log(res.data.items[0])
     return res.data.items[0];
   })
 }
@@ -19,8 +18,6 @@ const getCalendarInfo = ()=>{
 const insertEvent = async (dbEvent)=>{
   const calendar =  google.calendar({version:'v3'});
   const event =  mapDbEventsToGoogleEvents(dbEvent);
-  console.log('calendar api event!  ',event);
-
   calendar.freebusy.query(
     {
       resource: {
@@ -32,11 +29,9 @@ const insertEvent = async (dbEvent)=>{
     },
     (err,res) => {
       if (err) return console.error('Free Busy Query Error:  ', err);
-      //check all the busy events in primary
       return calendar.events.insert({calendarId: 'primary', resource: event}, 
         (err,res)=>{
           if (err) return console.error('Calendar Event Creation Error: ',err)
-          console.log(`google api cal util func:  res.data.id: ${res.data.id}`);
           dbEvent.googleId = res.data.id;
         })
     }
@@ -45,34 +40,6 @@ const insertEvent = async (dbEvent)=>{
 
 
 
-
-
-const getEventsFromRange = ( startDate, endDate)=>{//get a list of events from a given time range
-  //StartDate and EndDate are Date objects.
-  const calendar =  google.calendar({version:'v3'});
-  console.log('date range: ', startDate,endDate)
-  calendar.events.list({
-    calendarId: 'primary',
-    timeMin: startDate.toISOString(),
-    timeMax: endDate.toISOString(),
-    singleEvents: true,
-    orderBy: 'startTime',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    console.log(res);
-    const events = res.data.items;
-    if (events.length) {
-      console.log('Events:');
-      events.map((event, i) => {
-        const start = event.start.dateTime || event.start.date;
-        const end = event.start.dateTime || event.start.date;
-        console.log(`${start} - ${event.summary}`);
-      });
-    } else {
-      console.log('0 events found.');
-    }
-  });
-}
 
 
 
@@ -93,7 +60,6 @@ const updateEvent = async ( googleEventId, updatedDbParams)=>{
     },
     (err, res)=>{
       if (err) return `Cannot update event: ${err}`
-      console.log(res.data);
       return res.data;
     })
   });
@@ -108,7 +74,6 @@ const removeEvent = async (googleEventId)=>{
         console.log(`Unable to remove event with id = ${googleEventId}`);
         return false;
       }
-      console.log('Event successfully deleted.');
       return true;
     }
   )

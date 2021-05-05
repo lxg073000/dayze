@@ -9,7 +9,6 @@ import {
 import FriendsManagement from "./friends_management";
 
 const mapStateToProps = (state) => {
-  //debugger;
   return {
     events: Object.values(state.events.user),
     currentUser: state.session.user,

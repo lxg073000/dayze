@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import CreateEvent from "./create_event";
 
 const mapStateToProps = (state) => {
-  //debugger;
   return {
     currentUser: state.session.user,
     events: Object.values(state.events.user),
