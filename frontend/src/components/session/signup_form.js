@@ -88,7 +88,6 @@ class SignupForm extends React.Component {
           className="background-img1 dark"
           src="/assets/signup.jpg"
         ></img>
-        <div className="white"></div>
 
         <div className="session-row">
           <div className="logo">
@@ -167,8 +166,6 @@ class SignupForm extends React.Component {
             <LinkedInListMini className="hide" />
           </div>
         </div>
-
-        <div className="white"></div>
       </div>
     );
   }

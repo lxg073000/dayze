@@ -278,6 +278,7 @@
   display: grid;
   // grid-template-rows: 15px 4em 1fr 4em 15px;
   grid-template-rows: 15px 1fr 15px;
+  grid-template-rows: 1fr;
   height: 100%;
   width: 100%;
 }
@@ -372,7 +373,7 @@
   text-align: center;
   color: #ffffff99;
   display: flex;
-  font-size: min(max(16px, 3vw), 1.5em);
+  font-size: min(max(15px, 3vw), 1.5em);
   justify-content: center;
   z-index: 1;
   margin: 0.5em 0;
