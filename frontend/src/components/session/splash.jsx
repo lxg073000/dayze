@@ -37,7 +37,7 @@ export default class splash extends React.Component {
       <div className="splash-shell">
         <img
           alt="bg-img"
-          className="background-img1"
+          className="splash-bg background-img1"
           src="/assets/splash_0.jpg"
         ></img>
         <div className="gradient"></div>
@@ -48,7 +48,7 @@ export default class splash extends React.Component {
             <h1 className="splash-logo">Dayze</h1>
           </div>
         </div>
-        <span>
+        <span className="splash-navs-section">
           <ul className="splash-navs">
             <li>
               <Link to="./login">Log In</Link>

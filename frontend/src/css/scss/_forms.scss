@@ -371,6 +371,7 @@
   width: 100px;
   font-size: 23px;
   cursor: pointer;
+  margin: 0.4em 0;
 }
 .session-form-btn:hover {
   background: #ff8d7e;
@@ -457,7 +458,8 @@ p.email-t {
   right: -50%;
 }
 
-@media only screen and (max-width: 800px) {
+// @media only screen and (max-width: 800px) {
+@media only screen and (orientation: portrait) {
   .signup-form-background,
   .login-form-background {
     width: 98vw;
@@ -467,7 +469,7 @@ p.email-t {
     border-bottom-left-radius: 40px;
     position: relative;
     margin: 32px 0;
-    height: 30vh;
+    height: fit-content;
     padding: 2em 1em;
     flex-direction: column;
     justify-content: space-around;
@@ -487,6 +489,16 @@ p.email-t {
     position: absolute;
     left: -50%;
     width: 200%;
+  }
+  .session-title {
+    font-size: clamp(1em, 8em, 25vw);
+  }
+  .form-tagline {
+    max-width: 90vw;
+  }
+  .login-form-background,
+  .signup-form-background {
+    margin: -11px 0 -18px 0;
   }
 }
 
