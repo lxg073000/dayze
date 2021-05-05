@@ -92,7 +92,7 @@ export default class EventTimer extends React.Component {
 
   handleEventTimer(event) {
     let eventTimeoutID = setTimeout(() => {
-      window.open(`http://localhost:3000${this.createQueryString(event)}`);
+      window.open(`http://dayze.herokuapp.com${this.createQueryString(event)}`);
     }, this.timeUntil(event));
 
     return eventTimeoutID;

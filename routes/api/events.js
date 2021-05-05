@@ -142,12 +142,13 @@ router.get("/:id", (req, res) => {
 
 router.patch("/:id", (req, res) => {
     console.log('Patch req Body')
-    console.log(req.body);
     let updatedDbParams = {
-        title: req.body.title,
-        description: req.body.description,
-        date: req.body.date,
+      title: req.body.title,
+      description: req.body.description,
+      date: req.body.date,
     }
+    console.log(req.body.date);
+
 
     let isLinked = req.body.isLinkedGoogleAccount; //////////
 
