@@ -6,7 +6,6 @@ export default function notification() {
 
   return (
     <div className="notifcations-shell">
-      Notification.
       <img
         className="notification-bg"
         alt="alarm-bg"
