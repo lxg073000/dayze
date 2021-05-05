@@ -8,7 +8,7 @@ export default class EventTimer extends React.Component {
       events: this.props.eventsInHalfHour
     };
     this.handleEventTimer = this.handleEventTimer.bind(this);
-    this.createNotifications = this.createNotifications.bind(this);
+    this.timeUntil = this.timeUntil.bind(this);
     this.createQueryString = this.createQueryString.bind(this);
     this.manageEventTimers = this.manageEventTimers.bind(this);
   }
@@ -16,7 +16,8 @@ export default class EventTimer extends React.Component {
   componentDidMount() {
     //get all filtered upcoming events
     debugger;
-    this.setIntervalId = setInterval(this.manageEventTimers, 20000)
+    this.initialSetTimeout = setTimeout(this.manageEventTimers, 5000);
+    this.setIntervalId = setInterval(this.manageEventTimers, 30*60000)
 
     // this.props.eventsByHalfHour.forEach((event) => {
     //   this.handleEventTimer(event);
@@ -27,7 +28,8 @@ export default class EventTimer extends React.Component {
     // });
   }
 
-manageEventTimers(){
+
+  manageEventTimers(){
 
     //clear the event timeouts
     for (const [eventId, timeoutIdList] of Object.entries(this.props.eventTimers.eventIds)){
@@ -51,8 +53,8 @@ manageEventTimers(){
       }
     });
 
-    this.props.createEventTimers(eventReminders);
-}  
+    this.props.refreshEventTimers(eventReminders);
+  }  
 
   //for (const [key, val] of Object.entries(eventReminders)) {
   //   let eventTimer = {
@@ -67,26 +69,41 @@ manageEventTimers(){
   // }
 
   componentDidUpdate(prevProps, prevState, snapshot){
-
-
+    let newUpdatedReminders = {};
+    let isShouldUpdate = false;
+    console.log('filtered neew updated events!!')
+    console.log (this.props.filteredNewUpdatedEvents);
+    this.props.filteredNewUpdatedEvents.forEach(ev=>{
+      if (ev){
+        if (newUpdatedReminders[ev._id]) {
+          newUpdatedReminders[ev._id].push(this.handleEventTimer(ev));
+        }else{
+          newUpdatedReminders[ev._id] = [this.handleEventTimer(ev)];
+        }
+        isShouldUpdate = true;
+      }
+    })
+    if (isShouldUpdate)  this.props.createEventTimers(newUpdatedReminders);
   }
 
-  handleEventTimer(event) {
-    //create setTimeout and grab timeout ID
-    ////// event name, desc, time
+  componentWillUnmount(){
+    clearTimeout(this.initialSetTimeout);
+    clearInterval(this.setIntervalId);
+  }
 
-    //create eventTimer and open new window at expiration.
+
+  handleEventTimer(event) {
     let eventTimeoutID = setTimeout(() => {
-      window.open(`localhost:3000/${this.createQueryString(event)}`);
-    }, this.createNotifications(event));
+      window.open(`http://localhost:3000${this.createQueryString(event)}`);
+    }, this.timeUntil(event));
 
     return eventTimeoutID;
   }
 
-  createNotifications(event) {
+  timeUntil(event) {
     let currentTime = new Date();
-    let timeUntil = event.notificationTime - currentTime;
-    return timeUntil;
+    let timeUntilE = event.notificationTime - currentTime;
+    return timeUntilE;
   }
 
   createQueryString(event) {

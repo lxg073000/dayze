@@ -42,7 +42,6 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(bool) {
-    debugger;
     let user = {
       username: this.state.username,
       email: this.state.email,
@@ -53,7 +52,6 @@ class SignupForm extends React.Component {
 
     this.props.signup(user);
     this.setState({ toggleAuth: !this.state.toggleAuth });
-    debugger;
   }
 
   renderErrors() {

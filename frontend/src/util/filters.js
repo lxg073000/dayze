@@ -8,11 +8,11 @@ export const filterEventsByTime = (duration, events) => {
   let oneHourLater = new Date();
   oneHourLater.setHours(oneHourLater.getHours() + 1);
   let filteredEvents = [];
+  debugger
   events.forEach((event) => {
     let eventTime = new Date(event.date);
     let notificationTime = new Date(eventTime);
     notificationTime.setMinutes(notificationTime.getMinutes() - duration);
-    console.log(now, notificationTime);
     if (
       eventTime > now &&
       eventTime < oneHourLater &&
@@ -25,3 +25,9 @@ export const filterEventsByTime = (duration, events) => {
 
   return filteredEvents;
 };
+
+export const filterEventByTime = (duration, event)=>{
+  let filtered = filterEventsByTime(duration,[event])
+  debugger
+  return (filtered.length === 1) ? filtered[0] : null
+}

@@ -43,7 +43,6 @@ export default class event_editor extends Component {
 
     let id = this.props.id;
 
-    debugger;
     this.props.updateEvent(id, event);
     this.props.closeEdit();
   }

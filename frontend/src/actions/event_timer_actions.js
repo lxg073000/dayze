@@ -3,7 +3,6 @@ export const RECEIVE_EVENT_TIMER_DATA = "RECEIVE_EVENT_TIMER_DATA";
 export const REMOVE_EVENT_TIMER = "REMOVE_EVENT_TIMER";
 
 export const receiveEventTimerBatch = (eventTimerBatch) => {
-  debugger
   return {
   type: RECEIVE_EVENT_TIMER_BATCH,
   eventTimerBatch,

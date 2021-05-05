@@ -28,12 +28,10 @@ export default class user_calender_hub extends React.Component {
     this.setState({ switched: false });
   }
   handleNewEvent(data) {
-    debugger;
     this.props.createEvent(data);
     this.setState({ switched: true });
   }
   handleUpdateEvent(id, data) {
-    debugger;
     this.props.updateEvent(id, data);
     this.setState({ switched: true });
   }
@@ -71,7 +69,6 @@ export default class user_calender_hub extends React.Component {
   }
 
   toggleLinkedIn() {
-    debugger;
     document.getElementById("linkedIn-btn").classList.toggle("activated");
     document.getElementById("linkedIn").classList.toggle("hide");
 

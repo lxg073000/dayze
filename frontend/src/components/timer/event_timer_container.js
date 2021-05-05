@@ -4,7 +4,7 @@ import {
   receiveEventTimerData,
   removeEventTimer,
 } from "../../actions/event_timer_actions";
-import { filterEventsByTime } from "../../util/filters";
+import { filterEventsByTime, filterEventByTime } from "../../util/filters";
 import timer from "./event_timer";
 
 const mapStateToProps = (state) => {
@@ -16,14 +16,20 @@ const mapStateToProps = (state) => {
       15,
       state.events.user
     ),
+    filteredNewUpdatedEvents: [
+      filterEventByTime(30, state.eventTimers.updatedEvent), 
+      filterEventByTime(15, state.eventTimers.updatedEvent),
+      filterEventByTime(30, state.eventTimers.newEvent), 
+      filterEventByTime(15, state.eventTimers.newEvent)
+    ]
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createEventTimers: (eventTimers) =>
+    refreshEventTimers: (eventTimers) =>
       dispatch(receiveEventTimerBatch(eventTimers)),
-    createEventTimer: (eventTimer) =>
+    createEventTimers: (eventTimer) =>
       dispatch(receiveEventTimerData(eventTimer)),
     removeEventTimer: (eventTimerId) =>
       dispatch(removeEventTimer(eventTimerId)),

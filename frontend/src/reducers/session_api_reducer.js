@@ -30,8 +30,6 @@ const sessionAPIReducer = (state = initialState, action) => {
         user: undefined,
       };
     case RECEIVE_NEW_USER:
-      debugger;
-
       let u = action.user;
       u.id = u._id;
       return {
@@ -47,13 +45,11 @@ const sessionAPIReducer = (state = initialState, action) => {
         },
       };
     case RECEIVE_GOOGLELINK:
-      debugger;
       return {
         ...state,
         user: Object.assign({}, state.user, { googleUrl: action.url }),
       };
     case REMOVE_GOOGLELINK:
-      debugger;
       return {
         ...state,
         user: Object.assign({}, state.user, {

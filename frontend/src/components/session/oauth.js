@@ -17,12 +17,10 @@ export default class oauth extends Component {
   }
 
   componentDidMount() {
-    debugger;
   }
 
   handleConfirm() {
     // this.props.close();
-    debugger;
     return this.props.handleSubmit(true);
   }
 

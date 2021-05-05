@@ -26,7 +26,6 @@ class Event extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(newState) {
-    debugger;
     this.setState({ events: newState.events });
     //if event was added >> ajax filter call but ONLY once
     if (this.props.switched) {

@@ -122,7 +122,6 @@ const getAuth = ()=>{
   // auth = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]  );
   // auth.setCredentials(JSON.parse(fs.readFileSync('token.json')));
   // return auth;
-  debugger
   return google.options;///auth.OAuth2;
 }
 

@@ -17,15 +17,15 @@ const friendsReducer = (state = initialState, action) => {
       newState.friends.push(action.friend);
       return newState;
     case RECEIVE_FRIENDS:
-      debugger;
+      // debugger;
       newState.friends = action.friends;
       return newState;
     case RECEIVE_USERS:
-      debugger;
+      // debugger;
       newState.users = action.users;
       return newState;
     case REMOVE_FRIEND:
-      debugger;
+      // debugger;
       newState.friends = newState.friends.filter(
         (friend) => !friend.id === action.friendID
       );

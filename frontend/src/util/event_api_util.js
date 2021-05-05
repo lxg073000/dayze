@@ -33,6 +33,5 @@ export const updateEvent = (id, data) => {
 };
 
 export const deleteEvent = (id, data) => {
-  debugger;
   return axios.delete(`/api/events/${id}`, {data});
 };
