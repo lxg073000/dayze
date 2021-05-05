@@ -36,13 +36,18 @@ class EventItem extends React.Component {
 
   render() {
     // debugger;
+    let eventEditorDate = new Date(this.props.date);
+    let off = eventEditorDate.getTimezoneOffset()/60;
+    eventEditorDate.setHours(eventEditorDate.getHours()-off);
+
+
     return (
       <ul id={this.props.id} className="event-card">
         {this.state.editor_form ? (
           <EventEditor
             id={this.props.id}
             evntTitle={this.props.title}
-            evntDate={new Date(this.props.date).toISOString().substr(0, 10)}
+            evntDate={eventEditorDate.toISOString().substr(0, 10)}
             evntTime={new Date(this.props.date).toTimeString().slice(0, 8)}
             evntDesc={this.props.description}
             currentUser={this.props.currentUser}
