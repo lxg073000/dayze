@@ -37,7 +37,6 @@ const EventTimersReducer = (state = initialState, action) => {
       return newState;
     case RECEIVE_UPDATE_EVENT:
       newState.updatedEvent = action.event.data;
-      debugger
       let idList = newState.eventIds[action.event.data._id]
       if (idList) idList.forEach(id=>clearTimeout(id));
       delete newState.eventIds[action.event.data._id];

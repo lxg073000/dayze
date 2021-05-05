@@ -15,7 +15,6 @@ export default class EventTimer extends React.Component {
 
   componentDidMount() {
     //get all filtered upcoming events
-    debugger;
     this.initialSetTimeout = setTimeout(this.manageEventTimers, 5000);
     this.setIntervalId = setInterval(this.manageEventTimers, 30*60000)
 
@@ -45,7 +44,6 @@ export default class EventTimer extends React.Component {
     );
 
     eventList.forEach((event) => {
-      debugger
       if (eventReminders[event._id]) {
         eventReminders[event._id].push(this.handleEventTimer(event));
       }else{

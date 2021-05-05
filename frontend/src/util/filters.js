@@ -8,7 +8,6 @@ export const filterEventsByTime = (duration, events) => {
   let oneHourLater = new Date();
   oneHourLater.setHours(oneHourLater.getHours() + 1);
   let filteredEvents = [];
-  debugger
   events.forEach((event) => {
     let eventTime = new Date(event.date);
     let notificationTime = new Date(eventTime);
@@ -30,6 +29,5 @@ export const filterEventByTime = (duration, event)=>{
   console.log(`filter event by time for duration ${duration}`);
   console.log(`         ${event.date}`)
   let filtered = filterEventsByTime(duration,[event])
-  debugger
   return (filtered.length === 1) ? filtered[0] : null
 }

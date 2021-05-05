@@ -4,7 +4,7 @@ import EventEditor from "./event_editor";
 class EventBox extends React.Component {
 <<<<<<< HEAD
   edit_btn(e, id) {
-    debugger;
+    // debugger;
     // let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
 =======
   edit_btn(e) {

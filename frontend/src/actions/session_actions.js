@@ -119,7 +119,7 @@ export const logout = () => (dispatch) => {
 
 export const linkGoogleCal = () => (dispatch) => {
   APIUtil.linkGoogleCal().then((res) => {
-    debugger;
+    // debugger;
     return dispatch(receiveGoogleLinkBool(res.data));
   });
 };
