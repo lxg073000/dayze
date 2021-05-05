@@ -13,6 +13,7 @@ export const filterEventsByTime = (duration, events) => {
     let eventTime = new Date(event.date);
     let notificationTime = new Date(eventTime);
     notificationTime.setMinutes(notificationTime.getMinutes() - duration);
+    console.log(`      notification time: ${notificationTime}`);
     if (
       eventTime > now &&
       eventTime < oneHourLater &&
@@ -22,11 +23,12 @@ export const filterEventsByTime = (duration, events) => {
       filteredEvents.push(event);
     }
   });
-
   return filteredEvents;
 };
 
 export const filterEventByTime = (duration, event)=>{
+  console.log(`filter event by time for duration ${duration}`);
+  console.log(`         ${event.date}`)
   let filtered = filterEventsByTime(duration,[event])
   debugger
   return (filtered.length === 1) ? filtered[0] : null
