@@ -37,14 +37,7 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.props.fetchUserEvents(this.props.currentUser.id);
-    // this.setState({notifications: })
-    // document.getElementById("root").classList.add("layout-bug");
-    // document.getElementById("root").style.height = "100%";
-    // debugger;
-    // this.events = this.props.events;
-
     if (this.props.location.pathname.includes("granted")) {
       this.props.changeIsLinkedGoogleAccount(true);
     }
@@ -75,7 +68,6 @@ export default class user_calender_hub extends React.Component {
     this.setState({
       linkedIn: !this.state.linkedIn,
     });
-    console.log(this.state.linkedIn);
   }
 
   createNotifications(filteredEvents) {

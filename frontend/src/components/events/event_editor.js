@@ -25,12 +25,10 @@ export default class event_editor extends Component {
   }
 
   composeDate(date, time) {
-    //debugger;
     return new Date(date + " " + time);
   }
 
   handleSubmit(e) {
-    //debugger;
     e.preventDefault();
     let event = {
       title: this.state.title,

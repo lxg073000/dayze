@@ -53,25 +53,19 @@ export default class EventTimer extends React.Component {
     this.props.refreshEventTimers(eventReminders);
   }
 
-  //for (const [key, val] of Object.entries(eventReminders)) {
-  //   let eventTimer = {
-  //     [key]: val,
-  //   };
-  // }
-
-  // UNSAFE_componentWillReceiveProps(newState) {
-  //   debugger;
-  //   //compare old to new state
-  //   //pass array formated changes to prev used code
-  // }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     let newUpdatedReminders = {};
     let isShouldUpdate = false;
+<<<<<<< HEAD
     console.log("filtered neew updated events!!");
     console.log(this.props.filteredNewUpdatedEvents);
     this.props.filteredNewUpdatedEvents.forEach((ev) => {
       if (ev) {
+=======
+    this.props.filteredNewUpdatedEvents.forEach(ev=>{
+      if (ev){
+>>>>>>> main
         if (newUpdatedReminders[ev._id]) {
           newUpdatedReminders[ev._id].push(this.handleEventTimer(ev));
         } else {

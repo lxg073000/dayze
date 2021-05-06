@@ -40,8 +40,7 @@ router.post("/:id", (req, res) => {
       User.findById(req.params.id).then(friend =>{
         let friendUsername = friend.username;
         friends.set(friendId, friendUsername);
-        console.log(`updated friends`)
-        console.log(friends)
+
         // user.friends= friends;
 
         user.save()

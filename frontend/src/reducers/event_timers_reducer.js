@@ -14,7 +14,6 @@ import {RECEIVE_USER_LOGOUT} from '../actions/session_actions';
 
 let initialState= { eventIds: {}, updatedEvent:{}, newEvent:{}};
 const EventTimersReducer = (state = initialState, action) => {
-  //debugger;
   Object.freeze(state);
   let newState = Object.assign({}, state, {updatedEvent:{}, newEvent:{}} );
   switch (action.type) {

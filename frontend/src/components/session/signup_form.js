@@ -35,7 +35,6 @@ class SignupForm extends React.Component {
   }
 
   toggleAuth(e) {
-    // debugger;
     e.preventDefault();
     this.setState({ toggleAuth: !this.state.toggleAuth });
     // document.getElementById("oauth-modal").classList.remove("hide");
@@ -61,7 +60,6 @@ class SignupForm extends React.Component {
       this.state.errors.email
     ) {
       let space = document.getElementsByClassName("signup-form-background");
-      //debugger
       space[0].style.marginTop = 0;
       return (
         <div className="errors-signup">

@@ -14,9 +14,6 @@ export default class googleUrl extends Component {
     // this.handleTokens = this.handleTokens.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
 
   render() {
     return (

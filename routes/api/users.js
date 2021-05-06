@@ -75,7 +75,6 @@ router.post("/register", (req, res) => {
                 //redirect()
                 let authorizeUrl;
 
-                console.log(req.body);
                 if (req.body.isLinkedGoogleAccount) {
                   let oAuth2Client = createOAuth2Client();
                   const SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -84,10 +83,8 @@ router.post("/register", (req, res) => {
                     scope: SCOPES.join(" "),
                   });
                   user.googleUrl = authorizeUrl;
-                  console.log(`googleURL - ${user.googleUrl}`);
                 }
-                console.log("A new user!");
-                console.log(user);
+                
 
                 const payload = {
                   id: user.id,
@@ -226,26 +223,21 @@ router.get("/oauth2callback", async (req, res) => {
   let oAuth2Client = createOAuth2Client();
 
   const { tokens } = await oAuth2Client.getToken(authorizationCode);
-  console.log(`tokens! `);
-  console.log(tokens);
+
 
   oAuth2Client.credentials = tokens;
   google.options({ auth: oAuth2Client });
 
   //Get CurrentUser and store tokens in .googleCredentials
   let gcreds = Object.values(tokens);
-  console.log(`------->GREDS: ${gcreds}`);
   gcreds[3] = gcreds[3].toString();
   CurrentUserId.find({}).then((cuList) => {
-    console.log(`culist is ${cuList}`);
     let cuid = cuList[0].id;
     User.findByIdAndUpdate(
       cuid,
       { googleCredentials: gcreds, isLinkedGoogleAccount: true },
       { new: true }
     ).then((u) => {
-      console.log("UPdated current User: ");
-      console.log(u);
     });
   });
 

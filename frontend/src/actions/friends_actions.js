@@ -10,21 +10,18 @@ export const receiveFriend = (friend) => ({
 });
 
 export const receiveFriends = (friends) => {
-  // debugger;
   return {
     type: RECEIVE_FRIENDS,
     friends,
   };
 };
 export const receiveUsers = (users) => {
-  // debugger;
   return {
     type: RECEIVE_USERS,
     users,
   };
 };
 export const removeFriend = (friendID) => {
-  // debugger;
   return {
     type: REMOVE_FRIEND,
     friendID,

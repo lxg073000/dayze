@@ -23,14 +23,12 @@ export default class splash extends React.Component {
     this.setState({ errors: nextProps.errors });
   }
   toggleLinkedIn() {
-    // debugger;
     document.getElementById("linkedIn-btn").classList.toggle("activated");
     document.getElementById("linkedIn-mini").classList.toggle("hide");
 
     this.setState({
       linkedIn: !this.state.linkedIn,
     });
-    console.log(this.state.linkedIn);
   }
   render() {
     return (

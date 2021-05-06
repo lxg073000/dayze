@@ -67,7 +67,6 @@ export const signup = (user) => (dispatch) => {
   );
 };
 export const updateOAuthTokens = (user, tokens) => (dispatch) => {
-  //debugger
 
   return APIUtil.updateOAuthTokens(user, tokens).then(
     (tokens) => {
@@ -93,10 +92,8 @@ export const login = (user) => (dispatch) => {
 export const guestLogin = (
   user = { username: "GuestUser", password: "1234567890asdfghjkl" }
 ) => (dispatch) => {
-  ////debugger;
   return APIUtil.guestUser(user)
     .then((res) => {
-      //debugger
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
@@ -119,15 +116,6 @@ export const logout = () => (dispatch) => {
 
 export const linkGoogleCal = () => (dispatch) => {
   APIUtil.linkGoogleCal().then((res) => {
-    // debugger;
     return dispatch(receiveGoogleLinkBool(res.data));
   });
 };
-
-// export const logout = () => (dispatch) =>
-// APIUtil.setAuthToken(false).then(
-
-// )
-//   localStorage.removeItem("jwtToken");
-//   dispatch(logoutUser());
-// ;
