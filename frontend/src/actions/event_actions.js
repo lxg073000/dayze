@@ -102,7 +102,6 @@ export const deleteEvent = (id, data) => (dispatch) =>
 export const createGuestEvents = (id) => (dispatch) =>
     APIUtil.createGuestEvents(id)
       .then((res)=>{
-        debugger
         return dispatch(receiveGuestEvents(res.data));
       })
       .catch(err=> console.log(err));

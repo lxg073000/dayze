@@ -193,13 +193,18 @@ router.post("/guest/:id" , (req,res)=>{
   let defaultEvents = JSON.parse( 
     fs.readFileSync(path.resolve(__dirname, defaultEventsPath)) 
   );
-  defaultEvents.forEach( ev=>{
+  let today = new Date();
+  defaultEvents.forEach( (ev, idx)=>{
     ev.user = userId;
     let eventDate = new Date(ev.date);
-    let today = new Date();
     //Set the event date to have today's month
     eventDate.setMonth(today.getMonth());
+    ev.date = eventDate;
   });
+  //set the first event to be on the current date
+  defaultEvents[0].date = today;
+  defaultEvents.sort((a,b)=>(a.date > b.date) ? 1 : -1)
+  
   Event.insertMany(defaultEvents, (err, docs)=>{
     if (err) console.log('Could not post get user default events.', err);
     res.json(docs);

@@ -38,7 +38,6 @@ export default class user_calender_hub extends React.Component {
 
   componentDidMount() {
     if (this.props.currentUser.isFirstGuestSignIn){
-      debugger
       this.props.createGuestEvents(this.props.currentUser.id);
       this.props.currentUser.isFirstGuestSignIn = false;
     }else{
