@@ -15,12 +15,15 @@ const initialState = {
 const sessionAPIReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
+      if (action.isGuestUser) {
+        action.currentUser.isFirstGuestSignIn = true;
       return {
         ...state,
         isAuthenticated: !!action.currentUser,
         user: action.currentUser,
         isSignedIn: true,
-      };
+        };
+      }
 
     case RECEIVE_USER_LOGOUT:
       return {

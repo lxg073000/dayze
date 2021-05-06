@@ -11,9 +11,10 @@ export const REMOVE_GOOGLELINK = "REMOVE_GOOGLELINK";
 export const RECEIVE_IS_LINKED_GOOGLE_ACCOUNT =
   "RECEIVE_IS_LINKED_GOOGLE_ACCOUNT";
 
-export const receiveCurrentUser = (currentUser) => ({
+export const receiveCurrentUser = (currentUser, isGuestUser = false) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
+  isGuestUser
 });
 export const receiveOAuthTokens = (tokens) => ({
   type: RECEIVE_OAUTH_TOKENS,
@@ -89,20 +90,24 @@ export const login = (user) => (dispatch) => {
       dispatch(receiveErrors(err.response.data));
     });
 };
-export const guestLogin = (
-  user = { username: "GuestUser", password: "1234567890asdfghjkl" }
-) => (dispatch) => {
-  return APIUtil.guestUser(user)
-    .then((res) => {
-      const { token } = res.data;
-      localStorage.setItem("jwtToken", token);
-      APIUtil.setAuthToken(token);
-      const decoded = jwt_decode(token);
-      dispatch(receiveCurrentUser(decoded));
-    })
-    .catch((err) => {
-      dispatch(receiveErrors(err.response.data));
-    });
+export const guestRegister = ()=>{
+  return (dispatch) => {
+    let user = { password: "1234567890asdfghjkl" };
+    let name = "GuestUser" + Math.round(Math.random()*1000000).toString();
+    user.username =  name;
+    user.email = name + '@gmail.com';
+    return APIUtil.guestUser(user)
+      .then((res) => {
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        APIUtil.setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(receiveCurrentUser(decoded, true)); //second arg to show it is guest user
+      })
+      .catch((err) => {
+        dispatch(receiveErrors(err.response.data));
+      });
+  }
 };
 
 export const logout = () => (dispatch) => {

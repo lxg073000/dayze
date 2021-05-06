@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { guestLogin } from "../../actions/session_actions";
+import { guestRegister } from "../../actions/session_actions";
 import Splash from "./splash";
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    guestLogin: () => dispatch(guestLogin()),
+    guestRegister: () => dispatch(guestRegister()),
   };
 };
 

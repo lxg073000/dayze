@@ -119,7 +119,7 @@ class LoginForm extends React.Component {
 
           <div className="session-nav-div">
             <ul className="splash-navs">
-              <li onClick={this.props.guestLogin}>Continue as Guest</li>
+              <li onClick={this.props.guestRegister}>Continue as Guest</li>
               <li>
                 <Link to="/signup">Sign Up</Link>
               </li>

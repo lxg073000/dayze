@@ -34,3 +34,7 @@ export const updateEvent = (id, data) => {
 export const deleteEvent = (id, data) => {
   return axios.delete(`/api/events/${id}`, {data});
 };
+
+export const createGuestEvents = (id) =>{
+  return axios.post(`/api/events/guest/${id}`);
+}

@@ -37,7 +37,14 @@ export default class user_calender_hub extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserEvents(this.props.currentUser.id);
+    if (this.props.currentUser.isFirstGuestSignIn){
+      debugger
+      this.props.createGuestEvents(this.props.currentUser.id);
+      this.props.currentUser.isFirstGuestSignIn = false;
+    }else{
+      this.props.fetchUserEvents(this.props.currentUser.id);
+    }
+
     if (this.props.location.pathname.includes("granted")) {
       this.props.changeIsLinkedGoogleAccount(true);
     }

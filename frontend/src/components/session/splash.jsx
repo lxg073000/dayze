@@ -54,7 +54,7 @@ export default class splash extends React.Component {
             <li>
               <Link to="./signup">Sign Up</Link>
             </li>
-            <li onClick={this.props.guestLogin}>Continue As Guest</li>
+            <li onClick={this.props.guestRegister}>Continue As Guest</li>
             {/* <li>
               <i
                 id="linkedIn-btn"

@@ -19,7 +19,7 @@ export const login = (userData) => {
   return axios.post("/api/users/login", userData);
 };
 export const guestUser = (userData) => {
-  return axios.post("/api/users/login", userData);
+  return axios.post("/api/users/register", userData);
 };
 
 export const removeAuthAndID = () => {

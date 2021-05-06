@@ -5,6 +5,7 @@ export const RECEIVE_USER_EVENTS = "RECEIVE_USER_EVENTS";
 export const RECEIVE_NEW_EVENT = "RECEIVE_NEW_EVENT";
 export const RECEIVE_UPDATE_EVENT = "RECEIVE_UPDATE_EVENT";
 export const RECEIVE_DELETE_EVENT = "RECEIVE_DELETE_EVENT";
+export const RECEIVE_GUEST_EVENTS = "RECEIVE_GUEST_EVENTS";
 
 export const receiveEvents = (events) => ({
   type: RECEIVE_EVENTS,
@@ -36,6 +37,13 @@ export const receiveUpdateEvent = (event) => ({
 export const receiveDeleteEvent = (event) => ({
   type: RECEIVE_DELETE_EVENT,
   event,
+});
+
+
+export const receiveGuestEvents = (events) => (
+  {
+    type: RECEIVE_GUEST_EVENTS,
+    events
 });
 
 export const fetchEvents = () => (dispatch) =>
@@ -89,3 +97,12 @@ export const deleteEvent = (id, data) => (dispatch) =>
       return dispatch(receiveDeleteEvent(event));
     })
     .catch((err) => console.log(err));
+
+
+export const createGuestEvents = (id) => (dispatch) =>
+    APIUtil.createGuestEvents(id)
+      .then((res)=>{
+        debugger
+        return dispatch(receiveGuestEvents(res.data));
+      })
+      .catch(err=> console.log(err));

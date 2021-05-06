@@ -5,6 +5,7 @@ import {
   RECEIVE_NEW_EVENT,
   RECEIVE_UPDATE_EVENT,
   RECEIVE_DELETE_EVENT,
+  RECEIVE_GUEST_EVENTS
 } from "../actions/event_actions";
 
 const EventsReducer = (
@@ -16,6 +17,9 @@ const EventsReducer = (
   switch (action.type) {
     case RECEIVE_EVENTS:
       newState.user = action.events.data;
+      return newState;
+    case RECEIVE_GUEST_EVENTS:
+      newState.user = action.events;
       return newState;
     case RECEIVE_EVENT:
       newState.event_item = action.event.data;

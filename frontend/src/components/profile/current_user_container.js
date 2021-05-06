@@ -3,10 +3,11 @@ import {
   fetchUserEvents,
   createEvent,
   updateEvent,
+  createGuestEvents
 } from "../../actions/event_actions";
 import {
   logout,
-  guestLogin,
+  guestRegister,
   receiveIsLinkedGoogleAccount,
   removeGoogleLink,
 } from "../../actions/session_actions";
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
     fetchUserEvents: (id) => dispatch(fetchUserEvents(id)),
-    guestLogin: () => dispatch(guestLogin()),
+    createGuestEvents: (id) => dispatch(createGuestEvents(id)),
+    guestRegister: () => dispatch(guestRegister()),
     createEvent: (data) => dispatch(createEvent(data)),
     updateEvent: (id, data) => dispatch(updateEvent(id, data)),
     changeIsLinkedGoogleAccount: (bool) =>
