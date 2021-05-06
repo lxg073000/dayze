@@ -1,12 +1,4 @@
-/*  
-* The Dayze app is able to use google calendar api to sync itself with a user's
-calendar.  The use of reading and writing another person's Google calendar 
-requires app verification from Google.  Due to time constraints, we are able to 
-only sync calendars for authorized test users.
-
-Because of this, in the code below, the link to the Google authentication page 
-is replaced with a link to the Dayze github wiki.
-*/
+//disabled reference to Google Authentification URL passed from line 41 to currentUser's slice of state
 
 
 
@@ -45,7 +37,8 @@ export default class googleUrl extends Component {
             <a
               className="sync-confirm-btn"
               href = {'https://github.com/lxg073000/dayze/wiki'}
-              // href={this.props.currentUser.googleUrl}     //See above * for comments.
+              //disabled reference to Google Authentification URL passed to current user's slice of state
+              // href={this.props.currentUser.googleUrl}
               onClick={() =>
                 document
                   .getElementsByClassName("oauth-modal-container")[0]
