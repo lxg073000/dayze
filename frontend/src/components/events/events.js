@@ -101,19 +101,31 @@ class Event extends React.Component {
     return (
       <div className="event-display-window">
         <span className="event-filter-bar">
-          <i className="fas fa-calendar" id="all" onClick={this.filterAll}></i>
+          <i
+            className="fas fa-calendar"
+            id="all"
+            alt="All Events"
+            title="All Events"
+            onClick={this.filterAll}
+          ></i>
           <i
             className="fab fas fa-calendar-alt"
             id="month"
+            alt="Events This Month"
+            title="Events This Month"
             onClick={this.filterMonth}
           ></i>
           <i
             className="fab fas fa-calendar-week"
+            alt="Event This Week"
+            title="Event This Week"
             id="week"
             onClick={this.filterWeek}
           ></i>
           <i
             className="fab fas fa-calendar-day"
+            alt="Today's Events"
+            title="Today's Events"
             id="day"
             onClick={this.filterToday}
           ></i>
@@ -121,6 +133,8 @@ class Event extends React.Component {
             <i
               className="fas fa-link"
               id="link"
+              title="Sync Google Calendar"
+              alt="Sync Google Calendar"
               onClick={this.handleLinkGoogleCal}
             ></i>
           ) : null}

@@ -171,4 +171,6 @@ input.form-item[type="time"] {
   display: inline-grid;
   grid-template: 1fr/17% 32px;
   place-content: center;
+  place-items: center;
+  margin: 0;
 }

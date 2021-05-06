@@ -123,23 +123,6 @@ class LoginForm extends React.Component {
               <li>
                 <Link to="/signup">Sign Up</Link>
               </li>
-              {/* <span className="contacts">
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://github.com/lxg073000/dayze/wiki"
-                >
-                  <i className="fab fa-github"></i>
-                </a>
-
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  href="https://www.linkedin.com/school/app-academy/"
-                >
-                  <i className="fab fa-linkedin"></i>
-                </a>
-              </span> */}
             </ul>
             <LinkedInListMini className="hide" />
           </div>

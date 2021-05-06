@@ -28,7 +28,7 @@ export default class EventTimer extends React.Component {
 
   manageEventTimers() {
     //clear the event timeouts
-    for (const [eventId, timeoutIdList] of Object.entries(
+    for (const [timeoutIdList] of Object.entries(
       this.props.eventTimers.eventIds
     )) {
       timeoutIdList.forEach((toid) => {

@@ -132,6 +132,8 @@ export default class user_calender_hub extends React.Component {
                     <a
                       rel="noreferrer"
                       target="_blank"
+                      title="Dayze Github"
+                      alt="Dayze Github"
                       href="https://github.com/lxg073000/dayze/wiki"
                     >
                       <i className="fab fa-github"></i>
@@ -141,6 +143,8 @@ export default class user_calender_hub extends React.Component {
                       id="linkedIn-btn"
                       onClick={this.toggleLinkedIn}
                       className="fab fa-linkedin"
+                      title="Dayze Developers"
+                      alt="Dayze Developers"
                     >
                       <LinkedInList className="hide" />
                     </i>

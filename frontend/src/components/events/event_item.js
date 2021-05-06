@@ -16,7 +16,6 @@ class EventItem extends React.Component {
     this.edit_btn = this.edit_btn.bind(this);
   }
 
-
   edit_btn(e) {
     this.setState({ editor_form: !this.state.editor_form });
   }
@@ -29,9 +28,8 @@ class EventItem extends React.Component {
 
   render() {
     let eventEditorDate = new Date(this.props.date);
-    let off = eventEditorDate.getTimezoneOffset()/60;
-    eventEditorDate.setHours(eventEditorDate.getHours()-off);
-
+    let off = eventEditorDate.getTimezoneOffset() / 60;
+    eventEditorDate.setHours(eventEditorDate.getHours() - off);
 
     return (
       <ul id={this.props.id} className="event-card">
@@ -53,10 +51,14 @@ class EventItem extends React.Component {
             <i
               onClick={(e) => this.edit_btn(e, this.props.id)}
               className="fas fa-edit"
+              title="Edit Event"
+              alt="Edit Event"
             ></i>
             <i
               onClick={(e) => this.delete_btn(e, this.props.id)}
               className="far fa-calendar-times"
+              title="Delete Event"
+              alt="Delete Event"
             ></i>
           </span>
         </li>
