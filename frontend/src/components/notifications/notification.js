@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function notification() {
-  let heading = document.querySelector("Dayze");
-  heading.innerText = "Dayze Notification";
   let urlParams = new URLSearchParams(window.location.search);
   let [desc, title, date, duration] = urlParams.values();
   return (
