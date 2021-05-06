@@ -1,11 +1,10 @@
 import React from "react";
-import Notifications from "../notifications/notification";
 
 export default class EventTimer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: this.props.eventsInHalfHour
+      events: this.props.eventsInHalfHour,
     };
     this.handleEventTimer = this.handleEventTimer.bind(this);
     this.timeUntil = this.timeUntil.bind(this);
@@ -16,7 +15,7 @@ export default class EventTimer extends React.Component {
   componentDidMount() {
     //get all filtered upcoming events
     this.initialSetTimeout = setTimeout(this.manageEventTimers, 5000);
-    this.setIntervalId = setInterval(this.manageEventTimers, 30*60000)
+    this.setIntervalId = setInterval(this.manageEventTimers, 30 * 60000);
 
     // this.props.eventsByHalfHour.forEach((event) => {
     //   this.handleEventTimer(event);
@@ -27,14 +26,14 @@ export default class EventTimer extends React.Component {
     // });
   }
 
-
-  manageEventTimers(){
-
+  manageEventTimers() {
     //clear the event timeouts
-    for (const [eventId, timeoutIdList] of Object.entries(this.props.eventTimers.eventIds)){
-      timeoutIdList.forEach(toid =>{
+    for (const [eventId, timeoutIdList] of Object.entries(
+      this.props.eventTimers.eventIds
+    )) {
+      timeoutIdList.forEach((toid) => {
         clearTimeout(toid);
-      })
+      });
     }
 
     //create new event timeouts
@@ -46,13 +45,13 @@ export default class EventTimer extends React.Component {
     eventList.forEach((event) => {
       if (eventReminders[event._id]) {
         eventReminders[event._id].push(this.handleEventTimer(event));
-      }else{
+      } else {
         eventReminders[event._id] = [this.handleEventTimer(event)];
       }
     });
 
     this.props.refreshEventTimers(eventReminders);
-  }  
+  }
 
   //for (const [key, val] of Object.entries(eventReminders)) {
   //   let eventTimer = {
@@ -66,29 +65,28 @@ export default class EventTimer extends React.Component {
   //   //pass array formated changes to prev used code
   // }
 
-  componentDidUpdate(prevProps, prevState, snapshot){
+  componentDidUpdate(prevProps, prevState, snapshot) {
     let newUpdatedReminders = {};
     let isShouldUpdate = false;
-    console.log('filtered neew updated events!!')
-    console.log (this.props.filteredNewUpdatedEvents);
-    this.props.filteredNewUpdatedEvents.forEach(ev=>{
-      if (ev){
+    console.log("filtered neew updated events!!");
+    console.log(this.props.filteredNewUpdatedEvents);
+    this.props.filteredNewUpdatedEvents.forEach((ev) => {
+      if (ev) {
         if (newUpdatedReminders[ev._id]) {
           newUpdatedReminders[ev._id].push(this.handleEventTimer(ev));
-        }else{
+        } else {
           newUpdatedReminders[ev._id] = [this.handleEventTimer(ev)];
         }
         isShouldUpdate = true;
       }
-    })
-    if (isShouldUpdate)  this.props.createEventTimers(newUpdatedReminders);
+    });
+    if (isShouldUpdate) this.props.createEventTimers(newUpdatedReminders);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.initialSetTimeout);
     clearInterval(this.setIntervalId);
   }
-
 
   handleEventTimer(event) {
     let eventTimeoutID = setTimeout(() => {
@@ -108,16 +106,11 @@ export default class EventTimer extends React.Component {
     let desc = encodeURIComponent(event.description);
     let title = encodeURIComponent(event.title);
     let date = encodeURIComponent(event.date);
-    return `/?desc=${desc}&title=${title}&date=${date}#/notification/`;
+    let duration = encodeURIComponent(event.duration);
+    return `/?desc=${desc}&title=${title}&date=${date}&date=${duration}#/notification/`;
   }
 
   render() {
-    return (
-      <div>
-        <Notifications 
-          events = {this.props.eventsInQuarterHour}
-        />
-      </div>
-    );
+    return <div></div>;
   }
 }

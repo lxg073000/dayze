@@ -18,13 +18,14 @@ export const filterEventsByTime = (duration, events) => {
       now <= notificationTime
     ) {
       event.notificationTime = notificationTime;
+      event.duration = duration;
       filteredEvents.push(event);
     }
   });
   return filteredEvents;
 };
 
-export const filterEventByTime = (duration, event)=>{
-  let filtered = filterEventsByTime(duration,[event])
-  return (filtered.length === 1) ? filtered[0] : null
-}
+export const filterEventByTime = (duration, event) => {
+  let filtered = filterEventsByTime(duration, [event]);
+  return filtered.length === 1 ? filtered[0] : null;
+};
