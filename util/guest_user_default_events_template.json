@@ -1,0 +1,98 @@
+[
+    {
+        "title": "Go grocery shopping",
+        "description": "Get bananas, flour, and chicken",
+        "date": "2021-05-01T19:52:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Jogging",
+        "description": "Make 1 lap around the park",
+        "date": "2021-05-03T02:52:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Make a cake",
+        "description": "Add more milk this time",
+        "date": "2021-05-03T14:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Practice Spanish",
+        "description": "No olvides el vocabulario nuevo!",
+        "date": "2021-05-04T22:30:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Get a new rug",
+        "description": "Find a durable one",
+        "date": "2021-05-05T18:15:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Work on the new JS Project",
+        "description": "Don't forget the semicolons",
+        "date": "2021-05-06T21:30:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Check in for flight online",
+        "description": "Itinerary: 1255162366",
+        "date": "2021-05-08T01:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Bake some pie",
+        "description": "Don't eat too much!",
+        "date": "2021-05-08T23:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Do a little dance",
+        "description": "Get down",
+        "date": "2021-05-10T02:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Fix bugs in project",
+        "description": "Look at the console logs",
+        "date": "2021-05-10T21:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Look for a new car",
+        "description": "Make an email to the Subaru owner: gregGrigsby@hotmail.com",
+        "date": "2021-05-11T22:15:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Meditate",
+        "description": "Om",
+        "date": "2021-05-12T11:00:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Talk to friends",
+        "description": "Remember to invite Agnes",
+        "date": "2021-05-15T17:12:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Go to dance class",
+        "description": "Bring towel",
+        "date": "2021-05-16T21:46:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "Shop for clothes",
+        "description": "Get 1 dark pants and 3 T-Shirts",
+        "date": "2021-05-20T00:20:00.000Z",
+        "__v": 0
+    },
+    {
+        "title": "EXAM",
+        "description": "It's go time",
+        "date": "2021-05-24T12:00:00.000Z",
+        "__v": 0
+    }
+]

@@ -9,6 +9,8 @@ const {
 } = require('../../util/calendar_util/calendar_api_util');
 const User = require("../../models/User");
 
+const fs= require('fs')
+
 
 router.get("/test", (req, res) =>  {
     res.json({ msg: 'This is the events route' });
@@ -178,6 +180,30 @@ router.delete("/:id", (req, res) => {
         })
         .catch((err)=> res.status(400).json(err));
 })
+
+
+//Populate the newly-created guest user.
+//This function takes the id of a user from the req and adds a list of events 
+//from guest_user_default_events_template.json, but changing the month of the 
+//event date to the current one.
+router.post("/guest/:id" , (req,res)=>{
+  let userId = req.params.id;
+  let defaultEventsPath = '../../util/guest_user_default_events_template.json';
+  let defaultEvents = JSON.parse( 
+    fs.readFileSync(path.resolve(__dirname, defaultEventsPath)) 
+  );
+  defaultEvents.forEach( ev=>{
+    ev.user = userId;
+    let eventDate = new Date(ev.date);
+    let today = new Date();
+    //Set the event date to have today's month
+    eventDate.setMonth(today.getMonth());
+  });
+  Event.insertMany(defaultEvents, (err, docs)=>{
+    if (err) console.log('Could not post get user default events.', err);
+    res.json(docs);
+  });
+});
 
 
 
