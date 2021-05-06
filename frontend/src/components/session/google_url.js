@@ -1,10 +1,5 @@
-//disabled reference to Google Authentification URL passed from line 41 to currentUser's slice of state
-
-
-
-import { calendar } from "googleapis/build/src/apis/calendar";
+//For production version, we will disable reference to Google Authentification URL passed from line 41 to currentUser's slice of state
 import React, { Component } from "react";
-import { useStore } from "react-redux"
 
 export default class googleUrl extends Component {
   constructor(props) {
@@ -36,9 +31,9 @@ export default class googleUrl extends Component {
           <div className="google-URL-grid">
             <a
               className="sync-confirm-btn"
-              href = {'https://github.com/lxg073000/dayze/wiki'}
-              //disabled reference to Google Authentification URL passed to current user's slice of state
-              // href={this.props.currentUser.googleUrl}
+              // href = {'https://github.com/lxg073000/dayze/wiki'}
+              //For production version, we will disable reference to Google Authentification URL passed to current user's slice of state
+              href={this.props.currentUser.googleUrl}
               onClick={() =>
                 document
                   .getElementsByClassName("oauth-modal-container")[0]
