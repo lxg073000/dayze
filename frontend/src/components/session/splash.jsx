@@ -36,7 +36,7 @@ export default class splash extends React.Component {
         <img
           alt="bg-img"
           className="splash-bg background-img1"
-          src="/assets/splash_0.jpg"
+          src="/assets/bg3.jpg"
         ></img>
         <div className="gradient"></div>
         <div className="splash-main">

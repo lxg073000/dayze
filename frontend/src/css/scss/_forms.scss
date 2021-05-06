@@ -53,7 +53,7 @@
 .login-form-field {
   border-radius: 20px;
   padding: 12px;
-  background: #f3f3f3;
+  background: linear-gradient(90deg, #f3f3f3, #ececec, #f3f3f3);
   color: #5c5a58;
   width: 320px;
 }
@@ -72,18 +72,21 @@
   border-radius: 20px;
   margin: 0.4em 0;
   padding: 12px;
-  background: #f3f3f3;
-  color: #383735;
+  background: #cacaca00;
+  color: #000000;
   width: 100%;
   font-family: "Lato", sans-serif;
+  box-shadow: inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
   &::placeholder {
-    color: #000000b4;
+    color: #ffffff;
   }
 }
 
-.signup-form-field:focus {
-  background: #f1f6ff;
-  box-shadow: inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
+// .signup-form-field:focus,
+.signup-form-field:not(.signup-form-field:placeholder-shown) {
+  background: linear-gradient(90deg, #f3f3f3eb, #ffffff, #f3f3f3eb);
+  box-shadow: inset 0px 0px 2px 3px rgb(133 135 133 / 39%),
+    inset 0px 0px 2px 3px rgb(255 255 255 / 38%);
   color: #0f0d0d;
 }
 
@@ -368,7 +371,7 @@
   padding: 0px;
   background: #e69e94;
   color: rgb(255 255 255 / 81%);
-
+  width: 100px;
   font-size: 23px;
   cursor: pointer;
   margin: 0.4em 0;

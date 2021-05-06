@@ -94,7 +94,7 @@ p {
 }
 
 .main-bg1 {
-  filter: blur(7px);
+  filter: blur(27px);
 }
 
 // .App {
@@ -580,5 +580,8 @@ p {
   }
   .head {
     padding: 20px 0;
+  }
+  .signup-form-field {
+    background: #cacaca54;
   }
 }
