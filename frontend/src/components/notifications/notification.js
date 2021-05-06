@@ -7,7 +7,7 @@ export default function notification() {
     <div className="notifcations-shell">
       <img
         alt="bg-img"
-        class="background-img1 hub-dark main-bg1"
+        className="background-img1 hub-dark main-bg1"
         src="/assets/mainbg.jpg"
       ></img>
       <div className="notification-container">
