@@ -135,7 +135,6 @@ const mapDbParamsToGoogleParams = (dbParams)=>{
 module.exports = {
   insertEvent, 
   removeEvent,
-  getEventsFromRange, 
   getCalendarInfo, 
   updateEvent, 
   getAuth,
