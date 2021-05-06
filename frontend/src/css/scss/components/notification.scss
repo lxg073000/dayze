@@ -61,9 +61,12 @@
   }
 }
 
-.notification-card {
-}
-
 .notification-bg {
   object-fit: cover;
+}
+
+@media screen and (orientation: portrait) {
+  .notification-container {
+    max-width: 400px;
+  }
 }
