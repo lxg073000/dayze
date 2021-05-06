@@ -2,13 +2,8 @@ import React from "react";
 import EventEditor from "./event_editor";
 
 class EventBox extends React.Component {
-<<<<<<< HEAD
   edit_btn(e, id) {
     // let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
-=======
-  edit_btn(e) {
-    let event_patch_id = `${e.target.parentElement.parentElement.parentElement.id}-patch`;
->>>>>>> c1025b0a85fdb95ddaa107364cdb682fcb6c8bdb
     // console.log(e.target.parentElement.parentElement.parentElement.children);
     let selected_event = document.getElementById(`${id}-patch`);
 
