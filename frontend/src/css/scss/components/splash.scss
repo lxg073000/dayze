@@ -27,6 +27,20 @@
   }
 }
 
+.splash-description {
+  display: flex;
+  flex-direction: column;
+  padding:15px;
+  width: 100%;
+  background: linear-gradient( 90deg, #9bb1b817, #9bb1b8, #9bb1b80f);
+  
+  h3 {
+    margin-left: 25%;
+    color: white;
+    font-size: 18px;
+  }
+}
+
 .splash-navs > li,
 .contacts {
   margin: 0 9px;

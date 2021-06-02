@@ -46,6 +46,7 @@ export default class splash extends React.Component {
             <h1 className="splash-logo">Dayze</h1>
           </div>
         </div>
+        
         <span className="splash-navs-section">
           <ul className="splash-navs">
             <li>
@@ -65,6 +66,10 @@ export default class splash extends React.Component {
           </ul>
           <LinkedInListMini className="hide" />
         </span>
+        <div className='splash-description'>
+              <h3>A better way to handle your Dayze</h3>
+              <h3>Stay connected to all the important things in life by using Dayze to recieve daily event reminders</h3>
+        </div>
       </div>
     );
   }

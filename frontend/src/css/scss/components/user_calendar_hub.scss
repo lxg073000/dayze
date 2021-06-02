@@ -63,3 +63,17 @@
   grid-row-start: 2;
   grid-row-end: 3;
 }
+
+.hub-instructions {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(
+271deg
+, #ab8a7d, #a78e7f, #bea699);
+  padding-left: 10%;
+
+  span{
+    color: #DED4EC;
+    padding: 5px;
+  }
+}

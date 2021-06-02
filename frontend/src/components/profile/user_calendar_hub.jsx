@@ -111,6 +111,10 @@ export default class user_calender_hub extends React.Component {
                   Dayze {/*  {`${this.props.username}`} */}
                 </p>
               </div>
+              <div className='hub-instructions'>
+                <span>View or edit your events and have them sorted by day or month</span>
+                <span>Click on your desired day on the calendar to create a new event</span>
+              </div>
               <div className="hsec event-creator show-event">
                 <div className="title">
                   <p className="event-headline">Schedule a reminder</p>
