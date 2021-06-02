@@ -113,7 +113,7 @@ export default class user_calender_hub extends React.Component {
               </div>
               <div className='hub-instructions'>
                 <span>View or edit your events and have them sorted by day or month</span>
-                <span>Click on your desired day on the calendar to create a new event</span>
+                <span>Click on your desired day on the calendar to create a new event or click the link icon to link your google account</span>
               </div>
               <div className="hsec event-creator show-event">
                 <div className="title">
